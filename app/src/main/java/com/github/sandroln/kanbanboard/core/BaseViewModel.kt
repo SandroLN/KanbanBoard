@@ -15,7 +15,7 @@ abstract class BaseViewModel(private val dispatchersList: DispatchersList) : Vie
         ui: (T) -> Unit
     ) = viewModelScope.launch(dispatchersList.io()) {
         val result = block.invoke()
-        withContext(dispatchersList.ui()) {
+        withContext(dispatchersList.io()) {
             ui.invoke(result)
         }
     }

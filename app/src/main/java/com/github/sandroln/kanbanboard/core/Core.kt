@@ -3,10 +3,10 @@ package com.github.sandroln.kanbanboard.core
 import android.content.Context
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.google.firebase.FirebaseApp
-import com.google.gson.Gson
+import com.google.firebase.database.DatabaseReference
 
 class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageResource,
-    ProvideDispatchersList, ProvideDatabase {
+    ProvideDispatcherList, ProvideDatabase {
 
     init {
         FirebaseApp.initializeApp(context)
@@ -15,15 +15,11 @@ class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageR
     private val provideDatabase = ProvideDatabase.Base()
     private val manageResource = ManageResource.Base(context)
     private val navigation = NavigationCommunication.Base()
-    private val storage = SimpleStorage.Base(
-        context.getSharedPreferences(STORAGE_NAME, Context.MODE_PRIVATE)
-    ).let { simpleStorage ->
-        Storage.Base(simpleStorage, ObjectStorage.Base(simpleStorage, Gson()))
-    }
+    private val storage =
+        Storage.Base(context.getSharedPreferences(STORAGE_NAME, Context.MODE_PRIVATE))
+    private val dispatcherList = DispatchersList.Base()
 
-    private val dispatchersList = DispatchersList.Base()
-
-    override fun provideDispatchersList() = dispatchersList
+    override fun provideDispatchersList() = dispatcherList
 
     override fun navigation(): NavigationCommunication.Mutable {
         return navigation
@@ -32,12 +28,14 @@ class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageR
     override fun storage() = storage
 
     companion object {
-        private const val STORAGE_NAME = "KANBAN BOARDS APP DATA"
+        private const val STORAGE_NAME = "KANBAN BOARD APP DATA"
     }
 
     override fun manageResource() = manageResource
 
-    override fun database() = provideDatabase.database()
+
+    override fun database(): DatabaseReference = provideDatabase.database()
+
 }
 
 interface ProvideNavigation {
@@ -55,6 +53,7 @@ interface ProvideManageResource {
     fun manageResource(): ManageResource
 }
 
-interface ProvideDispatchersList {
+interface ProvideDispatcherList {
+
     fun provideDispatchersList(): DispatchersList
 }

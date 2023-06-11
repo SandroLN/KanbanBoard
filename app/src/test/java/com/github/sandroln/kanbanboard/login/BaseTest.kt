@@ -15,6 +15,7 @@ abstract class BaseTest {
         fun checkStack(size: Int)
 
         class Base : FunctionsCallsStack {
+
             private val list = mutableListOf<String>()
             private var count = 0
 
@@ -29,6 +30,7 @@ abstract class BaseTest {
             override fun checkStack(size: Int) {
                 Assert.assertEquals(size, list.size)
             }
+
         }
     }
 
@@ -36,14 +38,15 @@ abstract class BaseTest {
         private val dispatcher: CoroutineDispatcher = TestCoroutineDispatcher()
     ) : DispatchersList {
 
-        override fun io() = dispatcher
-        override fun ui() = dispatcher
+        override fun io(): CoroutineDispatcher = dispatcher
+        override fun ui(): CoroutineDispatcher = dispatcher
     }
 
-    protected class TestManageResource(private val string: String) : ManageResource {
+    protected class TestManageResource(
+        private val string: String
+    ) : ManageResource {
 
-        override fun string(id: Int): String {
-            return string
-        }
+        override fun string(id: Int): String = string
     }
+
 }
