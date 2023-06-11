@@ -7,7 +7,6 @@ import com.github.sandroln.kanbanboard.core.Communication
 import com.github.sandroln.kanbanboard.core.Init
 import com.github.sandroln.kanbanboard.login.presentation.LoginScreen
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
-import com.github.sandroln.kanbanboard.main.Screen
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -38,5 +37,7 @@ class ProfileViewModel(
         }
     }
 
-    fun goBack() = navigationCommunication.map(Screen.Pop)
+    fun goBack() {
+        //todo
+    }
 }

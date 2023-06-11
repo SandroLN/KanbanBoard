@@ -1,8 +1,6 @@
 package com.github.sandroln.kanbanboard.core
 
 import androidx.lifecycle.ViewModel
-import com.github.sandroln.kanbanboard.boards.BoardsModule
-import com.github.sandroln.kanbanboard.boards.presentation.BoardsViewModel
 import com.github.sandroln.kanbanboard.login.LoginModule
 import com.github.sandroln.kanbanboard.login.presentation.LoginViewModel
 import com.github.sandroln.kanbanboard.main.MainModule
@@ -17,20 +15,19 @@ interface DependencyContainer {
     class Error : DependencyContainer {
 
         override fun module(className: Class<out ViewModel>): Module<out ViewModel> =
-            throw IllegalArgumentException("unknown className $className")
+            throw IllegalStateException("unknown classname $className")
     }
 
     class Base(
         private val core: Core,
         private val dependencyContainer: DependencyContainer = Error()
     ) : DependencyContainer {
-
-        override fun module(className: Class<out ViewModel>) = when (className) {
-            MainViewModel::class.java -> MainModule(core)
-            LoginViewModel::class.java -> LoginModule(core)
-            ProfileViewModel::class.java -> ProfileModule(core)
-            BoardsViewModel::class.java -> BoardsModule(core)
-            else -> dependencyContainer.module(className)
-        }
+        override fun module(className: Class<out ViewModel>): Module<out ViewModel> =
+            when (className) {
+                MainViewModel::class.java -> MainModule(core)
+                LoginViewModel::class.java -> LoginModule(core)
+                ProfileViewModel::class.java -> ProfileModule(core)
+                else -> dependencyContainer.module(className)
+            }
     }
 }
