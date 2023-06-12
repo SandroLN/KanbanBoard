@@ -18,6 +18,9 @@ class BoardsFragment : BaseFragment<BoardsViewModel>(R.layout.fragment_boards) {
         view.findViewById<View>(R.id.settingsButton).setOnClickListener {
             viewModel.showProfile()
         }
+        view.findViewById<View>(R.id.createButton).setOnClickListener {
+            viewModel.createBoard()
+        }
         viewModel.observe(this) {
             it.show(adapter)
         }

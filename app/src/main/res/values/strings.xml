@@ -12,4 +12,8 @@
     <string name="other_boards_title">Boards you are added to</string>
     <string name="how_to_be_added_to_board">Other users can add you to their boards. Check your email in profile settings</string>
     <string name="retry">retry</string>
+    <string name="board_name">Board Name</string>
+    <string name="at_least_3_symbols">At least 3 symbols</string>
+    <string name="create_board">Create Board</string>
+    <string name="board_already_exists">Board with this name already exists</string>
 </resources>

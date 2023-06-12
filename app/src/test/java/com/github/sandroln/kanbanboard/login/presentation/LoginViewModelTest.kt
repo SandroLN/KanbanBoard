@@ -1,11 +1,9 @@
 package com.github.sandroln.kanbanboard.login.presentation
 
+import com.github.sandroln.kanbanboard.BaseTest
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsScreen
-import com.github.sandroln.kanbanboard.login.BaseTest
 import com.github.sandroln.kanbanboard.login.data.LoginRepository
 import com.github.sandroln.kanbanboard.login.data.LoginResult
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
-import com.github.sandroln.kanbanboard.main.Screen
 import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -163,31 +161,6 @@ class LoginViewModelTest : BaseTest() {
 
             companion object {
                 private const val MAP_CALL = "LoginCommunication#map"
-            }
-        }
-    }
-
-    private interface FakeNavigation : NavigationCommunication.Update {
-
-        fun check(screen: Screen)
-
-        class Base(private val functionsCallsStack: FunctionsCallsStack) : FakeNavigation {
-
-            private val list = mutableListOf<Screen>()
-            private var index = 0
-
-            override fun check(screen: Screen) {
-                assertEquals(screen, list[index++])
-                functionsCallsStack.checkCalled(MAP_CALL)
-            }
-
-            override fun map(source: Screen) {
-                functionsCallsStack.put(MAP_CALL)
-                list.add(source)
-            }
-
-            companion object {
-                private const val MAP_CALL = "NavigationCommunication.Update#map"
             }
         }
     }

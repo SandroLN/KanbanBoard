@@ -3,6 +3,8 @@ package com.github.sandroln.kanbanboard.core
 import androidx.lifecycle.ViewModel
 import com.github.sandroln.kanbanboard.boards.BoardsModule
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsViewModel
+import com.github.sandroln.kanbanboard.createboard.CreateBoardModule
+import com.github.sandroln.kanbanboard.createboard.presentation.CreateBoardViewModel
 import com.github.sandroln.kanbanboard.login.LoginModule
 import com.github.sandroln.kanbanboard.login.presentation.LoginViewModel
 import com.github.sandroln.kanbanboard.main.MainModule
@@ -30,6 +32,7 @@ interface DependencyContainer {
             LoginViewModel::class.java -> LoginModule(core)
             ProfileViewModel::class.java -> ProfileModule(core)
             BoardsViewModel::class.java -> BoardsModule(core)
+            CreateBoardViewModel::class.java -> CreateBoardModule(core)
             else -> dependencyContainer.module(className)
         }
     }

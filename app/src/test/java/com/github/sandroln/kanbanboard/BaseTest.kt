@@ -1,7 +1,10 @@
-package com.github.sandroln.kanbanboard.login
+package com.github.sandroln.kanbanboard
 
 import com.github.sandroln.kanbanboard.core.DispatchersList
 import com.github.sandroln.kanbanboard.core.ManageResource
+import com.github.sandroln.kanbanboard.main.NavigationCommunication
+import com.github.sandroln.kanbanboard.main.Screen
+import junit.framework.TestCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.Assert
@@ -44,6 +47,31 @@ abstract class BaseTest {
 
         override fun string(id: Int): String {
             return string
+        }
+    }
+
+    protected interface FakeNavigation : NavigationCommunication.Update {
+
+        fun check(screen: Screen)
+
+        class Base(private val functionsCallsStack: FunctionsCallsStack) : FakeNavigation {
+
+            private val list = mutableListOf<Screen>()
+            private var index = 0
+
+            override fun check(screen: Screen) {
+                TestCase.assertEquals(screen, list[index++])
+                functionsCallsStack.checkCalled(MAP_CALL)
+            }
+
+            override fun map(source: Screen) {
+                functionsCallsStack.put(MAP_CALL)
+                list.add(source)
+            }
+
+            companion object {
+                private const val MAP_CALL = "NavigationCommunication.Update#map"
+            }
         }
     }
 }
