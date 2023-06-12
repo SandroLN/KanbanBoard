@@ -98,7 +98,7 @@ private class HandleBoards(private val query: Query) {
                         it.getValue(BoardCloud::class.java)!!
                     )
                 }
-                cont.resume(data.map { Pair(it.first, it.second) })
+                cont.resume(data)
             }
 
             override fun onCancelled(error: DatabaseError) =
@@ -107,7 +107,7 @@ private class HandleBoards(private val query: Query) {
     }
 }
 
-private data class BoardCloud(
+data class BoardCloud(
     val owner: String = "",
     val name: String = ""
 )

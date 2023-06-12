@@ -9,6 +9,7 @@ import com.github.sandroln.kanbanboard.core.DispatchersList
 import com.github.sandroln.kanbanboard.core.Init
 import com.github.sandroln.kanbanboard.core.ProvideError
 import com.github.sandroln.kanbanboard.core.Reload
+import com.github.sandroln.kanbanboard.createboard.presentation.CreateBoardScreen
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.github.sandroln.kanbanboard.profile.presentation.ProfileScreen
 
@@ -45,10 +46,14 @@ class BoardsViewModel(
         //todo navigation.map(BoardScreen)
     }
 
-    fun showProfile() = navigation.map(ProfileScreen)
+    override fun showProfile() = navigation.map(ProfileScreen)
+    override fun createBoard() = navigation.map(CreateBoardScreen)
 }
 
 interface BoardsViewModelActions : Init, Communication.Observe<BoardsUiState>, BoardClickListener,
-    ReloadWithError
+    ReloadWithError {
+    fun createBoard()
+    fun showProfile()
+}
 
 interface ReloadWithError : Reload, ProvideError

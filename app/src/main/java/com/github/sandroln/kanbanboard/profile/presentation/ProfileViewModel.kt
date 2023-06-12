@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.github.sandroln.kanbanboard.core.Communication
+import com.github.sandroln.kanbanboard.core.GoBack
 import com.github.sandroln.kanbanboard.core.Init
 import com.github.sandroln.kanbanboard.login.presentation.LoginScreen
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
@@ -14,7 +15,7 @@ import com.google.firebase.ktx.Firebase
 class ProfileViewModel(
     private val communication: ProfileCommunication,
     private val navigationCommunication: NavigationCommunication.Update
-) : ViewModel(), Init, Communication.Observe<ProfileUiState> {
+) : ViewModel(), Init, Communication.Observe<ProfileUiState>, GoBack {
 
     override fun observe(owner: LifecycleOwner, observer: Observer<ProfileUiState>) =
         communication.observe(owner, observer)
@@ -38,5 +39,5 @@ class ProfileViewModel(
         }
     }
 
-    fun goBack() = navigationCommunication.map(Screen.Pop)
+    override fun goBack() = navigationCommunication.map(Screen.Pop)
 }
