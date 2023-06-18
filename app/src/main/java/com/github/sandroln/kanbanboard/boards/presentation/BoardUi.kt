@@ -2,6 +2,10 @@ package com.github.sandroln.kanbanboard.boards.presentation
 
 import android.widget.TextView
 import com.github.sandroln.kanbanboard.R
+import com.github.sandroln.kanbanboard.board.data.BoardCloudDataSource
+import com.github.sandroln.kanbanboard.board.presentation.BoardCommunication
+import com.github.sandroln.kanbanboard.board.presentation.BoardUiState
+import com.github.sandroln.kanbanboard.core.Mapper
 
 interface BoardUi {
     fun id(): String
@@ -79,4 +83,11 @@ data class BoardInfo(
     private val name: String,
     private val isMyBoard: Boolean,
     private val ownerId: String = ""
-)
+) : Mapper.Unit<BoardCommunication> {
+
+    override fun map(source: BoardCommunication) =
+        source.map(BoardUiState.Initial(name, isMyBoard))
+
+    fun init(boardCloudDataSource: BoardCloudDataSource) =
+        boardCloudDataSource.init(id, isMyBoard, ownerId)
+}
