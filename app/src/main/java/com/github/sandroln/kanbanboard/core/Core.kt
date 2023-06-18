@@ -6,12 +6,13 @@ import com.google.firebase.FirebaseApp
 import com.google.gson.Gson
 
 class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageResource,
-    ProvideDispatchersList, ProvideDatabase {
+    ProvideDispatchersList, ProvideDatabase, ProvideSerialization {
 
     init {
         FirebaseApp.initializeApp(context)
     }
 
+    private val serialization: Serialization.Mutable = Serialization.Base(Gson())
     private val provideDatabase = ProvideDatabase.Base()
     private val manageResource = ManageResource.Base(context)
     private val navigation = NavigationCommunication.Base()
@@ -38,6 +39,8 @@ class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageR
     override fun manageResource() = manageResource
 
     override fun database() = provideDatabase.database()
+
+    override fun serialization() = serialization
 }
 
 interface ProvideNavigation {
@@ -57,4 +60,8 @@ interface ProvideManageResource {
 
 interface ProvideDispatchersList {
     fun provideDispatchersList(): DispatchersList
+}
+
+interface ProvideSerialization {
+    fun serialization(): Serialization.Mutable
 }

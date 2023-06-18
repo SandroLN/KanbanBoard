@@ -2,6 +2,7 @@ package com.github.sandroln.kanbanboard.boards.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.github.sandroln.kanbanboard.board.presentation.BoardScreen
 import com.github.sandroln.kanbanboard.boards.data.BoardsRepository
 import com.github.sandroln.kanbanboard.core.BaseViewModel
 import com.github.sandroln.kanbanboard.core.Communication
@@ -43,7 +44,7 @@ class BoardsViewModel(
 
     override fun openBoard(boardInfo: BoardInfo) {
         boardsRepository.save(boardInfo)
-        //todo navigation.map(BoardScreen)
+        navigation.map(BoardScreen)
     }
 
     override fun showProfile() = navigation.map(ProfileScreen)

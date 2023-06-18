@@ -3,7 +3,6 @@ package com.github.sandroln.kanbanboard.createboard.presentation
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.boards.presentation.BoardsFragment
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsScreen
 import com.github.sandroln.kanbanboard.core.BaseViewModel
 import com.github.sandroln.kanbanboard.core.Communication
@@ -12,7 +11,6 @@ import com.github.sandroln.kanbanboard.core.GoBack
 import com.github.sandroln.kanbanboard.core.ManageResource
 import com.github.sandroln.kanbanboard.createboard.data.CreateBoardRepository
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
-import com.github.sandroln.kanbanboard.main.Screen
 
 class CreateBoardViewModel(
     private val manageResource: ManageResource,
@@ -51,6 +49,3 @@ interface CreateBoardUiActions {
     fun checkBoard(name: String)
     fun disableCreate()
 }
-
-//todo fix later
-object BoardScreen : Screen.Replace(BoardsFragment::class.java)

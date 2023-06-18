@@ -112,7 +112,7 @@ data class BoardCloud(
     val name: String = ""
 )
 
-private data class OtherBoardCloud(
+data class OtherBoardCloud(
     val memberId: String = "",
     val boardId: String = ""
 )
