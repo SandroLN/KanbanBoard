@@ -51,10 +51,11 @@ data class TicketUi(
         else
             MoveDirection.NONE
 
-        Column.IN_PROGRESS -> if (targetColumn == Column.DONE)
-            MoveDirection.RIGHT
-        else
-            MoveDirection.LEFT
+        Column.IN_PROGRESS -> when (targetColumn) {
+            Column.DONE -> MoveDirection.RIGHT
+            Column.TODO -> MoveDirection.LEFT
+            else -> MoveDirection.NONE
+        }
 
         Column.DONE -> if (targetColumn == Column.IN_PROGRESS)
             MoveDirection.LEFT
@@ -73,7 +74,7 @@ data class TicketUi(
     }
 }
 
-enum class Column {
+enum class Column { //todo refactor
     TODO,
     IN_PROGRESS,
     DONE

@@ -66,7 +66,6 @@ class BoardFragment : BaseFragment<BoardViewModel>(R.layout.fragment_board) {
         viewModel.observeDoneColumn(this) {
             doneAdapter.map(it)
         }
-        viewModel.init(savedInstanceState == null)
     }
 
     private inner class DragListener(

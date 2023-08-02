@@ -20,14 +20,12 @@ class BoardViewModel(
     private val navigation: NavigationCommunication.Update,
 ) : ViewModel(), BoardActions {
 
-    override fun reload() {
-        init(true)
-    }
-
-    override fun init(firstRun: Boolean) {
+    init {
         repository.boardInfo().map(communication)
         repository.init()
     }
+
+    override fun reload() = repository.init()
 
     //region observe
     override fun observe(owner: LifecycleOwner, observer: Observer<BoardUiState>) =
@@ -79,7 +77,7 @@ class BoardViewModel(
         serialization.fromString(source, clasz)
 }
 
-interface BoardActions : Init, GoBack, Communication.Observe<BoardUiState>,
+interface BoardActions : GoBack, Communication.Observe<BoardUiState>,
     TicketsCommunication.Observe, TicketInteractions, Reload, Serialization.Mutable {
 
     fun showSettings()

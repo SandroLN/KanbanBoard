@@ -13,19 +13,20 @@ interface BoardRepository : MoveTicket {
     fun saveTicketIdToEdit(id: String)
 
     class Base(
-        private val cloudDataSource: BoardCloudDataSource,
+        private val moveTicketCloudDataSource: MoveTicketCloudDataSource,
+        private val boardCloudDataSource: BoardCloudDataSource,
         private val editTicketIdCache: EditTicketIdCache.Save,
         private val chosenBoardCache: ChosenBoardCache.Read,
     ) : BoardRepository {
 
-        override fun init() = boardInfo().init(cloudDataSource)
+        override fun init() = boardInfo().init(boardCloudDataSource)
 
         override fun boardInfo() = chosenBoardCache.read()
 
         override fun saveTicketIdToEdit(id: String) = editTicketIdCache.save(id)
 
         override fun moveTicket(id: String, newColumn: Column) =
-            cloudDataSource.moveTicket(id, newColumn)
+            moveTicketCloudDataSource.moveTicket(id, newColumn)
     }
 }
 
