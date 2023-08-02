@@ -1,6 +1,6 @@
 package com.github.sandroln.kanbanboard.createboard.data
 
-import com.github.sandroln.kanbanboard.createboard.presentation.BoardScreen
+import com.github.sandroln.kanbanboard.board.presentation.BoardScreen
 import com.github.sandroln.kanbanboard.createboard.presentation.CreateBoardCommunication
 import com.github.sandroln.kanbanboard.createboard.presentation.CreateBoardUiState
 import com.github.sandroln.kanbanboard.main.NavigationCommunication

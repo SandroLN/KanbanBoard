@@ -1,6 +1,7 @@
 package com.github.sandroln.kanbanboard.createboard.presentation
 
 import com.github.sandroln.kanbanboard.BaseTest
+import com.github.sandroln.kanbanboard.board.presentation.BoardScreen
 import com.github.sandroln.kanbanboard.core.ManageResource
 import com.github.sandroln.kanbanboard.createboard.data.CreateBoardRepository
 import com.github.sandroln.kanbanboard.createboard.data.CreateBoardResult

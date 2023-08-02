@@ -17,12 +17,11 @@ interface LoginCloudDataSource {
         override suspend fun login() {
             val user = Firebase.auth.currentUser
             val uid = user!!.uid
-            val email = user.email!!
-            val displayName = user.displayName
+            val email = user.email
 
             if (email.isNullOrEmpty())
                 throw IllegalStateException("problem occurred while getting email")
-
+            val displayName = user.displayName ?: email
             val result = provideDatabase.database().child("users")
                 .child(uid)
                 .setValue(UserProfileCloud(email, displayName))
@@ -40,7 +39,7 @@ interface LoginCloudDataSource {
     }
 }
 
-private data class UserProfileCloud(
+data class UserProfileCloud(
     val mail: String = "",
-    val name: String? = null
+    val name: String = ""
 )
