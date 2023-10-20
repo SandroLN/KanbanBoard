@@ -3,9 +3,9 @@ package com.github.sandroln.kanbanboard.boards.presentation
 import android.widget.TextView
 import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.kanbanboard.board.data.BoardCloudDataSource
-import com.github.sandroln.kanbanboard.board.presentation.BoardCommunication
-import com.github.sandroln.kanbanboard.board.presentation.BoardUiState
-import com.github.sandroln.kanbanboard.core.Mapper
+import com.github.sandroln.kanbanboard.board.presentation.BoardToolbarCommunication
+import com.github.sandroln.kanbanboard.board.presentation.BoardToolbarUi
+import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketOnBoard
 
 interface BoardUi {
     fun id(): String
@@ -15,35 +15,35 @@ interface BoardUi {
 
     object Progress : BoardUi {
         override fun map(textView: TextView) = Unit
-        override fun orderId() = 0
+        override fun orderId() = BoardType.Progress.intValue()
         override fun id() = "BoardUiProgress"
     }
 
     object MyBoardTitle : BoardUi {
         override fun map(textView: TextView) = textView.setText(R.string.my_boards_title)
-        override fun orderId() = 1
+        override fun orderId() = BoardType.Title.intValue()
         override fun id() = "BoardUiMyBoardTitle"
     }
 
     data class MyBoard(private val key: String, private val name: String) : BoardUi {
+        override fun orderId() = BoardType.Name.intValue()
         override fun map(textView: TextView) {
             textView.text = name
         }
 
         override fun openBoard(open: OpenBoard) = open.openBoard(BoardInfo(key, name, true))
-        override fun orderId() = 2
         override fun id() = key
     }
 
     object NoBoardsOfMyOwnHint : BoardUi {
+        override fun orderId() = BoardType.Hint.intValue()
         override fun map(textView: TextView) = textView.setText(R.string.no_boards_of_my_own)
-        override fun orderId() = 3
         override fun id() = "BoardUiNoBoardsOfMyOwnHint"
     }
 
     object OtherBoardsTitle : BoardUi {
+        override fun orderId() = BoardType.Title.intValue()
         override fun map(textView: TextView) = textView.setText(R.string.other_boards_title)
-        override fun orderId() = 4
         override fun id() = "BoardUiOtherBoardsTitle"
     }
 
@@ -52,28 +52,30 @@ interface BoardUi {
         private val name: String,
         private val owner: String
     ) : BoardUi {
+        override fun orderId() = BoardType.Name.intValue()
+
         override fun map(textView: TextView) {
             textView.text = name
         }
 
         override fun openBoard(open: OpenBoard) = open.openBoard(BoardInfo(key, name, false, owner))
 
-        override fun orderId() = 5
         override fun id() = key
     }
 
     object HowToBeAddedToBoardHint : BoardUi {
+        override fun orderId() = BoardType.Hint.intValue()
+
         override fun map(textView: TextView) = textView.setText(R.string.how_to_be_added_to_board)
-        override fun orderId() = 6
         override fun id() = "BoardUiHowToBeAddedToBoardHint"
     }
 
     data class Error(private val message: String) : BoardUi {
+        override fun orderId() = BoardType.Error.intValue()
         override fun map(textView: TextView) {
             textView.text = message
         }
 
-        override fun orderId() = 7
         override fun id() = "BoardUiError$message"
     }
 }
@@ -83,10 +85,12 @@ data class BoardInfo(
     private val name: String,
     private val isMyBoard: Boolean,
     private val ownerId: String = ""
-) : Mapper.Unit<BoardCommunication> {
+) {
 
-    override fun map(source: BoardCommunication) =
-        source.map(BoardUiState.Initial(name, isMyBoard))
+    fun createTicket(createTicket: CreateTicketOnBoard) = createTicket.createTicket(id)
+
+    fun show(communication: BoardToolbarCommunication) =
+        communication.map(BoardToolbarUi(name, isMyBoard))
 
     fun init(boardCloudDataSource: BoardCloudDataSource) =
         boardCloudDataSource.init(id, isMyBoard, ownerId)

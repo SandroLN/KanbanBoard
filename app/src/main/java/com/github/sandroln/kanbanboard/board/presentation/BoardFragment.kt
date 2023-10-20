@@ -16,9 +16,6 @@ class BoardFragment : BaseFragment<BoardViewModel>(R.layout.fragment_board) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //region init views
-        val backButton = view.findViewById<View>(R.id.backButton)
-        val boardNameTextView = view.findViewById<TextView>(R.id.boardNameTextView)
-        val settingsButton = view.findViewById<View>(R.id.settingsButton)
         val progressBar = view.findViewById<View>(R.id.progressBar)
         val errorView = view.findViewById<View>(R.id.errorView)
         val errorTextView = view.findViewById<TextView>(R.id.errorTextView)
@@ -29,15 +26,15 @@ class BoardFragment : BaseFragment<BoardViewModel>(R.layout.fragment_board) {
         val createTicketButton = view.findViewById<View>(R.id.createTicketButton)
 
         val todoAdapter = TicketsAdapter(viewModel)
-        todoRecyclerView.setOnDragListener(DragListener(Column.TODO, viewModel))
+        todoRecyclerView.setOnDragListener(DragListener(Column.Todo, viewModel))
         todoRecyclerView.adapter = todoAdapter
 
         val inProgressAdapter = TicketsAdapter(viewModel)
-        inProgressRecyclerView.setOnDragListener(DragListener(Column.IN_PROGRESS, viewModel))
+        inProgressRecyclerView.setOnDragListener(DragListener(Column.InProgress, viewModel))
         inProgressRecyclerView.adapter = inProgressAdapter
 
         val doneAdapter = TicketsAdapter(viewModel)
-        doneRecyclerView.setOnDragListener(DragListener(Column.DONE, viewModel))
+        doneRecyclerView.setOnDragListener(DragListener(Column.Done, viewModel))
         doneRecyclerView.adapter = doneAdapter
         //endregion
         createTicketButton.setOnClickListener {
@@ -46,15 +43,8 @@ class BoardFragment : BaseFragment<BoardViewModel>(R.layout.fragment_board) {
         tryAgainButton.setOnClickListener {
             viewModel.reload()
         }
-        backButton.setOnClickListener {
-            viewModel.goBack()
-        }
-        settingsButton.setOnClickListener {
-            viewModel.showSettings()
-        }
 
         viewModel.observe(this) {
-            it.map(boardNameTextView, settingsButton)
             it.map(errorView, errorTextView, progressBar)
         }
         viewModel.observeTodoColumn(this) {

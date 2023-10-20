@@ -11,10 +11,10 @@ interface MemberName {
 
     interface Callback {
 
-        fun provideMember(userName: String, userId: String)
+        fun provideMember(user: UserProfileCloud, userId: String)
 
         object Empty : Callback {
-            override fun provideMember(userName: String, userId: String) = Unit
+            override fun provideMember(user: UserProfileCloud, userId: String) = Unit
         }
     }
 
@@ -47,7 +47,7 @@ interface MemberName {
                                 it.getValue(UserProfileCloud::class.java)
                             )
                         }
-                        callback.provideMember(userCloud.second!!.name, userCloud.first)
+                        callback.provideMember(userCloud.second!!, userCloud.first)
                     }
 
                     override fun onCancelled(error: DatabaseError) =

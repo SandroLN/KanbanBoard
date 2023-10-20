@@ -10,11 +10,7 @@ interface MoveTicketCloudDataSource : MoveTicket {
     ) : MoveTicketCloudDataSource {
 
         override fun moveTicket(id: String, newColumn: Column) {
-            val value = when (newColumn) {
-                Column.TODO -> "todo"
-                Column.IN_PROGRESS -> "inprogress"
-                Column.DONE -> "done"
-            }
+            val value = newColumn.cloudValue()
             provideDatabase.database()
                 .child("tickets")
                 .child(id)

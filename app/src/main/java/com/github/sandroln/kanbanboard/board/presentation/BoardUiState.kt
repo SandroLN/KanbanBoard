@@ -5,22 +5,7 @@ import android.widget.TextView
 
 interface BoardUiState {
 
-    fun map(boardNameTextView: TextView, settingsButton: View) = Unit
-    fun map(errorView: View, errorTextView: TextView, progress: View) {
-        errorView.visibility = View.GONE
-        progress.visibility = View.VISIBLE
-    }
-
-    data class Initial(
-        private val boardName: String,
-        private val showSettings: Boolean
-    ) : BoardUiState {
-
-        override fun map(boardNameTextView: TextView, settingsButton: View) {
-            boardNameTextView.text = boardName
-            settingsButton.visibility = if (showSettings) View.VISIBLE else View.GONE
-        }
-    }
+    fun map(errorView: View, errorTextView: TextView, progress: View)
 
     data class Error(private val message: String) : BoardUiState {
 
@@ -38,5 +23,10 @@ interface BoardUiState {
         }
     }
 
-    object ShowProgress : BoardUiState
+    object ShowProgress : BoardUiState {
+        override fun map(errorView: View, errorTextView: TextView, progress: View) {
+            errorView.visibility = View.GONE
+            progress.visibility = View.VISIBLE
+        }
+    }
 }

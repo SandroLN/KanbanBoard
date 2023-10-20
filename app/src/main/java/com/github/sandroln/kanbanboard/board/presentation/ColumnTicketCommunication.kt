@@ -7,7 +7,7 @@ import com.github.sandroln.kanbanboard.board.data.MoveTicket
 import com.github.sandroln.kanbanboard.core.Communication
 
 interface ColumnTicketCommunication : Communication.Mutable<List<TicketUi>> {
-    class Base : Communication.Abstract<List<TicketUi>>(), ColumnTicketCommunication
+    class Base : Communication.Regular<List<TicketUi>>(), ColumnTicketCommunication
 }
 
 data class TicketUi(
@@ -28,54 +28,33 @@ data class TicketUi(
         assignee.text = assignedMemberName
     }
 
-    fun map(left: View, right: View) = when (column) {
-        Column.TODO -> {
-            left.visibility = View.INVISIBLE
-            right.visibility = View.VISIBLE
-        }
+    fun map(left: View, right: View) = column.showButtons(left, right)
 
-        Column.IN_PROGRESS -> {
-            left.visibility = View.VISIBLE
-            right.visibility = View.VISIBLE
-        }
+    fun directionOfMove(targetColumn: Column) = column.directionOfMove(targetColumn, this)
 
-        Column.DONE -> {
-            left.visibility = View.VISIBLE
-            right.visibility = View.INVISIBLE
-        }
-    }
+    override fun moveLeft(moving: MoveTicket) = moving.moveTicket(id, column.leftColumn())
 
-    fun directionOfMove(targetColumn: Column): MoveDirection = when (column) {
-        Column.TODO -> if (targetColumn == Column.IN_PROGRESS)
-            MoveDirection.RIGHT
-        else
-            MoveDirection.NONE
+    override fun moveRight(moving: MoveTicket) = moving.moveTicket(id, column.rightColumn())
 
-        Column.IN_PROGRESS -> when (targetColumn) {
-            Column.DONE -> MoveDirection.RIGHT
-            Column.TODO -> MoveDirection.LEFT
-            else -> MoveDirection.NONE
-        }
-
-        Column.DONE -> if (targetColumn == Column.IN_PROGRESS)
-            MoveDirection.LEFT
-        else
-            MoveDirection.NONE
-    }
-
-    override fun moveLeft(moving: MoveTicket) {
-        val column = if (column == Column.DONE) Column.IN_PROGRESS else Column.TODO
-        moving.moveTicket(id, column)
-    }
-
-    override fun moveRight(moving: MoveTicket) {
-        val column = if (column == Column.TODO) Column.IN_PROGRESS else Column.DONE
-        moving.moveTicket(id, column)
-    }
+    fun toSerializable() =
+        TicketUiSerializable(colorHex, id, name, assignedMemberName, column.cloudValue())
 }
 
-enum class Column { //todo refactor
-    TODO,
-    IN_PROGRESS,
-    DONE
+data class TicketUiSerializable(
+    private val colorHex: String,
+    private val id: String,
+    private val name: String,
+    private val assignedMemberName: String,
+    private val columnCloudValue: String
+) {
+
+    fun toTicketUi(): TicketUi {
+        val column = when (columnCloudValue) {
+            Column.Todo.cloudValue() -> Column.Todo
+            Column.InProgress.cloudValue() -> Column.InProgress
+            Column.Done.cloudValue() -> Column.Done
+            else -> throw IllegalStateException("unknown column")
+        }
+        return TicketUi(colorHex, id, name, assignedMemberName, column)
+    }
 }

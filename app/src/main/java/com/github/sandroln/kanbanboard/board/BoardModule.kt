@@ -2,6 +2,7 @@ package com.github.sandroln.kanbanboard.board
 
 import com.github.sandroln.kanbanboard.board.data.BoardCloudDataSource
 import com.github.sandroln.kanbanboard.board.data.BoardMembers
+import com.github.sandroln.kanbanboard.board.data.BoardMembersCommunication
 import com.github.sandroln.kanbanboard.board.data.BoardRepository
 import com.github.sandroln.kanbanboard.board.data.EditTicketIdCache
 import com.github.sandroln.kanbanboard.board.data.MemberName
@@ -16,7 +17,10 @@ import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.core.Core
 import com.github.sandroln.kanbanboard.core.Module
 
-class BoardModule(private val core: Core) : Module<BoardViewModel> {
+class BoardModule(
+    private val core: Core,
+    private val boardMembersCommunication: BoardMembersCommunication.Mutable
+) : Module<BoardViewModel> {
 
     override fun viewModel(): BoardViewModel {
         val ticketsCommunication = TicketsCommunication.Base(
@@ -31,6 +35,7 @@ class BoardModule(private val core: Core) : Module<BoardViewModel> {
             BoardRepository.Base(
                 MoveTicketCloudDataSource.Base(core),
                 BoardCloudDataSource.Base(
+                    boardMembersCommunication,
                     Tickets.CloudDataSource.Base(handleError, core),
                     BoardMembers.CloudDataSource.Base(handleError, core),
                     MemberName.CloudDataSource.Base(handleError, core),

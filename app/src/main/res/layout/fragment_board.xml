@@ -59,13 +59,17 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:indeterminate="true" />
+            android:indeterminate="true"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/errorView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/red">
+            android:background="@color/red"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <Button
                 android:id="@+id/tryAgainButton"
@@ -112,6 +116,7 @@
                         android:id="@+id/todoRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/todoColumnColor"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                 </LinearLayout>
 
@@ -131,6 +136,7 @@
                         android:id="@+id/inProgressRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/inProgressColumnColor"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                 </LinearLayout>
 
@@ -150,6 +156,7 @@
                         android:id="@+id/doneRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/doneColumnColor"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                 </LinearLayout>
             </LinearLayout>

@@ -4,13 +4,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.github.sandroln.kanbanboard.board.data.BoardRepository
-import com.github.sandroln.kanbanboard.boards.presentation.BoardsScreen
 import com.github.sandroln.kanbanboard.core.Communication
-import com.github.sandroln.kanbanboard.core.GoBack
-import com.github.sandroln.kanbanboard.core.Init
 import com.github.sandroln.kanbanboard.core.Reload
 import com.github.sandroln.kanbanboard.core.Serialization
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
+import com.github.sandroln.kanbanboard.ticket.create.presentation.CreateTicketScreen
 
 class BoardViewModel(
     private val serialization: Serialization.Mutable,
@@ -21,7 +19,6 @@ class BoardViewModel(
 ) : ViewModel(), BoardActions {
 
     init {
-        repository.boardInfo().map(communication)
         repository.init()
     }
 
@@ -54,12 +51,9 @@ class BoardViewModel(
     }
 
     override fun change(adapterColumn: Column, item: String) {
-        val ticketUi = fromString(item, TicketUi::class.java)
+        val ticketUi = fromString(item, TicketUiSerializable::class.java).toTicketUi()
         val directionOfMove = ticketUi.directionOfMove(adapterColumn)
-        if (directionOfMove == MoveDirection.LEFT)
-            moveLeft(ticketUi)
-        else if (directionOfMove == MoveDirection.RIGHT)
-            moveRight(ticketUi)
+        directionOfMove.move(this)
     }
 
     override fun showDetails(id: String) {
@@ -67,9 +61,7 @@ class BoardViewModel(
         //todo navigation.map(EditTicketScreen)
     }
 
-    override fun goBack() = navigation.map(BoardsScreen)
-    override fun showSettings() = Unit //todo navigation.map(BoardSettingsScreen)
-    override fun createTicket() = Unit //todo navigation.map(CreateTicketScreen)
+    override fun createTicket() = navigation.map(CreateTicketScreen)
 
     override fun toString(obj: Any) = serialization.toString(obj)
 
@@ -77,15 +69,25 @@ class BoardViewModel(
         serialization.fromString(source, clasz)
 }
 
-interface BoardActions : GoBack, Communication.Observe<BoardUiState>,
+interface BoardActions : Communication.Observe<BoardUiState>,
     TicketsCommunication.Observe, TicketInteractions, Reload, Serialization.Mutable {
 
-    fun showSettings()
     fun createTicket()
 }
 
-enum class MoveDirection {
-    NONE,
-    LEFT,
-    RIGHT
+interface MoveDirection {
+
+    fun move(moveTicket: MoveTickets<TicketUi>)
+
+    object None : MoveDirection {
+        override fun move(moveTicket: MoveTickets<TicketUi>) = Unit
+    }
+
+    class Left(private val ticketUi: TicketUi) : MoveDirection {
+        override fun move(moveTicket: MoveTickets<TicketUi>) = moveTicket.moveLeft(ticketUi)
+    }
+
+    class Right(private val ticketUi: TicketUi) : MoveDirection {
+        override fun move(moveTicket: MoveTickets<TicketUi>) = moveTicket.moveRight(ticketUi)
+    }
 }

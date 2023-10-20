@@ -11,8 +11,11 @@ import com.github.sandroln.kanbanboard.core.Init
 import com.github.sandroln.kanbanboard.core.ProvideError
 import com.github.sandroln.kanbanboard.core.Reload
 import com.github.sandroln.kanbanboard.createboard.presentation.CreateBoardScreen
+import com.github.sandroln.kanbanboard.login.presentation.LoginScreen
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.github.sandroln.kanbanboard.profile.presentation.ProfileScreen
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class BoardsViewModel(
     private val navigation: NavigationCommunication.Update,
@@ -25,6 +28,8 @@ class BoardsViewModel(
         communication.observe(owner, observer)
 
     override fun init(firstRun: Boolean) {
+        if (Firebase.auth.currentUser == null)
+            navigation.map(LoginScreen)
         communication.map(BoardsUiState.Progress)
         boardsRepository.init(this)
     }

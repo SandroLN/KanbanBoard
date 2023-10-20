@@ -13,43 +13,18 @@ import com.github.sandroln.kanbanboard.core.Mapper
 import com.github.sandroln.kanbanboard.core.Retry
 
 class BoardsAdapter(
-    private val clickListener: BoardClickListener
+    private val clickListener: BoardClickListener,
+    private val typeList: List<BoardType> =
+        listOf(BoardType.Progress, BoardType.Title, BoardType.Name, BoardType.Hint, BoardType.Error)
 ) : RecyclerView.Adapter<BoardViewHolder>(), Mapper.Unit<List<BoardUi>> {
 
     private val boardList = mutableListOf<BoardUi>()
 
     override fun getItemViewType(position: Int) = boardList[position].orderId()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
-        0 -> BoardViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.board_progress, parent, false)
-        )
-
-        1, 4 -> BoardTitleViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.board_title, parent, false)
-        )
-
-        2, 5 -> BoardNameViewHolder(
-            clickListener,
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.board_name, parent, false)
-        )
-
-        3, 6 -> BoardTitleViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.board_hint, parent, false)
-        )
-
-        7 -> BoardErrorViewHolder(
-            clickListener,
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.board_error, parent, false)
-        )
-
-        else -> throw IllegalStateException("unknown viewType $viewType")
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        typeList.find { it.intValue() == viewType }?.viewHolder(parent, clickListener)
+            ?: throw IllegalStateException("unknown viewType $viewType")
 
     override fun getItemCount() = boardList.size
 
@@ -65,17 +40,85 @@ class BoardsAdapter(
     }
 }
 
+interface BoardType {
+
+    fun intValue(): Int
+
+    fun viewHolder(parent: ViewGroup, clickListener: BoardClickListener): BoardViewHolder
+
+    object Progress : BoardType {
+
+        override fun intValue() = 0
+
+        override fun viewHolder(
+            parent: ViewGroup,
+            clickListener: BoardClickListener
+        ) = BoardViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.board_progress, parent, false)
+        )
+    }
+
+    object Title : BoardType {
+        override fun intValue() = 1
+
+        override fun viewHolder(
+            parent: ViewGroup,
+            clickListener: BoardClickListener
+        ) = BoardTitleViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.board_title, parent, false)
+        )
+    }
+
+    object Name : BoardType {
+        override fun intValue() = 2
+        override fun viewHolder(
+            parent: ViewGroup,
+            clickListener: BoardClickListener
+        ) = BoardNameViewHolder(
+            clickListener,
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.board_name, parent, false)
+        )
+    }
+
+    object Hint : BoardType {
+        override fun intValue() = 3
+
+        override fun viewHolder(
+            parent: ViewGroup,
+            clickListener: BoardClickListener
+        ) = BoardTitleViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.board_hint, parent, false)
+        )
+    }
+
+    object Error : BoardType {
+        override fun intValue() = 4
+        override fun viewHolder(
+            parent: ViewGroup,
+            clickListener: BoardClickListener
+        ) = BoardErrorViewHolder(
+            clickListener,
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.board_error, parent, false)
+        )
+    }
+}
+
 open class BoardViewHolder(view: View) : ViewHolder(view) {
 
     open fun bind(item: BoardUi) = Unit
 }
 
-private class BoardTitleViewHolder(view: View) : BoardViewHolder(view) {
+class BoardTitleViewHolder(view: View) : BoardViewHolder(view) {
     private val textView = itemView.findViewById<TextView>(R.id.boardTitleTextView)
     override fun bind(item: BoardUi) = item.map(textView)
 }
 
-private class BoardNameViewHolder(
+class BoardNameViewHolder(
     private val openBoard: OpenBoard,
     view: View
 ) : BoardViewHolder(view) {
@@ -89,7 +132,7 @@ private class BoardNameViewHolder(
     }
 }
 
-private class BoardErrorViewHolder(
+class BoardErrorViewHolder(
     private val retry: Retry,
     view: View
 ) : BoardViewHolder(view) {

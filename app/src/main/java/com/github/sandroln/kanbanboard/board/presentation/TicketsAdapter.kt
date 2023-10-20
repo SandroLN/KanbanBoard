@@ -61,7 +61,7 @@ class TicketViewHolder(
             showDetails(interaction)
         }
         itemView.setOnLongClickListener {
-            val data = interaction.toString(ticketUi)
+            val data = interaction.toString(ticketUi.toSerializable())
             val item = ClipData.Item(data)
 
             val dragData = ClipData(

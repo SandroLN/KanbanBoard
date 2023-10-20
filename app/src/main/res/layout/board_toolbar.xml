@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="#0000"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_back_48" />
+
+        <TextView
+            android:id="@+id/boardNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:paddingHorizontal="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            tools:text="Board name and if it is going ot be 2 lines or maybe also 3 lines long" />
+
+        <ImageButton
+            android:id="@+id/settingsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/_8dp"
+            android:background="#0000"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_settings_48" />
+    </LinearLayout>
+</androidx.appcompat.widget.Toolbar>
