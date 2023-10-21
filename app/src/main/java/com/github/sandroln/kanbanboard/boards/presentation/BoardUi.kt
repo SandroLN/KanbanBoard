@@ -2,9 +2,9 @@ package com.github.sandroln.kanbanboard.boards.presentation
 
 import android.widget.TextView
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.board.data.BoardCloudDataSource
-import com.github.sandroln.kanbanboard.board.presentation.BoardToolbarCommunication
-import com.github.sandroln.kanbanboard.board.presentation.BoardToolbarUi
+import com.github.sandroln.kanbanboard.board.main.data.BoardCloudDataSource
+import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarCommunication
+import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarUi
 import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketOnBoard
 
 interface BoardUi {

@@ -1,10 +1,13 @@
 package com.github.sandroln.kanbanboard.createboard.presentation
 
 import com.github.sandroln.kanbanboard.BaseTest
-import com.github.sandroln.kanbanboard.board.presentation.BoardScreen
+import com.github.sandroln.kanbanboard.board.create.data.CreateBoardRepository
+import com.github.sandroln.kanbanboard.board.create.data.CreateBoardResult
+import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardCommunication
+import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardUiState
+import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardViewModel
+import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreen
 import com.github.sandroln.kanbanboard.core.ManageResource
-import com.github.sandroln.kanbanboard.createboard.data.CreateBoardRepository
-import com.github.sandroln.kanbanboard.createboard.data.CreateBoardResult
 import junit.framework.TestCase.assertEquals
 import org.junit.Before
 import org.junit.Test
