@@ -3,7 +3,7 @@ package com.github.sandroln.kanbanboard.boards.presentation
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardScreen
-import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreen
+import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreenNavigation
 import com.github.sandroln.kanbanboard.boards.data.BoardsRepository
 import com.github.sandroln.kanbanboard.core.BaseViewModel
 import com.github.sandroln.kanbanboard.core.Communication
@@ -18,6 +18,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class BoardsViewModel(
+    private val boardScreenNavigation: BoardScreenNavigation,
     private val navigation: NavigationCommunication.Update,
     dispatchersList: DispatchersList,
     private val boardsRepository: BoardsRepository,
@@ -49,7 +50,7 @@ class BoardsViewModel(
 
     override fun openBoard(boardInfo: BoardInfo) {
         boardsRepository.save(boardInfo)
-        navigation.map(BoardScreen)
+        boardScreenNavigation.navigateToBoard()
     }
 
     override fun showProfile() = navigation.map(ProfileScreen)

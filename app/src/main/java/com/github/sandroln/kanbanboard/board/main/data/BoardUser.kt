@@ -6,6 +6,8 @@ interface BoardUser {
 
     fun name(): String = ""
 
+    fun nameWithEmail(): String = name()
+
     class Ui(private val name: String) : BoardUser {
 
         override fun name() = name
@@ -20,6 +22,8 @@ interface BoardUser {
         override fun id() = id
 
         override fun name() = name
+
+        override fun nameWithEmail() = name + "\n" + email
     }
 
     object None : BoardUser

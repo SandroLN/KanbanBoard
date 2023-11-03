@@ -6,7 +6,7 @@ import com.github.sandroln.kanbanboard.board.create.data.CreateBoardResult
 import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardCommunication
 import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardUiState
 import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardViewModel
-import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreen
+import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreenNavigation
 import com.github.sandroln.kanbanboard.core.ManageResource
 import junit.framework.TestCase.assertEquals
 import org.junit.Before
@@ -16,6 +16,7 @@ class CreateBoardViewModelTest : BaseTest() {
 
     //region fields
     private lateinit var functionsCallsStack: FunctionsCallsStack
+    private lateinit var boardNavigation: FakeBoardNavigation
     private lateinit var dispatchersList: TestDispatchersList
     private lateinit var repository: FakeRepository
     private lateinit var communication: FakeCommunication
@@ -32,7 +33,9 @@ class CreateBoardViewModelTest : BaseTest() {
         navigation = FakeNavigation.Base(functionsCallsStack)
         communication = FakeCommunication.Base(functionsCallsStack)
         manageResource = TestManageResource("board already exists")
+        boardNavigation = FakeBoardNavigation.Base(functionsCallsStack)
         viewModel = CreateBoardViewModel(
+            boardScreenNavigation = boardNavigation,
             manageResource = manageResource,
             repository = repository,
             communication = communication,
@@ -54,7 +57,7 @@ class CreateBoardViewModelTest : BaseTest() {
         viewModel.createBoard(name = firstBoardName)
         communication.check(CreateBoardUiState.Progress)
         repository.checkCreateCalled(value = firstBoardName)
-        navigation.check(BoardScreen)
+        boardNavigation.checkNavigateCalled()
         functionsCallsStack.checkStack(5)
     }
 
@@ -161,6 +164,26 @@ class CreateBoardViewModelTest : BaseTest() {
 
             companion object {
                 private const val MAP_CALL = "CreateBoardCommunication#map"
+            }
+        }
+    }
+
+    private interface FakeBoardNavigation : BoardScreenNavigation {
+
+        fun checkNavigateCalled()
+
+        class Base(private val functionsCallsStack: FunctionsCallsStack) : FakeBoardNavigation {
+
+            override fun checkNavigateCalled() {
+                functionsCallsStack.checkCalled(NAVIGATE_CALL)
+            }
+
+            override fun navigateToBoard() {
+                functionsCallsStack.put(NAVIGATE_CALL)
+            }
+
+            companion object {
+                private const val NAVIGATE_CALL = "BoardScreenNavigation#navigateToBoard"
             }
         }
     }

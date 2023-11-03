@@ -10,8 +10,6 @@ import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.core.BaseFragment
 import com.github.sandroln.kanbanboard.core.SimpleTextWatcher
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
-import com.github.sandroln.kanbanboard.ticket.create.presentation.MembersAdapter
-import com.github.sandroln.kanbanboard.ticket.create.presentation.UpdateQuery
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.setTextCorrect
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout

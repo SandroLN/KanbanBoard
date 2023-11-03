@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsScreen
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsScreen
 import com.github.sandroln.kanbanboard.core.Communication
@@ -27,7 +28,7 @@ class BoardToolbarViewModel(
 
     override fun goBack() = navigation.map(BoardsScreen)
 
-    fun showSettings() = Unit//todo navigation.map(BoardSettingsScreen)
+    fun showSettings() = navigation.map(BoardSettingsScreen)
 }
 
 interface BoardToolbarCommunication : Communication.Mutable<BoardToolbarUi> {

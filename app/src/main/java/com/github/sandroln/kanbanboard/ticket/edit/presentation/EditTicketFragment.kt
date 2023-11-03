@@ -7,8 +7,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketUi
+import com.github.sandroln.kanbanboard.ticket.common.presentation.ColorsViewGroup
 import com.github.sandroln.kanbanboard.ticket.common.presentation.TicketFragment
-import com.github.sandroln.kanbanboard.ticket.create.presentation.ColorsViewGroup
 import com.google.android.material.textfield.TextInputEditText
 
 class EditTicketFragment : TicketFragment<EditTicketViewModel>(R.layout.fragment_edit_ticket) {

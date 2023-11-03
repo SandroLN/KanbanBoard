@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import com.github.sandroln.kanbanboard.R
+import com.github.sandroln.kanbanboard.ticket.common.presentation.ColorsViewGroup
 import com.github.sandroln.kanbanboard.ticket.common.presentation.TicketFragment
 import com.google.android.material.textfield.TextInputEditText
 

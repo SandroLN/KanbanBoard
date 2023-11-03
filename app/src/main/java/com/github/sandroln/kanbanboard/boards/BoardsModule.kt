@@ -1,5 +1,6 @@
 package com.github.sandroln.kanbanboard.boards
 
+import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreenNavigation
 import com.github.sandroln.kanbanboard.boards.data.BoardsCloudDataSource
 import com.github.sandroln.kanbanboard.boards.data.BoardsRepository
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
@@ -13,6 +14,7 @@ import com.github.sandroln.kanbanboard.core.Module
 class BoardsModule(private val core: Core) : Module<BoardsViewModel> {
 
     override fun viewModel() = BoardsViewModel(
+        BoardScreenNavigation.Base(core, core.navigation()),
         core.navigation(),
         core.provideDispatchersList(),
         BoardsRepository.Base(

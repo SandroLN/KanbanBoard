@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.kanbanboard.board.create.data.CreateBoardRepository
+import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreenNavigation
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsScreen
 import com.github.sandroln.kanbanboard.core.BaseViewModel
 import com.github.sandroln.kanbanboard.core.Communication
@@ -13,6 +14,7 @@ import com.github.sandroln.kanbanboard.core.ManageResource
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
 
 class CreateBoardViewModel(
+    private val boardScreenNavigation: BoardScreenNavigation,
     private val manageResource: ManageResource,
     private val repository: CreateBoardRepository,
     private val communication: CreateBoardCommunication,
@@ -34,7 +36,7 @@ class CreateBoardViewModel(
 
     override fun createBoard(name: String) {
         communication.map(CreateBoardUiState.Progress)
-        handle({ repository.create(name) }) { it.map(navigation, communication) }
+        handle({ repository.create(name) }) { it.map(boardScreenNavigation, communication) }
     }
 
     override fun goBack() = navigation.map(BoardsScreen)

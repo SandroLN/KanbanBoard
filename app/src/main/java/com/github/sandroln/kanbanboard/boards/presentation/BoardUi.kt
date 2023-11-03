@@ -3,8 +3,10 @@ package com.github.sandroln.kanbanboard.boards.presentation
 import android.widget.TextView
 import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.kanbanboard.board.main.data.BoardCloudDataSource
+import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarCommunication
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarUi
+import com.github.sandroln.kanbanboard.boards.data.OtherBoardCloud
 import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketOnBoard
 
 interface BoardUi {
@@ -86,6 +88,8 @@ data class BoardInfo(
     private val isMyBoard: Boolean,
     private val ownerId: String = ""
 ) {
+
+    fun addUser(user: BoardUser) = OtherBoardCloud(user.id(), id)
 
     fun createTicket(createTicket: CreateTicketOnBoard) = createTicket.createTicket(id)
 

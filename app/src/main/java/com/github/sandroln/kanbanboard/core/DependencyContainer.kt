@@ -5,10 +5,10 @@ import com.github.sandroln.kanbanboard.board.create.CreateBoardModule
 import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardViewModel
 import com.github.sandroln.kanbanboard.board.main.BoardModule
 import com.github.sandroln.kanbanboard.board.main.BoardToolbarModule
-import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
-import com.github.sandroln.kanbanboard.board.main.data.ContainerBoardAllData
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarViewModel
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardViewModel
+import com.github.sandroln.kanbanboard.board.settings.BoardSettingsModule
+import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsViewModel
 import com.github.sandroln.kanbanboard.boards.BoardsModule
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsViewModel
 import com.github.sandroln.kanbanboard.login.LoginModule
@@ -37,29 +37,17 @@ interface DependencyContainer {
         private val dependencyContainer: DependencyContainer = Error()
     ) : DependencyContainer {
 
-        //todo make boardScopeModule
-        private val boardMembersCommunication = BoardMembersCommunication.Base()
-        private val containerBoardAllData: ContainerBoardAllData =
-            ContainerBoardAllData.Base(boardMembersCommunication)
-
         override fun module(className: Class<out ViewModel>) = when (className) {
             MainViewModel::class.java -> MainModule(core)
             LoginViewModel::class.java -> LoginModule(core)
             ProfileViewModel::class.java -> ProfileModule(core)
             BoardsViewModel::class.java -> BoardsModule(core)
             CreateBoardViewModel::class.java -> CreateBoardModule(core)
-            BoardViewModel::class.java -> BoardModule(
-                containerBoardAllData,
-                core
-            )
+            BoardViewModel::class.java -> BoardModule(core)
             BoardToolbarViewModel::class.java -> BoardToolbarModule(core)
-            CreateTicketViewModel::class.java -> CreateTicketModule(core, boardMembersCommunication)
-            EditTicketViewModel::class.java -> EditTicketModule(
-                containerBoardAllData,
-                core,
-                boardMembersCommunication
-            )
-
+            CreateTicketViewModel::class.java -> CreateTicketModule(core)
+            EditTicketViewModel::class.java -> EditTicketModule(core)
+            BoardSettingsViewModel::class.java -> BoardSettingsModule(core)
             else -> dependencyContainer.module(className)
         }
     }

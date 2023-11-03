@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.ticket.create.presentation
+package com.github.sandroln.kanbanboard.ticket.common.presentation
 
 import android.content.Context
 import android.graphics.Color

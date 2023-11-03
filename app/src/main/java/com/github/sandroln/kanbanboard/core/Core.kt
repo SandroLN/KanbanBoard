@@ -1,12 +1,16 @@
 package com.github.sandroln.kanbanboard.core
 
 import android.content.Context
+import com.github.sandroln.kanbanboard.board.BoardScopeModule
+import com.github.sandroln.kanbanboard.board.ClearBoardScopeModule
+import com.github.sandroln.kanbanboard.board.ProvideBoardScopeModule
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.google.firebase.FirebaseApp
 import com.google.gson.Gson
 
 class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageResource,
-    ProvideDispatchersList, ProvideDatabase, ProvideSerialization {
+    ProvideDispatchersList, ProvideDatabase, ProvideSerialization, ProvideBoardScopeModule,
+    ClearBoardScopeModule {
 
     init {
         FirebaseApp.initializeApp(context)
@@ -41,6 +45,18 @@ class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageR
     override fun database() = provideDatabase.database()
 
     override fun serialization() = serialization
+
+    private var boardScopeModule: BoardScopeModule? = null
+
+    override fun boardScopeModule(): BoardScopeModule {
+        if (boardScopeModule == null)
+            boardScopeModule = BoardScopeModule.Base()
+        return boardScopeModule!!
+    }
+
+    override fun clearBoardScopeModule() {
+        boardScopeModule = null
+    }
 }
 
 interface ProvideNavigation {

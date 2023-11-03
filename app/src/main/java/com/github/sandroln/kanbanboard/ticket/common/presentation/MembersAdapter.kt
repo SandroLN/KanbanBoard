@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.ticket.create.presentation
+package com.github.sandroln.kanbanboard.ticket.common.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
+import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
 
 class MembersAdapter(
     private val assignUser: AssignUser,
@@ -41,7 +42,7 @@ class MembersAdapter(
             allMembers.filter {
                 it.name().contains(query, true)
             }
-        val diff = Diff(visibleList, newList)
+        val diff = BoardUserDiff(visibleList, newList)
         val result = DiffUtil.calculateDiff(diff)
         visibleList.clear()
         visibleList.addAll(newList)
@@ -56,15 +57,15 @@ class MemberViewHolder(
 
     private val memberNameButton = itemView.findViewById<Button>(R.id.boardNameButton)
 
-    fun bind(user: BoardUser) = with(memberNameButton) {
-        text = user.name()
+    fun bind(user: BoardUser, showEmail: Boolean = false) = with(memberNameButton) {
+        text = if (showEmail) user.nameWithEmail() else user.name()
         setOnClickListener {
             assignUser.assign(user)
         }
     }
 }
 
-private class Diff(
+class BoardUserDiff(
     private val old: List<BoardUser>,
     private val new: List<BoardUser>
 ) : DiffUtil.Callback() {

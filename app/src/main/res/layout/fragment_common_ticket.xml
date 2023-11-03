@@ -22,7 +22,7 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.github.sandroln.kanbanboard.ticket.create.presentation.ColorsViewGroup
+    <com.github.sandroln.kanbanboard.ticket.common.presentation.ColorsViewGroup
         android:id="@+id/colorsViewGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
