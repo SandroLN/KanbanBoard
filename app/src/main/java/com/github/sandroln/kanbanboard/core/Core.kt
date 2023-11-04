@@ -4,13 +4,14 @@ import android.content.Context
 import com.github.sandroln.kanbanboard.board.BoardScopeModule
 import com.github.sandroln.kanbanboard.board.ClearBoardScopeModule
 import com.github.sandroln.kanbanboard.board.ProvideBoardScopeModule
+import com.github.sandroln.kanbanboard.login.data.MyUser
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.google.firebase.FirebaseApp
 import com.google.gson.Gson
 
 class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageResource,
     ProvideDispatchersList, ProvideDatabase, ProvideSerialization, ProvideBoardScopeModule,
-    ClearBoardScopeModule {
+    ClearBoardScopeModule, ProvideMyUser {
 
     init {
         FirebaseApp.initializeApp(context)
@@ -57,6 +58,10 @@ class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageR
     override fun clearBoardScopeModule() {
         boardScopeModule = null
     }
+
+    private val myUser = MyUser.Base(navigation)
+
+    override fun provideMyUser() = myUser
 }
 
 interface ProvideNavigation {
@@ -80,4 +85,8 @@ interface ProvideDispatchersList {
 
 interface ProvideSerialization {
     fun serialization(): Serialization.Mutable
+}
+
+interface ProvideMyUser {
+    fun provideMyUser(): MyUser
 }

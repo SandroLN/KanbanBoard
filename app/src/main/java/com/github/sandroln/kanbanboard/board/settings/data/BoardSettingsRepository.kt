@@ -3,13 +3,12 @@ package com.github.sandroln.kanbanboard.board.settings.data
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.core.ProvideDatabase
+import com.github.sandroln.kanbanboard.login.data.MyUser
 import com.github.sandroln.kanbanboard.login.data.UserProfileCloud
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -20,6 +19,7 @@ interface BoardSettingsRepository {
     fun addUserToBoard(user: BoardUser)
 
     class Base(
+        private val myUser: MyUser,
         private val chosenBoardCache: ChosenBoardCache.Read,
         private val provideDatabase: ProvideDatabase
     ) : BoardSettingsRepository {
@@ -47,7 +47,7 @@ interface BoardSettingsRepository {
                         val users = snapshot.children.mapNotNull {
                             Pair(it.key!!, it.getValue(UserProfileCloud::class.java)!!)
                         }.filter { it.second.mail.startsWith(userEmail, true) }
-                        continuation.resume(users.filter { it.first != Firebase.auth.currentUser?.uid })
+                        continuation.resume(users.filter { it.first != myUser.id() })
                     }
 
                     override fun onCancelled(error: DatabaseError) =

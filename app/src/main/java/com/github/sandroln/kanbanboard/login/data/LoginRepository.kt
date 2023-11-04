@@ -11,17 +11,18 @@ import com.google.firebase.ktx.Firebase
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-interface LoginRepository {
-
-    fun userNotLoggedIn(): Boolean
+interface LoginRepository : UserNotLoggedIn {
 
     suspend fun handleResult(authResult: AuthResultWrapper): LoginResult
 
-    class Base(private val loginCloudDataSource: LoginCloudDataSource) : LoginRepository {
+    class Base(
+        private val myUser: MyUser,
+        private val loginCloudDataSource: LoginCloudDataSource
+    ) : LoginRepository {
 
-        override fun userNotLoggedIn() = Firebase.auth.currentUser == null
+        override fun userNotLoggedIn() = myUser.userNotLoggedIn()
 
-        override suspend fun handleResult(authResult: AuthResultWrapper): LoginResult =
+        override suspend fun handleResult(authResult: AuthResultWrapper) =
             if (authResult.isSuccessful()) {
                 try {
                     val task = authResult.task()
@@ -31,10 +32,11 @@ interface LoginRepository {
                     if (idToken == null) {
                         LoginResult.Failed("something went wrong")
                     } else {
-                        val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
-                        val signinWithCredential =
+                        val firebaseCredential =
+                            GoogleAuthProvider.getCredential(idToken, null)
+                        val signInWithCredential =
                             Firebase.auth.signInWithCredential(firebaseCredential)
-                        val (successful, errorMessage) = handleInner(signinWithCredential)
+                        val (successful, errorMessage) = handleInner(signInWithCredential)
                         if (successful) {
                             loginCloudDataSource.login()
                             LoginResult.Success
@@ -44,17 +46,22 @@ interface LoginRepository {
                 } catch (e: Exception) {
                     LoginResult.Failed(e.message ?: "something went wrong")
                 }
-            } else LoginResult.Failed("not successful to login")
+            } else
+                LoginResult.Failed("not successful to login")
 
         private suspend fun handleInner(task: Task<AuthResult>): Pair<Boolean, String> =
             suspendCoroutine { cont ->
                 task
                     .addOnSuccessListener {
                         cont.resume(Pair(true, ""))
-                    }
-                    .addOnFailureListener {
+                    }.addOnFailureListener {
                         cont.resume(Pair(false, it.message ?: "error"))
                     }
             }
     }
+}
+
+interface UserNotLoggedIn {
+
+    fun userNotLoggedIn(): Boolean
 }

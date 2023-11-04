@@ -37,7 +37,7 @@ class BoardModule(private val core: Core) : Module<BoardViewModel> {
                     core.boardScopeModule().provideContainer(),
                     UpdateBoard.Base(communication, ticketsCommunication),
                     Tickets.CloudDataSource.Base(handleError, core),
-                    BoardMembers.CloudDataSource.Base(handleError, core),
+                    BoardMembers.CloudDataSource.Base(core.provideMyUser(), handleError, core),
                     MemberName.CloudDataSource.Base(handleError, core)
                 ),
                 editTicketIdCache,

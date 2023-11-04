@@ -10,10 +10,13 @@ import com.github.sandroln.kanbanboard.login.presentation.LoginViewModel
 class LoginModule(private val core: Core) : Module<LoginViewModel> {
 
     override fun viewModel() = LoginViewModel(
-        LoginRepository.Base(LoginCloudDataSource.Base(core)),
+        LoginRepository.Base(
+            core.provideMyUser(),
+            LoginCloudDataSource.Base(core.provideMyUser(), core)
+        ),
         core.provideDispatchersList(),
         core.manageResource(),
         LoginCommunication.Base(),
-        core.navigation()
+        core.navigation(),
     )
 }

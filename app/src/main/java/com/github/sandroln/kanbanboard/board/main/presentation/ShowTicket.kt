@@ -1,8 +1,8 @@
 package com.github.sandroln.kanbanboard.board.main.presentation
 
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
+import com.github.sandroln.kanbanboard.ticket.common.presentation.ColorsViewGroup
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
-import com.github.sandroln.kanbanboard.ticket.create.presentation.ColorsViewGroup
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.setTextCorrect
 import com.google.android.material.textfield.TextInputEditText
 

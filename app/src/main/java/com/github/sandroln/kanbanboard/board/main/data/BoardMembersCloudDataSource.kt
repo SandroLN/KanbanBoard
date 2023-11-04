@@ -3,11 +3,10 @@ package com.github.sandroln.kanbanboard.board.main.data
 import com.github.sandroln.kanbanboard.boards.data.OtherBoardCloud
 import com.github.sandroln.kanbanboard.core.ProvideDatabase
 import com.github.sandroln.kanbanboard.core.ProvideError
-import com.google.firebase.auth.ktx.auth
+import com.github.sandroln.kanbanboard.login.data.MyUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
 
 interface BoardMembers {
 
@@ -26,8 +25,8 @@ interface BoardMembers {
 
         fun provideAllMembers(boardId: String, isMyBoard: Boolean, ownerId: String)
 
-
         class Base(
+            private val myUser: MyUser,
             private val provideError: ProvideError,
             private val provideDatabase: ProvideDatabase,
         ) : CloudDataSource {
@@ -39,7 +38,7 @@ interface BoardMembers {
 
             override fun provideAllMembers(boardId: String, isMyBoard: Boolean, ownerId: String) {
                 val boardMembersIds = mutableSetOf<String>()
-                boardMembersIds.add(if (isMyBoard) Firebase.auth.currentUser!!.uid else ownerId)
+                boardMembersIds.add(if (isMyBoard) myUser.id() else ownerId)
 
                 val membersQuery = provideDatabase.database()
                     .child("boards-members")

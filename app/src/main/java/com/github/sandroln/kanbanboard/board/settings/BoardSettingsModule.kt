@@ -13,7 +13,11 @@ class BoardSettingsModule(private val core: Core) : Module<BoardSettingsViewMode
         core.navigation(),
         FoundUsersCommunication.Base(),
         core.provideDispatchersList(),
-        BoardSettingsRepository.Base(ChosenBoardCache.Base(core.storage()), core),
+        BoardSettingsRepository.Base(
+            core.provideMyUser(),
+            ChosenBoardCache.Base(core.storage()),
+            core
+        ),
         core.boardScopeModule().provideMembers()
     )
 }

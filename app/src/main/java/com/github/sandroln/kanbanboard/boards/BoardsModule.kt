@@ -14,12 +14,14 @@ import com.github.sandroln.kanbanboard.core.Module
 class BoardsModule(private val core: Core) : Module<BoardsViewModel> {
 
     override fun viewModel() = BoardsViewModel(
+        core.provideMyUser(),
         BoardScreenNavigation.Base(core, core.navigation()),
         core.navigation(),
         core.provideDispatchersList(),
         BoardsRepository.Base(
             ChosenBoardCache.Base(core.storage()),
             BoardsCloudDataSource.Base(
+                core.provideMyUser(),
                 MyBoardsNamesCache.Base(core.storage()),
                 core
             )

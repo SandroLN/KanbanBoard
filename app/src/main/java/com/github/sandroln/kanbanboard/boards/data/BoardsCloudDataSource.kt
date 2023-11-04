@@ -2,12 +2,11 @@ package com.github.sandroln.kanbanboard.boards.data
 
 import com.github.sandroln.kanbanboard.boards.presentation.ReloadWithError
 import com.github.sandroln.kanbanboard.core.ProvideDatabase
-import com.google.firebase.auth.ktx.auth
+import com.github.sandroln.kanbanboard.login.data.MyUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -19,6 +18,7 @@ interface BoardsCloudDataSource : InitReloadCallback {
     suspend fun otherBoards(): List<Board>
 
     class Base(
+        private val myUser: MyUser,
         private val myBoardsNamesCache: MyBoardsNamesCache.Save,
         private val provideDatabase: ProvideDatabase
     ) : BoardsCloudDataSource {
@@ -28,7 +28,7 @@ interface BoardsCloudDataSource : InitReloadCallback {
         private val otherBoardsIdsListCache = mutableListOf<String>()
 
         override fun init(reload: ReloadWithError) {
-            val myUserId = Firebase.auth.currentUser!!.uid
+            val myUserId = myUser.id()
             val query = provideDatabase.database()
                 .child("boards-members")
                 .orderByChild("memberId")
@@ -49,7 +49,7 @@ interface BoardsCloudDataSource : InitReloadCallback {
 
         override suspend fun myBoards(): List<Board> {
             if (!loadedMyBoards) {
-                val myUserId = Firebase.auth.currentUser!!.uid
+                val myUserId = myUser.id()
                 val query = provideDatabase.database()
                     .child("boards")
                     .orderByChild("owner")
