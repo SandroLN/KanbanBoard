@@ -1,9 +1,37 @@
-<resources>
-    <string name="app_name">KanbanBoard</string>
-    <string name="your_web_client_id">1002398847501-bfbona1fr4rq96ku0mnv7vbn5m0374d0.apps.googleusercontent.com</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Kanban Boards</string>
+    <string name="your_web_client_id" tools:ignore="TypographyDashes">1002398847501-bfbona1fr4rq96ku0mnv7vbn5m0374d0.apps.googleusercontent.com</string>
     <string name="sign_out">sign out</string>
     <string name="profile">Profile</string>
     <string name="back">back</string>
     <string name="welcome">Welcome to Kanban Boards</string>
     <string name="my_email">My name:\n%s\n\nMy email:\n%s</string>
+    <string name="create">create</string>
+    <string name="my_boards_title">Boards you own</string>
+    <string name="no_boards_of_my_own">You have not created board yet. Go ahead and make one</string>
+    <string name="other_boards_title">Boards you are added to</string>
+    <string name="how_to_be_added_to_board">Other users can add you to their boards. Check your email in profile settings</string>
+    <string name="retry">retry</string>
+    <string name="board_name">Board Name</string>
+    <string name="at_least_3_symbols">At least 3 symbols</string>
+    <string name="create_board">Create Board</string>
+    <string name="board_already_exists">Board with this name already exists</string>
+    <string name="todo">TODO</string>
+    <string name="in_progress">IN PROGRESS</string>
+    <string name="done">DONE</string>
+    <string name="try_again">try again</string>
+    <string name="create_ticket">Create ticket</string>
+    <string name="title">Title</string>
+    <string name="assignee">Assignee</string>
+    <string name="description_title">Description (optional)</string>
+    <string name="edit_ticket">Edit Ticket</string>
+    <string name="cancel" tools:ignore="ButtonCase">cancel</string>
+    <string name="confirm_delete">Confirm delete</string>
+    <string name="ticket_deleted">Ticket deleted!</string>
+    <string name="save">Save</string>
+    <string name="refresh">refresh</string>
+    <string name="board_settings">Board Settings</string>
+    <string name="user_email">User Email (at least 3 symbols)</string>
+    <string name="board_members">Board members</string>
+    <string name="add_user_to_board">Add user to board</string>
 </resources>

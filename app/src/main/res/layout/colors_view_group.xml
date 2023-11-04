@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/colorsLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_48dp"
+        android:layout_margin="@dimen/_8dp">
+
+        <ImageButton
+            android:id="@+id/yellowImageButton"
+            android:layout_width="@dimen/_48dp"
+            android:layout_height="@dimen/_48dp"
+            android:layout_marginHorizontal="@dimen/_8dp"
+            tools:background="@color/red"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_checked_48" />
+
+        <ImageButton
+            android:id="@+id/orangeImageButton"
+            android:layout_width="@dimen/_48dp"
+            android:layout_height="@dimen/_48dp"
+            android:layout_marginHorizontal="@dimen/_8dp"
+            tools:background="@color/red"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_checked_48" />
+
+        <ImageButton
+            android:id="@+id/redImageButton"
+            android:layout_width="@dimen/_48dp"
+            android:layout_height="@dimen/_48dp"
+            android:layout_marginHorizontal="@dimen/_8dp"
+            tools:background="@color/red"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_checked_48" />
+
+        <ImageButton
+            android:id="@+id/purpleImageButton"
+            android:layout_width="@dimen/_48dp"
+            android:layout_height="@dimen/_48dp"
+            android:layout_marginHorizontal="@dimen/_8dp"
+            tools:background="@color/red"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_checked_48" />
+
+        <ImageButton
+            android:id="@+id/blueImageButton"
+            android:layout_width="@dimen/_48dp"
+            android:layout_height="@dimen/_48dp"
+            android:layout_marginHorizontal="@dimen/_8dp"
+            tools:background="@color/red"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_checked_48" />
+
+        <ImageButton
+            android:id="@+id/greenImageButton"
+            android:layout_width="@dimen/_48dp"
+            android:layout_height="@dimen/_48dp"
+            android:layout_marginHorizontal="@dimen/_8dp"
+            tools:background="@color/red"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_checked_48" />
+
+    </LinearLayout>
+</HorizontalScrollView>

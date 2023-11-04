@@ -10,6 +10,5 @@ interface NavigationCommunication {
 
     interface Mutable : Observe, Update
 
-    class Base : Communication.Abstract<Screen>(), Mutable
-
+    class Base : Communication.Single<Screen>(), Mutable
 }

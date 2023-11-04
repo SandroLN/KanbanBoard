@@ -1,11 +1,9 @@
 package com.github.sandroln.kanbanboard.login.presentation
 
-import com.github.sandroln.kanbanboard.login.BaseTest
+import com.github.sandroln.kanbanboard.BaseTest
+import com.github.sandroln.kanbanboard.boards.presentation.BoardsScreen
 import com.github.sandroln.kanbanboard.login.data.LoginRepository
 import com.github.sandroln.kanbanboard.login.data.LoginResult
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
-import com.github.sandroln.kanbanboard.main.Screen
-import com.github.sandroln.kanbanboard.profile.presentation.ProfileScreen
 import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -64,7 +62,7 @@ class LoginViewModelTest : BaseTest() {
 
         viewModel.handleResult(Successful)
         repository.checkHandleResultCall(Successful)
-        navigation.check(ProfileScreen)
+        navigation.check(BoardsScreen)
 
         functionsCallsStack.checkStack(3)
     }
@@ -88,12 +86,12 @@ class LoginViewModelTest : BaseTest() {
 
     private object Successful : AuthResultWrapper {
         override fun isSuccessful() = true
-        override fun task() = throw IllegalStateException("not used in")
+        override fun task() = throw IllegalStateException("not used in test")
     }
 
     private object Failed : AuthResultWrapper {
         override fun isSuccessful() = false
-        override fun task() = throw IllegalStateException("not used in")
+        override fun task() = throw IllegalStateException("not used in test")
     }
 
     private interface FakeRepository : LoginRepository {
@@ -151,46 +149,19 @@ class LoginViewModelTest : BaseTest() {
             private val list = mutableListOf<LoginUiState>()
             private var index = 0
 
-            override fun check(state: LoginUiState) {
-                assertEquals(state, list[index++])
-                functionsCallsStack.checkCalled(MAP_CALL)
-            }
-
             override fun map(source: LoginUiState) {
                 functionsCallsStack.put(MAP_CALL)
                 list.add(source)
             }
 
-            companion object {
-                private const val MAP_CALL = "LoginCommunication#map"
-            }
-        }
-    }
-
-    private interface FakeNavigation : NavigationCommunication.Update {
-
-        fun check(screen: Screen)
-
-        class Base(private val functionsCallsStack: FunctionsCallsStack) : FakeNavigation {
-
-            private val list = mutableListOf<Screen>()
-            private var index = 0
-
-            override fun check(screen: Screen) {
-                assertEquals(screen, list[index++])
+            override fun check(state: LoginUiState) {
+                assertEquals(state, list[index++])
                 functionsCallsStack.checkCalled(MAP_CALL)
             }
 
-            override fun map(screen: Screen) {
-                functionsCallsStack.put(MAP_CALL)
-                list.add(screen)
-            }
-
-
             companion object {
                 private const val MAP_CALL = "LoginCommunication#map"
             }
         }
     }
-
 }
