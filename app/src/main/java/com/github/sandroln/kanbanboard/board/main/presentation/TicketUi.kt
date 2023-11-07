@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.view.View
 import android.widget.TextView
 import com.github.sandroln.kanbanboard.board.main.data.MoveTicket
-import com.github.sandroln.kanbanboard.ticket.edit.presentation.TicketChange
 
 data class TicketUi(
     private val colorHex: String,
@@ -15,29 +14,25 @@ data class TicketUi(
     private val description: String
 ) : MoveTickets<MoveTicket> {
 
-    fun show(): ShowTicket = ShowTicket.Base(colorHex, title, assignedMemberName, description)
+    interface Mapper<T : Any> {
+        fun map(
+            colorHex: String,
+            id: String,
+            title: String,
+            assignedMemberName: String,
+            column: Column,
+            description: String
+        ): T
+    }
+
+    fun <T : Any> map(mapper: Mapper<T>): T = mapper.map(
+        colorHex, id, title, assignedMemberName, column, description
+    )
+
+    fun show(): ShowTicket =
+        ShowTicket.Base(column, colorHex, title, assignedMemberName, description)
 
     fun same(other: TicketUi) = id == other.id
-
-    fun checkChanges(
-        otherTitle: String,
-        otherColor: String,
-        otherAssignedMemberName: String,
-        otherDescription: String
-    ): List<TicketChange> {
-        val list = mutableListOf<TicketChange>()
-
-        if (title != otherTitle)
-            list.add(TicketChange.Title(otherTitle))
-        if (otherColor != colorHex)
-            list.add(TicketChange.Color(otherColor))
-        if (assignedMemberName != otherAssignedMemberName)
-            list.add(TicketChange.Assignee(otherAssignedMemberName))
-        if (description != otherDescription)
-            list.add(TicketChange.Description(otherDescription))
-
-        return list
-    }
 
     fun showDetails(interaction: ShowTicketDetails) = interaction.showDetails(id)
 

@@ -22,6 +22,12 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.github.sandroln.kanbanboard.ticket.common.presentation.ChooseColumnViewGroup
+        android:id="@+id/chooseColumnViewGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16dp" />
+
     <com.github.sandroln.kanbanboard.ticket.common.presentation.ColorsViewGroup
         android:id="@+id/colorsViewGroup"
         android:layout_width="match_parent"

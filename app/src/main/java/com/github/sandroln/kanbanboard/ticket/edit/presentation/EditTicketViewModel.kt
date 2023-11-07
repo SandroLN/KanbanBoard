@@ -62,14 +62,10 @@ class EditTicketViewModel(
     fun refresh() =
         stateCommunication.map(EditTicketUiState.ShowTicketUpdate(ticketUiMemento.last(), this))
 
-    override fun edit(title: String, colorHex: String, description: String) {
+    override fun edit(uiChangeList: UiChangeList) {
         val ticketUi = ticketUiMemento.last()
-        val changes = ticketUi.checkChanges(
-            title,
-            colorHex,
-            assignedUser.name(),
-            description
-        )
+        uiChangeList.assign(assignedUser)
+        val changes = ticketUi.map(uiChangeList)
 
         if (changes.isNotEmpty())
             repository.makeChanges(changes)
@@ -84,7 +80,7 @@ class EditTicketViewModel(
 interface EditTicketUiActions : Init, DeleteTicket, ObserveTicketChanges, UpdateTicketUi,
     ObserveTicketUiState {
 
-    fun edit(title: String, colorHex: String, description: String)
+    fun edit(uiChangeList: UiChangeList)
 }
 
 interface ObserveTicketUiState {

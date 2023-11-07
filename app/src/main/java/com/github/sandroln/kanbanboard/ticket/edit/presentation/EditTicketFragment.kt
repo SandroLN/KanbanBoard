@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketUi
+import com.github.sandroln.kanbanboard.ticket.common.presentation.ChooseColumnViewGroup
 import com.github.sandroln.kanbanboard.ticket.common.presentation.ColorsViewGroup
 import com.github.sandroln.kanbanboard.ticket.common.presentation.TicketFragment
 import com.google.android.material.textfield.TextInputEditText
@@ -26,6 +27,8 @@ class EditTicketFragment : TicketFragment<EditTicketViewModel>(R.layout.fragment
         val assigneeEditText = view.findViewById<TextInputEditText>(R.id.assigneeEditText)
         val membersRecyclerView = view.findViewById<RecyclerView>(R.id.boardMembersRecyclerView)
         val descriptionEditText = view.findViewById<TextInputEditText>(R.id.descriptionEditText)
+        val chooseColumnViewGroup =
+            view.findViewById<ChooseColumnViewGroup>(R.id.chooseColumnViewGroup)
         //endregion
 
         refreshButton.setOnClickListener {
@@ -49,15 +52,19 @@ class EditTicketFragment : TicketFragment<EditTicketViewModel>(R.layout.fragment
 
         editTicketButton.setOnClickListener {
             viewModel.edit(
-                titleEditText.text.toString(),
-                colorsViewGroup.chosenColorHex(),
-                descriptionEditText.text.toString()
+                UiChangeList.Base(
+                    titleEditText.text.toString(),
+                    chooseColumnViewGroup.chosenColumn(),
+                    colorsViewGroup.chosenColorHex(),
+                    descriptionEditText.text.toString()
+                )
             )
         }
         viewModel.observeTicketUiState(this) {
             it.show(refreshButton)
             it.show(
                 titleEditText,
+                chooseColumnViewGroup,
                 colorsViewGroup,
                 assigneeEditText,
                 descriptionEditText,

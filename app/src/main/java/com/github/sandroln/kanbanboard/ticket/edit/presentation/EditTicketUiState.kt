@@ -3,6 +3,7 @@ package com.github.sandroln.kanbanboard.ticket.edit.presentation
 import android.view.View
 import android.widget.EditText
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketUi
+import com.github.sandroln.kanbanboard.ticket.common.presentation.ChooseColumnViewGroup
 import com.github.sandroln.kanbanboard.ticket.common.presentation.ColorsViewGroup
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
 import com.google.android.material.textfield.TextInputEditText
@@ -13,6 +14,7 @@ interface EditTicketUiState {
 
     fun show(
         titleEditText: TextInputEditText,
+        chooseColumnViewGroup: ChooseColumnViewGroup,
         colorsViewGroup: ColorsViewGroup,
         assigneeEditText: TextInputEditText,
         descriptionEditText: TextInputEditText,
@@ -33,13 +35,20 @@ interface EditTicketUiState {
 
         override fun show(
             titleEditText: TextInputEditText,
+            chooseColumnViewGroup: ChooseColumnViewGroup,
             colorsViewGroup: ColorsViewGroup,
             assigneeEditText: TextInputEditText,
             descriptionEditText: TextInputEditText,
             membersRecyclerView: View
         ) {
             val show = ticketUi.show()
-            show.show(titleEditText, colorsViewGroup, assigneeEditText, descriptionEditText)
+            show.show(
+                titleEditText,
+                chooseColumnViewGroup,
+                colorsViewGroup,
+                assigneeEditText,
+                descriptionEditText
+            )
             show.show(assignUser)
             membersRecyclerView.visibility = View.GONE
         }

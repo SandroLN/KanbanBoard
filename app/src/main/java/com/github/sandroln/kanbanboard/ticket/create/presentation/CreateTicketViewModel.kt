@@ -4,8 +4,8 @@ import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.github.sandroln.kanbanboard.ticket.common.presentation.TicketViewModel
-import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketBundle
 import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketRepository
+import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketUiBundle
 
 class CreateTicketViewModel(
     private val repository: CreateTicketRepository,
@@ -13,8 +13,9 @@ class CreateTicketViewModel(
     navigation: NavigationCommunication.Update
 ) : TicketViewModel(navigation, boardMembersCommunication) {
 
-    fun createTicket(title: String, colorName: String, description: String) {
-        repository.createTicket(CreateTicketBundle(title, colorName, assignedUser, description))
+    fun createTicket(createTicketUiBundle: CreateTicketUiBundle) {
+        createTicketUiBundle.assign(assignedUser)
+        repository.createTicket(createTicketUiBundle)
         goBack()
     }
 }
