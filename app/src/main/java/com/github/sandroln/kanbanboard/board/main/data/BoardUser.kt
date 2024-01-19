@@ -13,7 +13,7 @@ interface BoardUser {
         override fun name() = name
     }
 
-    class Base(
+    data class Base(
         private val id: String,
         private val name: String,
         private val email: String

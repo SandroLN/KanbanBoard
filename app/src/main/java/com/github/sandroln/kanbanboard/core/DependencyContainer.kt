@@ -8,6 +8,8 @@ import com.github.sandroln.kanbanboard.board.main.BoardToolbarModule
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarViewModel
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardViewModel
 import com.github.sandroln.kanbanboard.board.settings.BoardSettingsModule
+import com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationModule
+import com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationViewModel
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsViewModel
 import com.github.sandroln.kanbanboard.boards.BoardsModule
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsViewModel
@@ -48,6 +50,7 @@ interface DependencyContainer {
             CreateTicketViewModel::class.java -> CreateTicketModule(core)
             EditTicketViewModel::class.java -> EditTicketModule(core)
             BoardSettingsViewModel::class.java -> BoardSettingsModule(core)
+            BoardInvitationViewModel::class.java -> BoardInvitationModule(core)
             else -> dependencyContainer.module(className)
         }
     }

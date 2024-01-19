@@ -41,7 +41,7 @@ class BoardSettingsViewModel(
         }
     }
 
-    override fun assign(user: BoardUser) = boardSettingsRepository.addUserToBoard(user)
+    override fun assign(user: BoardUser) = boardSettingsRepository.inviteUserToBoard(user)
 
     override fun goBack() = navigation.map(Screen.Pop)
 }

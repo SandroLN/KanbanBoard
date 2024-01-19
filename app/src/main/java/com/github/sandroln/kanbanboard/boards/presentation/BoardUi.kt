@@ -6,6 +6,7 @@ import com.github.sandroln.kanbanboard.board.main.data.BoardCloudDataSource
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarCommunication
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarUi
+import com.github.sandroln.kanbanboard.board.settings.data.Invitations
 import com.github.sandroln.kanbanboard.boards.data.OtherBoardCloud
 import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketOnBoard
 
@@ -88,8 +89,9 @@ data class BoardInfo(
     private val isMyBoard: Boolean,
     private val ownerId: String = ""
 ) {
+    fun invite(cloudDataSource: Invitations.CloudDataSource.Handle) = cloudDataSource.handle(id)
 
-    fun addUser(user: BoardUser) = OtherBoardCloud(user.id(), id)
+    fun invite(user: BoardUser) = OtherBoardCloud(user.id(), id)
 
     fun createTicket(createTicket: CreateTicketOnBoard) = createTicket.createTicket(id)
 

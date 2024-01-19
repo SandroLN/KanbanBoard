@@ -16,7 +16,7 @@ interface BoardSettingsRepository {
 
     suspend fun findUsers(userEmail: String): List<Pair<String, UserProfileCloud>>
 
-    fun addUserToBoard(user: BoardUser)
+    fun inviteUserToBoard(user: BoardUser)
 
     class Base(
         private val myUser: MyUser,
@@ -33,11 +33,11 @@ interface BoardSettingsRepository {
             return handleQuery(query, userEmail)
         }
 
-        override fun addUserToBoard(user: BoardUser) {
+        override fun inviteUserToBoard(user: BoardUser) {
             val reference = provideDatabase.database()
-                .child("boards-members")
+                .child("boards-invitations")
                 .push()
-            reference.setValue(chosenBoardCache.read().addUser(user))
+            reference.setValue(chosenBoardCache.read().invite(user))
         }
 
         private suspend fun handleQuery(query: Query, userEmail: String) =
