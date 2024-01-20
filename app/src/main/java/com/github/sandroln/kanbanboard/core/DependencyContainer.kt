@@ -7,12 +7,14 @@ import com.github.sandroln.kanbanboard.board.main.BoardModule
 import com.github.sandroln.kanbanboard.board.main.BoardToolbarModule
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarViewModel
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardViewModel
+import com.github.sandroln.kanbanboard.board.settings.BoardInvitationModule
 import com.github.sandroln.kanbanboard.board.settings.BoardSettingsModule
-import com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationModule
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationViewModel
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsViewModel
 import com.github.sandroln.kanbanboard.boards.BoardsModule
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsViewModel
+import com.github.sandroln.kanbanboard.boards.presentation.MyInvitationModule
+import com.github.sandroln.kanbanboard.boards.presentation.MyInvitationsViewModel
 import com.github.sandroln.kanbanboard.login.LoginModule
 import com.github.sandroln.kanbanboard.login.presentation.LoginViewModel
 import com.github.sandroln.kanbanboard.main.MainModule
@@ -44,6 +46,7 @@ interface DependencyContainer {
             LoginViewModel::class.java -> LoginModule(core)
             ProfileViewModel::class.java -> ProfileModule(core)
             BoardsViewModel::class.java -> BoardsModule(core)
+            MyInvitationsViewModel::class.java -> MyInvitationModule(core)
             CreateBoardViewModel::class.java -> CreateBoardModule(core)
             BoardViewModel::class.java -> BoardModule(core)
             BoardToolbarViewModel::class.java -> BoardToolbarModule(core)

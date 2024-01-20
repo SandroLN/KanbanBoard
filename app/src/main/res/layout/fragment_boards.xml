@@ -29,6 +29,10 @@
             android:src="@drawable/ic_settings_48" />
     </androidx.appcompat.widget.Toolbar>
 
+    <com.github.sandroln.kanbanboard.boards.presentation.MyInvitationsView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginHorizontal="@dimen/_16dp"
         android:id="@+id/boardsRecyclerView"

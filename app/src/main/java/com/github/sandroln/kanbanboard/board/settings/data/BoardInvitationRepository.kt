@@ -19,7 +19,7 @@ interface BoardInvitationRepository {
         }
     }
 
-    class Base( //todo unit test
+    class Base(
         private val invitationsCloudDataSource: Invitations.CloudDataSource.Mutable,
         private val memberCloudDataSource: MemberName.CloudDataSource,
         private val chosenBoardCache: ChosenBoardCache.Read

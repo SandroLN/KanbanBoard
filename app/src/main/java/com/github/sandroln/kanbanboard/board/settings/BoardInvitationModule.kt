@@ -1,9 +1,10 @@
-package com.github.sandroln.kanbanboard.board.settings.presentation
+package com.github.sandroln.kanbanboard.board.settings
 
 import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
 import com.github.sandroln.kanbanboard.board.main.data.MemberName
 import com.github.sandroln.kanbanboard.board.settings.data.BoardInvitationRepository
 import com.github.sandroln.kanbanboard.board.settings.data.Invitations
+import com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationViewModel
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.core.Core
 import com.github.sandroln.kanbanboard.core.Module
