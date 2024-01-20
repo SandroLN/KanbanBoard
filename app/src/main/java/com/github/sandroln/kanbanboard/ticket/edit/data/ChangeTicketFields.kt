@@ -6,6 +6,8 @@ interface ChangeTicketFields {
 
     fun changeTitle(value: String)
 
+    fun changeColumn(value: String)
+
     fun changeDescription(value: String)
 
     fun changeColor(value: String)
@@ -19,6 +21,9 @@ interface ChangeTicketFields {
 
         override fun changeTitle(value: String) =
             TicketCloudField.Title.updateValue(changeField, value)
+
+        override fun changeColumn(value: String) =
+            TicketCloudField.Column.updateValue(changeField, value)
 
         override fun changeDescription(value: String) =
             TicketCloudField.Description.updateValue(changeField, value)

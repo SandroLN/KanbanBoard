@@ -48,7 +48,7 @@ class EditTicketViewModelTest : BaseTest() {
         viewModel.update(ticketUi)
         stateCommunication.checkCalledWith(EditTicketUiState.ShowTicketUpdate(ticketUi, viewModel))
 
-        viewModel.edit("initialTitle", "#FF0000", "description 0")
+        viewModel.edit(UiChangeList.Base("initialTitle", Column.Todo, "#FF0000", "description 0"))
         repository.checkClearEditingTicketId()
         navigation.check(Screen.Pop)
         functionsCallsStack.checkStack(3)
@@ -68,8 +68,36 @@ class EditTicketViewModelTest : BaseTest() {
         viewModel.update(ticketUi)
         stateCommunication.checkCalledWith(EditTicketUiState.ShowTicketUpdate(ticketUi, viewModel))
 
-        viewModel.edit("new Title", "#FF0000", "description 0")
+        viewModel.edit(UiChangeList.Base("new Title", Column.Todo, "#FF0000", "description 0"))
         repository.checkChangesCalled(listOf(TicketChange.Title("new Title")))
+        repository.checkClearEditingTicketId()
+        navigation.check(Screen.Pop)
+        functionsCallsStack.checkStack(4)
+    }
+
+    @Test
+    fun test_column_changes() {
+        viewModel.assign(BoardUser.Base("fakeUserId", "Fake User", "fake@mail.ru"))
+        val ticketUi = TicketUi(
+            "#FF0000",
+            "fakeId0",
+            "initialTitle",
+            "Fake User",
+            Column.Todo,
+            "description 0"
+        )
+        viewModel.update(ticketUi)
+        stateCommunication.checkCalledWith(EditTicketUiState.ShowTicketUpdate(ticketUi, viewModel))
+
+        viewModel.edit(
+            UiChangeList.Base(
+                "initialTitle",
+                Column.InProgress,
+                "#FF0000",
+                "description 0"
+            )
+        )
+        repository.checkChangesCalled(listOf(TicketChange.Column(Column.InProgress)))
         repository.checkClearEditingTicketId()
         navigation.check(Screen.Pop)
         functionsCallsStack.checkStack(4)
@@ -89,7 +117,7 @@ class EditTicketViewModelTest : BaseTest() {
         viewModel.update(ticketUi)
         stateCommunication.checkCalledWith(EditTicketUiState.ShowTicketUpdate(ticketUi, viewModel))
 
-        viewModel.edit("initialTitle", "#FFFFFF", "description 0")
+        viewModel.edit(UiChangeList.Base("initialTitle", Column.Todo, "#FFFFFF", "description 0"))
         repository.checkChangesCalled(listOf(TicketChange.Color("#FFFFFF")))
         repository.checkClearEditingTicketId()
         navigation.check(Screen.Pop)
@@ -110,7 +138,7 @@ class EditTicketViewModelTest : BaseTest() {
         viewModel.update(ticketUi)
         stateCommunication.checkCalledWith(EditTicketUiState.ShowTicketUpdate(ticketUi, viewModel))
 
-        viewModel.edit("initialTitle", "#FF0000", "new description")
+        viewModel.edit(UiChangeList.Base("initialTitle", Column.Todo, "#FF0000", "new description"))
         repository.checkChangesCalled(listOf(TicketChange.Description("new description")))
         repository.checkClearEditingTicketId()
         navigation.check(Screen.Pop)
@@ -132,7 +160,7 @@ class EditTicketViewModelTest : BaseTest() {
 
         viewModel.assign(BoardUser.Base("anotherId", "Other User", "other@mail.ru"))
 
-        viewModel.edit("initialTitle", "#FF0000", "description 0")
+        viewModel.edit(UiChangeList.Base("initialTitle", Column.Todo, "#FF0000", "description 0"))
         repository.checkChangesCalled(listOf(TicketChange.Assignee("Other User")))
         repository.checkClearEditingTicketId()
         navigation.check(Screen.Pop)
@@ -153,7 +181,7 @@ class EditTicketViewModelTest : BaseTest() {
         viewModel.update(ticketUi)
         stateCommunication.checkCalledWith(EditTicketUiState.ShowTicketUpdate(ticketUi, viewModel))
 
-        viewModel.edit("new Title", "#FF0000", "new description")
+        viewModel.edit(UiChangeList.Base("new Title", Column.Todo, "#FF0000", "new description"))
         repository.checkChangesCalled(
             listOf(
                 TicketChange.Title("new Title"),

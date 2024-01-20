@@ -5,7 +5,7 @@ import com.github.sandroln.kanbanboard.board.main.presentation.TicketUi
 
 data class TicketCloud(
     val boardId: String = "",
-    val columnId: String = Column.Todo.cloudValue(),
+    val columnId: String = "",
     val title: String = "",
     val assignee: String = "",
     val description: String = "",
