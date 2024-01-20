@@ -12,6 +12,15 @@ interface TicketChange {
             changeTicketFields.changeTitle(value)
     }
 
+    data class Column(
+        private val value: com.github.sandroln.kanbanboard.board.main.presentation.Column
+    ) : TicketChange {
+
+        override fun applyChanges(changeTicketFields: ChangeTicketFields) {
+            changeTicketFields.changeColumn(value.cloudValue())
+        }
+    }
+
     data class Assignee(private val name: String) : TicketChange {
         override fun applyChanges(changeTicketFields: ChangeTicketFields) =
             changeTicketFields.changeAssignee(name)

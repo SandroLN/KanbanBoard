@@ -10,6 +10,7 @@ interface TicketCloudField {
     }
 
     object Title : Abstract("title")
+    object Column : Abstract("columnId")
     object Description : Abstract("description")
     object Color : Abstract("color")
     object Assignee : Abstract("assignee")

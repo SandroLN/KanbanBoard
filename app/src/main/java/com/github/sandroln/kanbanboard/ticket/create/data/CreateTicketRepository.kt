@@ -5,16 +5,16 @@ import com.github.sandroln.kanbanboard.core.ProvideDatabase
 
 interface CreateTicketRepository {
 
-    fun createTicket(createTicketBundle: CreateTicketBundle)
+    fun createTicket(createTicketOnBoard: CreateTicketOnBoard)
 
     class Base(
         private val chosenBoardIdCache: ChosenBoardCache.Read,
         private val provideDatabase: ProvideDatabase
     ) : CreateTicketRepository {
 
-        override fun createTicket(createTicketBundle: CreateTicketBundle) {
+        override fun createTicket(createTicketOnBoard: CreateTicketOnBoard) {
             val board = chosenBoardIdCache.read()
-            val ticket = board.createTicket(createTicketBundle)
+            val ticket = board.createTicket(createTicketOnBoard)
             val reference = provideDatabase.database()
                 .child("tickets")
                 .push()
