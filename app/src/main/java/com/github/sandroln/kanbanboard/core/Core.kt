@@ -14,10 +14,10 @@ class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageR
     ProvideDispatchersList, ProvideSerialization, ProvideBoardScopeModule,
     ClearBoardScopeModule, ProvideMyUser, ProvideService {
 
-    private val provideDataBase: ProvideDatabase
+    private val service: Service
 
     init {
-        provideDataBase = ProvideDatabase.Base(context)
+        service = Service.Base(context)
     }
 
     private val serialization: Serialization.Mutable = Serialization.Base(Gson())
@@ -63,8 +63,6 @@ class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageR
     private val myUser = MyUser.Base(navigation)
 
     override fun provideMyUser() = myUser
-
-    private val service = Service.Base(provideDataBase)
 
     override fun service(): Service = service
 }

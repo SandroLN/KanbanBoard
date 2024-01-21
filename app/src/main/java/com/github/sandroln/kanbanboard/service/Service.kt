@@ -1,8 +1,10 @@
 package com.github.sandroln.kanbanboard.service
 
+import android.content.Context
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import kotlin.coroutines.resume
@@ -70,22 +72,24 @@ interface Service {
 
     suspend fun createWithId(path: String, id: String, value: Any)
 
-    class Base(private val provideDatabase: ProvideDatabase) : Service {
+    class Base(context: Context) : Service {
+
+        private val database = ProvideDatabase.Base(context).database()
 
         override fun <T> referenceWrapper(
             path: String,
             child: String,
             clasz: Class<T>
         ): ReferenceWrapper<T> {
-            return ReferenceWrapper.Base(provideDatabase, path, child, clasz)
+            return ReferenceWrapper.Base(database, path, child, clasz)
         }
 
         override fun remove(path: String, child: String) {
-            provideDatabase.database().child(path).child(child).removeValue()
+            database.child(path).child(child).removeValue()
         }
 
         override fun updateField(path: String, child: String, fieldId: String, fieldValue: Any) {
-            provideDatabase.database()
+            database
                 .child(path)
                 .child(child)
                 .child(fieldId)
@@ -99,7 +103,7 @@ interface Service {
             clasz: Class<T>,
             callback: Callback<T>
         ) {
-            provideDatabase.database()
+            database
                 .child(path)
                 .orderByChild(queryKey)
                 .equalTo(queryValue)
@@ -123,7 +127,7 @@ interface Service {
             queryValue: String,
             clasz: Class<T>
         ): List<Pair<String, T>> {
-            val query = provideDatabase.database()
+            val query = database
                 .child(path)
                 .orderByChild(queryKey)
                 .equalTo(queryValue)
@@ -135,7 +139,7 @@ interface Service {
             queryValue: String,
             clasz: Class<T>
         ): List<Pair<String, T>> {
-            val query = provideDatabase.database()
+            val query = database
                 .child(path)
                 .orderByKey()
                 .equalTo(queryValue)
@@ -148,7 +152,7 @@ interface Service {
             clasz: Class<T>,
             callback: Callback<T>
         ) {
-            provideDatabase.database()
+            database
                 .child(path)
                 .orderByKey()
                 .equalTo(queryValue)
@@ -174,7 +178,7 @@ interface Service {
             clasz: Class<T>,
             limit: Int
         ): List<Pair<String, T>> {
-            val query = provideDatabase.database()
+            val query = database
                 .child(path)
                 .orderByChild(queryKey)
                 .startAt(queryValue)
@@ -203,18 +207,18 @@ interface Service {
         }
 
         override fun postFirstLevelAsync(path: String, obj: Any) {
-            provideDatabase.database().child(path).push().setValue(obj)
+            database.child(path).push().setValue(obj)
         }
 
         override suspend fun postFirstLevel(path: String, obj: Any): String {
-            val reference = provideDatabase.database().child(path).push()
+            val reference = database.child(path).push()
             val task = reference.setValue(obj)
             handleResult(task)
             return reference.key!!
         }
 
         override suspend fun createWithId(path: String, id: String, value: Any) {
-            val result = provideDatabase.database()
+            val result = database
                 .child(path)
                 .child(id)
                 .setValue(value)
@@ -246,14 +250,13 @@ interface ReferenceWrapper<T : Any?> {
     fun delete()
 
     class Base<T : Any?>(
-        provideDatabase: ProvideDatabase,
+        database: DatabaseReference,
         path: String,
         child: String,
         private val clasz: Class<T>
     ) : ReferenceWrapper<T> {
 
-        private val reference = provideDatabase.database()
-            .child(path).child(child)
+        private val reference = database.child(path).child(child)
 
         override fun startListen(callback: Callback<T?>) {
             reference.addValueEventListener(object : ValueEventListener {
