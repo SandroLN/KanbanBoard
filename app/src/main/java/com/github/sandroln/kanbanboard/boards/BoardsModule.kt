@@ -23,7 +23,7 @@ class BoardsModule(private val core: Core) : Module<BoardsViewModel> {
             BoardsCloudDataSource.Base(
                 core.provideMyUser(),
                 MyBoardsNamesCache.Base(core.storage()),
-                core
+                core.service()
             )
         ),
         BoardsCommunication.Base()

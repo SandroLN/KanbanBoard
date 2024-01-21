@@ -1,10 +1,7 @@
 package com.github.sandroln.kanbanboard.login.data
 
-import com.github.sandroln.kanbanboard.core.ProvideDatabase
-import com.google.android.gms.tasks.Task
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
+import com.github.sandroln.kanbanboard.service.MyUser
+import com.github.sandroln.kanbanboard.service.Service
 
 interface LoginCloudDataSource {
 
@@ -12,26 +9,14 @@ interface LoginCloudDataSource {
 
     class Base(
         private val myUser: MyUser,
-        private val provideDatabase: ProvideDatabase
+        private val service: Service
     ) : LoginCloudDataSource {
 
         override suspend fun login() {
             val id = myUser.id()
             val userProfile = myUser.userProfileCloud()
-            val result = provideDatabase.database().child("users")
-                .child(id)
-                .setValue(userProfile)
-            handleResult(result)
+            service.createWithId("users", id, userProfile)
         }
-
-        private suspend fun handleResult(value: Task<Void>): Unit =
-            suspendCoroutine { continuation ->
-                value.addOnSuccessListener {
-                    continuation.resume(Unit)
-                }.addOnFailureListener {
-                    continuation.resumeWithException(it)
-                }
-            }
     }
 }
 

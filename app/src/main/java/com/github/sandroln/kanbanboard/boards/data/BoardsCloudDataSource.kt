@@ -1,15 +1,8 @@
 package com.github.sandroln.kanbanboard.boards.data
 
 import com.github.sandroln.kanbanboard.boards.presentation.ReloadWithError
-import com.github.sandroln.kanbanboard.core.ProvideDatabase
-import com.github.sandroln.kanbanboard.login.data.MyUser
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.Query
-import com.google.firebase.database.ValueEventListener
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
+import com.github.sandroln.kanbanboard.service.MyUser
+import com.github.sandroln.kanbanboard.service.Service
 
 interface BoardsCloudDataSource : InitReloadCallback {
 
@@ -20,7 +13,7 @@ interface BoardsCloudDataSource : InitReloadCallback {
     class Base(
         private val myUser: MyUser,
         private val myBoardsNamesCache: MyBoardsNamesCache.Save,
-        private val provideDatabase: ProvideDatabase
+        private val service: Service
     ) : BoardsCloudDataSource {
 
         private val myBoardsCached = mutableListOf<Board>()
@@ -29,32 +22,33 @@ interface BoardsCloudDataSource : InitReloadCallback {
 
         override fun init(reload: ReloadWithError) {
             val myUserId = myUser.id()
-            val query = provideDatabase.database()
-                .child("boards-members")
-                .orderByChild("memberId")
-                .equalTo(myUserId)
-            query.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val data = snapshot.children.mapNotNull {
-                        it.getValue(OtherBoardCloud::class.java)?.boardId
+            service.getByQueryAsync(
+                "boards-members",
+                "memberId",
+                myUserId,
+                OtherBoardCloud::class.java,
+                object : Service.Callback<OtherBoardCloud> {
+                    override fun provide(obj: List<Pair<String, OtherBoardCloud>>) {
+                        val data = obj.map { it.second.boardId }
+                        otherBoardsIdsListCache.clear()
+                        otherBoardsIdsListCache.addAll(data)
+                        reload.reload()
                     }
-                    otherBoardsIdsListCache.clear()
-                    otherBoardsIdsListCache.addAll(data)
-                    reload.reload()
-                }
 
-                override fun onCancelled(error: DatabaseError) = reload.error(error.message)
-            })
+                    override fun error(message: String) = reload.error(message)
+                }
+            )
         }
 
         override suspend fun myBoards(): List<Board> {
             if (!loadedMyBoards) {
                 val myUserId = myUser.id()
-                val query = provideDatabase.database()
-                    .child("boards")
-                    .orderByChild("owner")
-                    .equalTo(myUserId)
-                val sourceList = HandleBoards(query).list()
+                val sourceList = service.getByQuery(
+                    "boards",
+                    "owner",
+                    myUserId,
+                    BoardCloud::class.java
+                )
                 val list = sourceList.map { (id, boardCloud) -> Board.MyBoard(id, boardCloud.name) }
                 myBoardsCached.addAll(list)
                 val myBoardsNameList = sourceList.map { (_, boardCloud) -> boardCloud.name }
@@ -67,43 +61,18 @@ interface BoardsCloudDataSource : InitReloadCallback {
         override suspend fun otherBoards(): List<Board> {
             val list = mutableListOf<Board>()
             otherBoardsIdsListCache.forEach { boardId ->
-                val query = provideDatabase.database()
-                    .child("boards")
-                    .orderByKey()
-                    .equalTo(boardId)
-
-                val boards =
-                    HandleBoards(query).list().map { (id, boardCloud) ->
-                        Board.OtherBoard(
-                            id,
-                            boardCloud.name,
-                            boardCloud.owner
-                        )
-                    }
+                val query = service.getByQuery("boards", boardId, BoardCloud::class.java)
+                val boards = query.map { (id, boardCloud) ->
+                    Board.OtherBoard(
+                        id,
+                        boardCloud.name,
+                        boardCloud.owner
+                    )
+                }
                 list.addAll(boards)
             }
             return list
         }
-    }
-}
-
-private class HandleBoards(private val query: Query) {
-
-    suspend fun list(): List<Pair<String, BoardCloud>> = suspendCoroutine { cont ->
-        query.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val data = snapshot.children.mapNotNull {
-                    Pair(
-                        it.key!!,
-                        it.getValue(BoardCloud::class.java)!!
-                    )
-                }
-                cont.resume(data)
-            }
-
-            override fun onCancelled(error: DatabaseError) =
-                cont.resumeWithException(IllegalStateException(error.message))
-        })
     }
 }
 

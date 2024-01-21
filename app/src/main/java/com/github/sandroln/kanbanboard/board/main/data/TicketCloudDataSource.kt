@@ -1,10 +1,7 @@
 package com.github.sandroln.kanbanboard.board.main.data
 
-import com.github.sandroln.kanbanboard.core.ProvideDatabase
 import com.github.sandroln.kanbanboard.core.ProvideError
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
+import com.github.sandroln.kanbanboard.service.Service
 
 interface Tickets {
 
@@ -24,7 +21,7 @@ interface Tickets {
 
         class Base(
             private val provideError: ProvideError,
-            private val provideDatabase: ProvideDatabase,
+            private val service: Service,
         ) : CloudDataSource {
 
             private var callback: Callback = Callback.Empty
@@ -33,24 +30,21 @@ interface Tickets {
                 this.callback = callback
             }
 
-            private val ticketsListener = object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val data = snapshot.children.mapNotNull {
-                        Pair(it.key!!, it.getValue(TicketCloud::class.java)!!)
-                    }
-                    callback.provideTickets(data)
-                }
+            private val listener = object : Service.Callback<TicketCloud> {
+                override fun provide(obj: List<Pair<String, TicketCloud>>) =
+                    callback.provideTickets(obj)
 
-                override fun onCancelled(error: DatabaseError) = provideError.error(error.message)
+                override fun error(message: String) = provideError.error(message)
             }
 
             override fun ticketsForBoard(boardId: String) {
-                val query = provideDatabase.database()
-                    .child("tickets")
-                    .orderByChild("boardId")
-                    .equalTo(boardId)
-                query.removeEventListener(ticketsListener)
-                query.addValueEventListener(ticketsListener)
+                service.getByQueryAsync(
+                    "tickets",
+                    "boardId",
+                    boardId,
+                    TicketCloud::class.java,
+                    listener
+                )
             }
         }
     }

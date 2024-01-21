@@ -1,5 +1,7 @@
-package com.github.sandroln.kanbanboard.core
+package com.github.sandroln.kanbanboard.service
 
+import android.content.Context
+import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -8,9 +10,10 @@ interface ProvideDatabase {
 
     fun database(): DatabaseReference
 
-    class Base : ProvideDatabase {
+    class Base(context: Context) : ProvideDatabase {
 
         init {
+            FirebaseApp.initializeApp(context)
             Firebase.database(DATABASE_URL).setPersistenceEnabled(false)
         }
 
@@ -18,8 +21,8 @@ interface ProvideDatabase {
             return Firebase.database(DATABASE_URL).reference.root
         }
 
-        private companion object {
-            const val DATABASE_URL =
+        companion object {
+            private const val DATABASE_URL =
                 "https://kanban-board-98201-default-rtdb.europe-west1.firebasedatabase.app/"
         }
     }

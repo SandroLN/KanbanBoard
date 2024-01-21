@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.github.sandroln.kanbanboard.core.Communication
 import com.github.sandroln.kanbanboard.core.GoBack
 import com.github.sandroln.kanbanboard.core.Init
-import com.github.sandroln.kanbanboard.login.data.MyUser
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.github.sandroln.kanbanboard.main.Screen
+import com.github.sandroln.kanbanboard.service.MyUser
 
 class ProfileViewModel(
     private val myUser: MyUser,

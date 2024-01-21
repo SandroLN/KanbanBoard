@@ -21,7 +21,7 @@ class EditTicketModule(private val core: Core) : Module<EditTicketViewModel> {
             EditTicketCloudDataSource.Base(
                 assigneeNameId,
                 editTicketCommunication,
-                core,
+                core.service(),
                 editTicketIdCache
             )
         return EditTicketViewModel(

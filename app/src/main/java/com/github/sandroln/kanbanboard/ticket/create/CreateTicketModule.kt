@@ -9,7 +9,7 @@ import com.github.sandroln.kanbanboard.ticket.create.presentation.CreateTicketVi
 class CreateTicketModule(private val core: Core) : Module<CreateTicketViewModel> {
 
     override fun viewModel() = CreateTicketViewModel(
-        CreateTicketRepository.Base(ChosenBoardCache.Base(core.storage()), core),
+        CreateTicketRepository.Base(ChosenBoardCache.Base(core.storage()), core.service()),
         core.boardScopeModule().provideMembers(),
         core.navigation()
     )

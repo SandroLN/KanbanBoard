@@ -16,7 +16,7 @@ class BoardSettingsModule(private val core: Core) : Module<BoardSettingsViewMode
         BoardSettingsRepository.Base(
             core.provideMyUser(),
             ChosenBoardCache.Base(core.storage()),
-            core
+            core.service()
         ),
         core.boardScopeModule().provideMembers()
     )

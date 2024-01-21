@@ -1,12 +1,9 @@
 package com.github.sandroln.kanbanboard.board.main.data
 
 import com.github.sandroln.kanbanboard.boards.data.OtherBoardCloud
-import com.github.sandroln.kanbanboard.core.ProvideDatabase
 import com.github.sandroln.kanbanboard.core.ProvideError
-import com.github.sandroln.kanbanboard.login.data.MyUser
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
+import com.github.sandroln.kanbanboard.service.MyUser
+import com.github.sandroln.kanbanboard.service.Service
 
 interface BoardMembers {
 
@@ -28,7 +25,7 @@ interface BoardMembers {
         class Base(
             private val myUser: MyUser,
             private val provideError: ProvideError,
-            private val provideDatabase: ProvideDatabase,
+            private val service: Service,
         ) : CloudDataSource {
             private var callback: Callback = Callback.Empty
 
@@ -40,25 +37,23 @@ interface BoardMembers {
                 val boardMembersIds = mutableSetOf<String>()
                 boardMembersIds.add(if (isMyBoard) myUser.id() else ownerId)
 
-                val membersQuery = provideDatabase.database()
-                    .child("boards-members")
-                    .orderByChild("boardId")
-                    .equalTo(boardId)
-
-                val membersListener = object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val memberIds = snapshot.children.mapNotNull {
-                            it.getValue(OtherBoardCloud::class.java)?.memberId
-                        }
+                val listener = object : Service.Callback<OtherBoardCloud> {
+                    override fun provide(obj: List<Pair<String, OtherBoardCloud>>) {
+                        val memberIds = obj.map { it.second.memberId }
                         boardMembersIds.addAll(memberIds)
                         callback.provideAllMembersIds(boardMembersIds)
                     }
 
-                    override fun onCancelled(error: DatabaseError) =
-                        provideError.error(error.message)
+                    override fun error(message: String) = provideError.error(message)
                 }
-                membersQuery.removeEventListener(membersListener)
-                membersQuery.addValueEventListener(membersListener)
+
+                service.getByQueryAsync(
+                    "boards-members",
+                    "boardId",
+                    boardId,
+                    OtherBoardCloud::class.java,
+                    listener
+                )
             }
         }
     }

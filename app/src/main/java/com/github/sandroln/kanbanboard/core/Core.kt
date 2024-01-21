@@ -4,21 +4,23 @@ import android.content.Context
 import com.github.sandroln.kanbanboard.board.BoardScopeModule
 import com.github.sandroln.kanbanboard.board.ClearBoardScopeModule
 import com.github.sandroln.kanbanboard.board.ProvideBoardScopeModule
-import com.github.sandroln.kanbanboard.login.data.MyUser
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
-import com.google.firebase.FirebaseApp
+import com.github.sandroln.kanbanboard.service.MyUser
+import com.github.sandroln.kanbanboard.service.ProvideDatabase
+import com.github.sandroln.kanbanboard.service.Service
 import com.google.gson.Gson
 
 class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageResource,
-    ProvideDispatchersList, ProvideDatabase, ProvideSerialization, ProvideBoardScopeModule,
-    ClearBoardScopeModule, ProvideMyUser {
+    ProvideDispatchersList, ProvideSerialization, ProvideBoardScopeModule,
+    ClearBoardScopeModule, ProvideMyUser, ProvideService {
+
+    private val provideDataBase: ProvideDatabase
 
     init {
-        FirebaseApp.initializeApp(context)
+        provideDataBase = ProvideDatabase.Base(context)
     }
 
     private val serialization: Serialization.Mutable = Serialization.Base(Gson())
-    private val provideDatabase = ProvideDatabase.Base()
     private val manageResource = ManageResource.Base(context)
     private val navigation = NavigationCommunication.Base()
     private val storage = SimpleStorage.Base(
@@ -43,7 +45,6 @@ class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageR
 
     override fun manageResource() = manageResource
 
-    override fun database() = provideDatabase.database()
 
     override fun serialization() = serialization
 
@@ -62,6 +63,10 @@ class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageR
     private val myUser = MyUser.Base(navigation)
 
     override fun provideMyUser() = myUser
+
+    private val service = Service.Base(provideDataBase)
+
+    override fun service(): Service = service
 }
 
 interface ProvideNavigation {
@@ -89,4 +94,8 @@ interface ProvideSerialization {
 
 interface ProvideMyUser {
     fun provideMyUser(): MyUser
+}
+
+interface ProvideService {
+    fun service(): Service
 }

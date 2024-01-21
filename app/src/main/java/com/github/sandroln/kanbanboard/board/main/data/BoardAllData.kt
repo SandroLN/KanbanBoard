@@ -44,9 +44,7 @@ interface BoardAllData : Assignee.NameAndId {
             return ""
         }
 
-        override fun newMembers(boardMembersIds: Set<String>): List<String> = synchronized(
-            lock
-        ) {
+        override fun newMembers(boardMembersIds: Set<String>): List<String> = synchronized(lock) {
             val result = boardMembersIds.filter { !members.containsKey(it) }
             count = result.size + members.size
             result

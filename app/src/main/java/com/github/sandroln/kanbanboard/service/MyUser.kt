@@ -1,5 +1,7 @@
-package com.github.sandroln.kanbanboard.login.data
+package com.github.sandroln.kanbanboard.service
 
+import com.github.sandroln.kanbanboard.login.data.UserNotLoggedIn
+import com.github.sandroln.kanbanboard.login.data.UserProfileCloud
 import com.github.sandroln.kanbanboard.login.presentation.LoginScreen
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.github.sandroln.kanbanboard.profile.presentation.ProfileUiState

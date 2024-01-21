@@ -15,8 +15,8 @@ class BoardInvitationModule(private val core: Core) : Module<BoardInvitationView
     override fun viewModel(): BoardInvitationViewModel {
         val communication = BoardMembersCommunication.Base()
         val repository = BoardInvitationRepository.Base(
-            Invitations.CloudDataSource.Base(core),
-            MemberName.CloudDataSource.Base(ProvideError.Empty, core),
+            Invitations.CloudDataSource.Base(core.service()),
+            MemberName.CloudDataSource.Base(ProvideError.Empty, core.service()),
             ChosenBoardCache.Base(core.storage())
         )
         return BoardInvitationViewModel(repository, communication)

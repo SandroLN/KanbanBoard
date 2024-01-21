@@ -11,9 +11,9 @@ import com.github.sandroln.kanbanboard.core.DispatchersList
 import com.github.sandroln.kanbanboard.core.Init
 import com.github.sandroln.kanbanboard.core.ProvideError
 import com.github.sandroln.kanbanboard.core.Reload
-import com.github.sandroln.kanbanboard.login.data.MyUser
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.github.sandroln.kanbanboard.profile.presentation.ProfileScreen
+import com.github.sandroln.kanbanboard.service.MyUser
 
 class BoardsViewModel(
     private val myUser: MyUser,
