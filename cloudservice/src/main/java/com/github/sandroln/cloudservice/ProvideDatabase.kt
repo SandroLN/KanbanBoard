@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.service
+package com.github.sandroln.cloudservice
 
 import android.content.Context
 import com.google.firebase.FirebaseApp

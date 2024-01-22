@@ -1,13 +1,14 @@
 package com.github.sandroln.kanbanboard.core
 
 import android.content.Context
+import com.github.sandroln.cloudservice.MyUser
+import com.github.sandroln.cloudservice.NavigateToLoginScreen
+import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.kanbanboard.board.BoardScopeModule
 import com.github.sandroln.kanbanboard.board.ClearBoardScopeModule
 import com.github.sandroln.kanbanboard.board.ProvideBoardScopeModule
+import com.github.sandroln.kanbanboard.login.presentation.LoginScreen
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
-import com.github.sandroln.kanbanboard.service.MyUser
-import com.github.sandroln.kanbanboard.service.ProvideDatabase
-import com.github.sandroln.kanbanboard.service.Service
 import com.google.gson.Gson
 
 class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageResource,
@@ -60,7 +61,10 @@ class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageR
         boardScopeModule = null
     }
 
-    private val myUser = MyUser.Base(navigation)
+    private val myUser =
+        MyUser.Base(object : NavigateToLoginScreen {
+            override fun navigateToLoginScreen() = navigation.map(LoginScreen)
+        })
 
     override fun provideMyUser() = myUser
 

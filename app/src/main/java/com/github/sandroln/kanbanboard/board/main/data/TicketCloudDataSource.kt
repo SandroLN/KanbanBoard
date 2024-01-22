@@ -1,7 +1,7 @@
 package com.github.sandroln.kanbanboard.board.main.data
 
+import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.kanbanboard.core.ProvideError
-import com.github.sandroln.kanbanboard.service.Service
 
 interface Tickets {
 

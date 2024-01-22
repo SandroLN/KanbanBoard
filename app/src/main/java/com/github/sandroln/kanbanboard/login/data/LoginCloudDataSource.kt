@@ -1,7 +1,7 @@
 package com.github.sandroln.kanbanboard.login.data
 
-import com.github.sandroln.kanbanboard.service.MyUser
-import com.github.sandroln.kanbanboard.service.Service
+import com.github.sandroln.cloudservice.MyUser
+import com.github.sandroln.cloudservice.Service
 
 interface LoginCloudDataSource {
 
@@ -14,7 +14,8 @@ interface LoginCloudDataSource {
 
         override suspend fun login() {
             val id = myUser.id()
-            val userProfile = myUser.userProfileCloud()
+            val (mail, name) = myUser.userProfileCloud()
+            val userProfile = UserProfileCloud(mail, name)
             service.createWithId("users", id, userProfile)
         }
     }

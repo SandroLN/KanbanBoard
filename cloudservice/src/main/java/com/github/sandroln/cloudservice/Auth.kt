@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.service
+package com.github.sandroln.cloudservice
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult

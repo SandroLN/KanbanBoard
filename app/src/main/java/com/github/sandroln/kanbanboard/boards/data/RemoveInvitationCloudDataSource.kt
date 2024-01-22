@@ -1,6 +1,6 @@
 package com.github.sandroln.kanbanboard.boards.data
 
-import com.github.sandroln.kanbanboard.service.Service
+import com.github.sandroln.cloudservice.Service
 
 interface RemoveInvitationCloudDataSource {
 

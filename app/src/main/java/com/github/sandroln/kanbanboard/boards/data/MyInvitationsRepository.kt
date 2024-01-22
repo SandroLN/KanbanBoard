@@ -1,8 +1,8 @@
 package com.github.sandroln.kanbanboard.boards.data
 
+import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.kanbanboard.boards.presentation.BoardInvitation
 import com.github.sandroln.kanbanboard.boards.presentation.InvitationActions
-import com.github.sandroln.kanbanboard.service.MyUser
 
 interface MyInvitationsRepository : InvitationActions {
 

@@ -1,11 +1,11 @@
 package com.github.sandroln.kanbanboard.ticket.edit.data
 
+import com.github.sandroln.cloudservice.ReferenceWrapper
+import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.kanbanboard.board.main.data.Assignee
 import com.github.sandroln.kanbanboard.board.main.data.EditTicketIdCache
 import com.github.sandroln.kanbanboard.board.main.data.TicketCloud
 import com.github.sandroln.kanbanboard.core.SimpleInit
-import com.github.sandroln.kanbanboard.service.ReferenceWrapper
-import com.github.sandroln.kanbanboard.service.Service
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.DeleteTicket
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.EditTicketCallback
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.EditTicketCommunication

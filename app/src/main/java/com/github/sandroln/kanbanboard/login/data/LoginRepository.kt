@@ -1,8 +1,9 @@
 package com.github.sandroln.kanbanboard.login.data
 
+import com.github.sandroln.cloudservice.Auth
+import com.github.sandroln.cloudservice.MyUser
+import com.github.sandroln.cloudservice.UserNotLoggedIn
 import com.github.sandroln.kanbanboard.login.presentation.AuthResultWrapper
-import com.github.sandroln.kanbanboard.service.Auth
-import com.github.sandroln.kanbanboard.service.MyUser
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 
@@ -41,9 +42,4 @@ interface LoginRepository : UserNotLoggedIn {
             } else
                 LoginResult.Failed("not successful to login")
     }
-}
-
-interface UserNotLoggedIn {
-
-    fun userNotLoggedIn(): Boolean
 }

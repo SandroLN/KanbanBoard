@@ -1,7 +1,7 @@
 package com.github.sandroln.kanbanboard.ticket.create.data
 
+import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
-import com.github.sandroln.kanbanboard.service.Service
 
 interface CreateTicketRepository {
 

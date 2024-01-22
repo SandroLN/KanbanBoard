@@ -1,8 +1,8 @@
 package com.github.sandroln.kanbanboard.boards.data
 
+import com.github.sandroln.cloudservice.MyUser
+import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.kanbanboard.boards.presentation.ReloadWithError
-import com.github.sandroln.kanbanboard.service.MyUser
-import com.github.sandroln.kanbanboard.service.Service
 
 interface BoardsCloudDataSource : InitReloadCallback {
 

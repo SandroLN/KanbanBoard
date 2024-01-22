@@ -1,9 +1,9 @@
 package com.github.sandroln.kanbanboard.board.main.data
 
+import com.github.sandroln.cloudservice.MyUser
+import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.kanbanboard.boards.data.OtherBoardCloud
 import com.github.sandroln.kanbanboard.core.ProvideError
-import com.github.sandroln.kanbanboard.service.MyUser
-import com.github.sandroln.kanbanboard.service.Service
 
 interface BoardMembers {
 
