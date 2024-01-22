@@ -1,21 +1,18 @@
 package com.github.sandroln.kanbanboard.login.data
 
+import com.github.sandroln.cloudservice.Auth
+import com.github.sandroln.cloudservice.MyUser
+import com.github.sandroln.cloudservice.UserNotLoggedIn
 import com.github.sandroln.kanbanboard.login.presentation.AuthResultWrapper
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 interface LoginRepository : UserNotLoggedIn {
 
     suspend fun handleResult(authResult: AuthResultWrapper): LoginResult
 
     class Base(
+        private val auth: Auth,
         private val myUser: MyUser,
         private val loginCloudDataSource: LoginCloudDataSource
     ) : LoginRepository {
@@ -32,11 +29,7 @@ interface LoginRepository : UserNotLoggedIn {
                     if (idToken == null) {
                         LoginResult.Failed("something went wrong")
                     } else {
-                        val firebaseCredential =
-                            GoogleAuthProvider.getCredential(idToken, null)
-                        val signInWithCredential =
-                            Firebase.auth.signInWithCredential(firebaseCredential)
-                        val (successful, errorMessage) = handleInner(signInWithCredential)
+                        val (successful, errorMessage) = auth.auth(idToken)
                         if (successful) {
                             loginCloudDataSource.login()
                             LoginResult.Success
@@ -48,20 +41,5 @@ interface LoginRepository : UserNotLoggedIn {
                 }
             } else
                 LoginResult.Failed("not successful to login")
-
-        private suspend fun handleInner(task: Task<AuthResult>): Pair<Boolean, String> =
-            suspendCoroutine { cont ->
-                task
-                    .addOnSuccessListener {
-                        cont.resume(Pair(true, ""))
-                    }.addOnFailureListener {
-                        cont.resume(Pair(false, it.message ?: "error"))
-                    }
-            }
     }
-}
-
-interface UserNotLoggedIn {
-
-    fun userNotLoggedIn(): Boolean
 }

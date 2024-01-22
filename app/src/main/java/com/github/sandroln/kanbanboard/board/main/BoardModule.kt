@@ -32,13 +32,17 @@ class BoardModule(private val core: Core) : Module<BoardViewModel> {
         return BoardViewModel(
             core.serialization(),
             BoardRepository.Base(
-                MoveTicketCloudDataSource.Base(core),
+                MoveTicketCloudDataSource.Base(core.service()),
                 BoardCloudDataSource.Base(
                     core.boardScopeModule().provideContainer(),
                     UpdateBoard.Base(communication, ticketsCommunication),
-                    Tickets.CloudDataSource.Base(handleError, core),
-                    BoardMembers.CloudDataSource.Base(core.provideMyUser(), handleError, core),
-                    MemberName.CloudDataSource.Base(handleError, core)
+                    Tickets.CloudDataSource.Base(handleError, core.service()),
+                    BoardMembers.CloudDataSource.Base(
+                        core.provideMyUser(),
+                        handleError,
+                        core.service()
+                    ),
+                    MemberName.CloudDataSource.Base(handleError, core.service())
                 ),
                 editTicketIdCache,
                 ChosenBoardCache.Base(storage)

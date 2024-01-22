@@ -1,7 +1,7 @@
 package com.github.sandroln.kanbanboard.ticket.create.data
 
+import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
-import com.github.sandroln.kanbanboard.core.ProvideDatabase
 
 interface CreateTicketRepository {
 
@@ -9,16 +9,13 @@ interface CreateTicketRepository {
 
     class Base(
         private val chosenBoardIdCache: ChosenBoardCache.Read,
-        private val provideDatabase: ProvideDatabase
+        private val service: Service
     ) : CreateTicketRepository {
 
         override fun createTicket(createTicketOnBoard: CreateTicketOnBoard) {
             val board = chosenBoardIdCache.read()
             val ticket = board.createTicket(createTicketOnBoard)
-            val reference = provideDatabase.database()
-                .child("tickets")
-                .push()
-            reference.setValue(ticket)
+            service.postFirstLevelAsync("tickets", ticket)
         }
     }
 }

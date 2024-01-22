@@ -1,8 +1,5 @@
-package com.github.sandroln.kanbanboard.login.data
+package com.github.sandroln.cloudservice
 
-import com.github.sandroln.kanbanboard.login.presentation.LoginScreen
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
-import com.github.sandroln.kanbanboard.profile.presentation.ProfileUiState
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -15,47 +12,51 @@ interface MyUser : UserNotLoggedIn {
 
     fun id(): String
 
-    fun profile(): ProfileUiState
+    fun profile(): Pair<String, String>
 
-    fun userProfileCloud(): UserProfileCloud
+    fun userProfileCloud(): Pair<String, String>
 
-    class Base(private val navigationCommunication: NavigationCommunication.Update) : MyUser {
+    class Base(private val navigation: NavigateToLoginScreen) : MyUser {
 
         override fun checkDataInvalid(): Boolean {
             val notValid = userNotLoggedIn()
             if (notValid)
-                navigationCommunication.map(LoginScreen)
+                navigation.navigateToLoginScreen()
             return notValid
         }
 
         override fun signOut() {
             Firebase.auth.signOut()
-            navigationCommunication.map(LoginScreen)
+            navigation.navigateToLoginScreen()
         }
 
         override fun id() = if (checkDataInvalid()) "" else user()!!.uid
 
         override fun profile() = if (checkDataInvalid())
-            ProfileUiState.Empty
+            Pair("", "")
         else {
             val user = user()!!
-            ProfileUiState.Base(
+            Pair(
                 user.email!!,
                 user.displayName ?: ""
             )
         }
 
-        override fun userProfileCloud(): UserProfileCloud {
+        override fun userProfileCloud(): Pair<String, String> {
             val user = user() ?: throw IllegalStateException("user null")
             val email = user.email
             if (email.isNullOrEmpty())
                 throw IllegalStateException("problem occurred while getting email")
             val displayName = user.displayName ?: email
-            return UserProfileCloud(email, displayName)
+            return Pair(email, displayName)
         }
 
         override fun userNotLoggedIn() = user() == null
 
         private fun user(): FirebaseUser? = Firebase.auth.currentUser
     }
+}
+
+interface NavigateToLoginScreen {
+    fun navigateToLoginScreen()
 }

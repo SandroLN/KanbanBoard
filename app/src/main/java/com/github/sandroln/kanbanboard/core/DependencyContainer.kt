@@ -12,8 +12,8 @@ import com.github.sandroln.kanbanboard.board.settings.BoardSettingsModule
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationViewModel
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsViewModel
 import com.github.sandroln.kanbanboard.boards.BoardsModule
+import com.github.sandroln.kanbanboard.boards.MyInvitationModule
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsViewModel
-import com.github.sandroln.kanbanboard.boards.presentation.MyInvitationModule
 import com.github.sandroln.kanbanboard.boards.presentation.MyInvitationsViewModel
 import com.github.sandroln.kanbanboard.login.LoginModule
 import com.github.sandroln.kanbanboard.login.presentation.LoginViewModel

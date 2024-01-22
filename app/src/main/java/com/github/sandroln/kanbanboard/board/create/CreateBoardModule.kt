@@ -16,7 +16,7 @@ class CreateBoardModule(private val core: Core) : Module<CreateBoardViewModel> {
         BoardScreenNavigation.Base(core, core.navigation()),
         core.manageResource(),
         CreateBoardRepository.Base(
-            CreateBoardCloudDataSource.Base(core.provideMyUser(), core),
+            CreateBoardCloudDataSource.Base(core.provideMyUser(), core.service()),
             ChosenBoardCache.Base(core.storage()),
             MyBoardsNamesCache.Base(core.storage())
         ),

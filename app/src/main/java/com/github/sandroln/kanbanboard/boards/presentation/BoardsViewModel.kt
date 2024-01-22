@@ -2,6 +2,7 @@ package com.github.sandroln.kanbanboard.boards.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardScreen
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreenNavigation
 import com.github.sandroln.kanbanboard.boards.data.BoardsRepository
@@ -11,7 +12,6 @@ import com.github.sandroln.kanbanboard.core.DispatchersList
 import com.github.sandroln.kanbanboard.core.Init
 import com.github.sandroln.kanbanboard.core.ProvideError
 import com.github.sandroln.kanbanboard.core.Reload
-import com.github.sandroln.kanbanboard.login.data.MyUser
 import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.github.sandroln.kanbanboard.profile.presentation.ProfileScreen
 
