@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.core
+package com.github.sandroln.core
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner

@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.core
+package com.github.sandroln.core
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStoreOwner

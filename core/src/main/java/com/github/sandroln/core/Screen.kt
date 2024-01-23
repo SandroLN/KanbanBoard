@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.main
+package com.github.sandroln.core
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

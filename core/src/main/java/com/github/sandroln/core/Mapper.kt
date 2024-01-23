@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.core
+package com.github.sandroln.core
 
 interface Mapper<S : Any, R : Any> {
 
