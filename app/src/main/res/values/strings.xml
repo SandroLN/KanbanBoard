@@ -1,6 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Kanban Boards</string>
-    <string name="your_web_client_id" tools:ignore="TypographyDashes">1002398847501-bfbona1fr4rq96ku0mnv7vbn5m0374d0.apps.googleusercontent.com</string>
     <string name="sign_out">sign out</string>
     <string name="profile">Profile</string>
     <string name="back">back</string>

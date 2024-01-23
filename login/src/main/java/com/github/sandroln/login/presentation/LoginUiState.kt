@@ -1,16 +1,16 @@
-package com.github.sandroln.kanbanboard.login.presentation
+package com.github.sandroln.login.presentation
 
 import android.app.Activity
 import android.content.Intent
 import android.view.View
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
-import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.core.ManageResource
+import com.github.sandroln.core.ManageResource
+import com.github.sandroln.login.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
-interface LoginUiState {
+internal interface LoginUiState {
 
     fun handle(launcher: ActivityResultLauncher<Intent>, activity: Activity) = Unit
     fun update(loginButton: View, progressBar: View, errorTextView: TextView) = Unit
@@ -35,7 +35,7 @@ interface LoginUiState {
 
     data class Auth(private val manageResource: ManageResource) : LoginUiState {
 
-        private val option by lazy {
+        private val options by lazy {
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(manageResource.string(R.string.your_web_client_id))
                 .requestEmail()
@@ -44,11 +44,11 @@ interface LoginUiState {
         }
 
         override fun handle(launcher: ActivityResultLauncher<Intent>, activity: Activity) {
-            launcher.launch(GoogleSignIn.getClient(activity, option).signInIntent)
+            launcher.launch(GoogleSignIn.getClient(activity, options).signInIntent)
         }
 
         override fun update(loginButton: View, progressBar: View, errorTextView: TextView) {
-            loginButton.visibility = View.VISIBLE
+            loginButton.visibility = View.GONE
             progressBar.visibility = View.VISIBLE
             errorTextView.text = ""
         }

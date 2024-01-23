@@ -1,9 +1,10 @@
-package com.github.sandroln.kanbanboard.login.data
+package com.github.sandroln.login.data
 
 import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.cloudservice.Service
+import com.github.sandroln.common.UserProfileCloud
 
-interface LoginCloudDataSource {
+internal interface LoginCloudDataSource {
 
     suspend fun login()
 
@@ -20,8 +21,3 @@ interface LoginCloudDataSource {
         }
     }
 }
-
-data class UserProfileCloud(
-    val mail: String = "",
-    val name: String = ""
-)

@@ -1,13 +1,11 @@
-package com.github.sandroln.kanbanboard.login.data
+package com.github.sandroln.login.data
 
 import com.github.sandroln.cloudservice.Auth
 import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.cloudservice.UserNotLoggedIn
-import com.github.sandroln.kanbanboard.login.presentation.AuthResultWrapper
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.common.api.ApiException
+import com.github.sandroln.login.presentation.AuthResultWrapper
 
-interface LoginRepository : UserNotLoggedIn {
+internal interface LoginRepository : UserNotLoggedIn {
 
     suspend fun handleResult(authResult: AuthResultWrapper): LoginResult
 
@@ -22,11 +20,9 @@ interface LoginRepository : UserNotLoggedIn {
         override suspend fun handleResult(authResult: AuthResultWrapper) =
             if (authResult.isSuccessful()) {
                 try {
-                    val task = authResult.task()
-                    val account: GoogleSignInAccount = task.getResult(ApiException::class.java)
-                    val idToken = account.idToken
+                    val idToken = authResult.idToken()
 
-                    if (idToken == null) {
+                    if (idToken.isEmpty()) {
                         LoginResult.Failed("something went wrong")
                     } else {
                         val (successful, errorMessage) = auth.auth(idToken)

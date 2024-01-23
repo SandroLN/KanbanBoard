@@ -4,6 +4,11 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import com.github.sandroln.core.DependencyContainer
+import com.github.sandroln.core.NavigationCommunication
+import com.github.sandroln.core.ProvideViewModel
+import com.github.sandroln.core.ViewModelsFactory
+import com.github.sandroln.login.LoginDependencyContainer
 
 class App : Application(), ProvideViewModel {
 
@@ -11,7 +16,12 @@ class App : Application(), ProvideViewModel {
 
     override fun onCreate() {
         super.onCreate()
-        viewModelsFactory = ViewModelsFactory(DependencyContainer.Base(Core(this)))
+        val navigation = NavigationCommunication.Base()
+        val featuresNavigation = FeaturesNavigation.Base(navigation)
+        val core = CoreImpl(featuresNavigation, this, navigation)
+        val login = LoginDependencyContainer(core, featuresNavigation, DependencyContainer.Error())
+        viewModelsFactory =
+            ViewModelsFactory(BaseDependencyContainer(featuresNavigation, core, login))
     }
 
     override fun <T : ViewModel> viewModel(owner: ViewModelStoreOwner, className: Class<T>): T =

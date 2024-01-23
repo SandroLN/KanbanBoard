@@ -1,21 +1,21 @@
-package com.github.sandroln.kanbanboard.login.presentation
+package com.github.sandroln.login.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import com.github.sandroln.kanbanboard.core.BaseViewModel
-import com.github.sandroln.kanbanboard.core.Communication
-import com.github.sandroln.kanbanboard.core.DispatchersList
-import com.github.sandroln.kanbanboard.core.Init
-import com.github.sandroln.kanbanboard.core.ManageResource
-import com.github.sandroln.kanbanboard.login.data.LoginRepository
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
+import com.github.sandroln.core.BaseViewModel
+import com.github.sandroln.core.Communication
+import com.github.sandroln.core.DispatchersList
+import com.github.sandroln.core.Init
+import com.github.sandroln.core.ManageResource
+import com.github.sandroln.login.data.LoginRepository
+import com.github.sandroln.login.data.NavigateFromLogin
 
-class LoginViewModel(
+internal class LoginViewModel(
     private val repository: LoginRepository,
     dispatchersList: DispatchersList,
     private val manageResource: ManageResource,
     private val communication: LoginCommunication,
-    private val navigation: NavigationCommunication.Update
+    private val navigation: NavigateFromLogin
 ) : BaseViewModel(dispatchersList), Init, Communication.Observe<LoginUiState> {
 
     override fun observe(owner: LifecycleOwner, observer: Observer<LoginUiState>) =

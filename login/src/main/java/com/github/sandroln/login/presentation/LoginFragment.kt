@@ -1,13 +1,13 @@
-package com.github.sandroln.kanbanboard.login.presentation
+package com.github.sandroln.login.presentation
 
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.core.BaseFragment
+import com.github.sandroln.core.BaseFragment
+import com.github.sandroln.login.R
 
-class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
+internal class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     override val viewModelClass = LoginViewModel::class.java
 
@@ -28,7 +28,9 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
             it.update(loginButton, progressBar, errorTextView)
         }
 
-        loginButton.setOnClickListener { viewModel.login() }
+        loginButton.setOnClickListener {
+            viewModel.login()
+        }
 
         viewModel.init(savedInstanceState == null)
     }
