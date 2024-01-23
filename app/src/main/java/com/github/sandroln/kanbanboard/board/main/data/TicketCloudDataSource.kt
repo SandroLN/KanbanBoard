@@ -1,7 +1,6 @@
 package com.github.sandroln.kanbanboard.board.main.data
 
 import com.github.sandroln.cloudservice.Service
-import com.github.sandroln.kanbanboard.core.ProvideError
 
 interface Tickets {
 
@@ -20,7 +19,7 @@ interface Tickets {
         fun ticketsForBoard(boardId: String)
 
         class Base(
-            private val provideError: ProvideError,
+            private val provideError: com.github.sandroln.core.ProvideError,
             private val service: Service,
         ) : CloudDataSource {
 

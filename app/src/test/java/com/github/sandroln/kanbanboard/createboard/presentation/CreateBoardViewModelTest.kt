@@ -7,7 +7,6 @@ import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardComm
 import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardUiState
 import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardViewModel
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreenNavigation
-import com.github.sandroln.kanbanboard.core.ManageResource
 import junit.framework.TestCase.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -21,7 +20,7 @@ class CreateBoardViewModelTest : BaseTest() {
     private lateinit var repository: FakeRepository
     private lateinit var communication: FakeCommunication
     private lateinit var navigation: FakeNavigation
-    private lateinit var manageResource: ManageResource
+    private lateinit var manageResource: com.github.sandroln.core.ManageResource
     private lateinit var viewModel: CreateBoardViewModel
     //endregion
 

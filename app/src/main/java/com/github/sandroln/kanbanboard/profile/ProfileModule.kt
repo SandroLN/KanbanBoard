@@ -1,7 +1,7 @@
 package com.github.sandroln.kanbanboard.profile
 
-import com.github.sandroln.kanbanboard.core.Core
-import com.github.sandroln.kanbanboard.core.Module
+import com.github.sandroln.core.Core
+import com.github.sandroln.core.Module
 import com.github.sandroln.kanbanboard.profile.presentation.ProfileCommunication
 import com.github.sandroln.kanbanboard.profile.presentation.ProfileViewModel
 

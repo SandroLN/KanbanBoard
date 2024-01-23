@@ -3,7 +3,6 @@ package com.github.sandroln.kanbanboard.board.main.data
 import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.kanbanboard.boards.data.OtherBoardCloud
-import com.github.sandroln.kanbanboard.core.ProvideError
 
 interface BoardMembers {
 
@@ -24,7 +23,7 @@ interface BoardMembers {
 
         class Base(
             private val myUser: MyUser,
-            private val provideError: ProvideError,
+            private val provideError: com.github.sandroln.core.ProvideError,
             private val service: Service,
         ) : CloudDataSource {
             private var callback: Callback = Callback.Empty

@@ -1,7 +1,5 @@
 package com.github.sandroln.kanbanboard.boards.presentation
 
-import com.github.sandroln.kanbanboard.core.Communication
-
-interface BoardsCommunication : Communication.Mutable<BoardsUiState> {
-    class Base : Communication.Single<BoardsUiState>(), BoardsCommunication
+interface BoardsCommunication : com.github.sandroln.core.Communication.Mutable<BoardsUiState> {
+    class Base : com.github.sandroln.core.Communication.Single<BoardsUiState>(), BoardsCommunication
 }

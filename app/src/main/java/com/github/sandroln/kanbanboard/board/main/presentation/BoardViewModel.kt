@@ -3,11 +3,11 @@ package com.github.sandroln.kanbanboard.board.main.presentation
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.github.sandroln.core.Communication
+import com.github.sandroln.core.NavigationCommunication
+import com.github.sandroln.core.Reload
+import com.github.sandroln.core.Serialization
 import com.github.sandroln.kanbanboard.board.main.data.BoardRepository
-import com.github.sandroln.kanbanboard.core.Communication
-import com.github.sandroln.kanbanboard.core.Reload
-import com.github.sandroln.kanbanboard.core.Serialization
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.github.sandroln.kanbanboard.ticket.create.presentation.CreateTicketScreen
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.EditTicketScreen
 
@@ -71,7 +71,8 @@ class BoardViewModel(
 }
 
 interface BoardActions : Communication.Observe<BoardUiState>,
-    TicketsCommunication.Observe, TicketInteractions, Reload, Serialization.Mutable {
+    TicketsCommunication.Observe, TicketInteractions,
+    Reload, Serialization.Mutable {
 
     fun createTicket()
 }

@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.core.Mapper
-import com.github.sandroln.kanbanboard.core.Retry
 
 class BoardsAdapter(
     private val clickListener: BoardClickListener,
     private val typeList: List<BoardType> =
         listOf(BoardType.Progress, BoardType.Title, BoardType.Name, BoardType.Hint, BoardType.Error)
-) : RecyclerView.Adapter<BoardViewHolder>(), Mapper.Unit<List<BoardUi>> {
+) : RecyclerView.Adapter<BoardViewHolder>(), com.github.sandroln.core.Mapper.Unit<List<BoardUi>> {
 
     private val boardList = mutableListOf<BoardUi>()
 
@@ -133,7 +131,7 @@ class BoardNameViewHolder(
 }
 
 class BoardErrorViewHolder(
-    private val retry: Retry,
+    private val retry: com.github.sandroln.core.Retry,
     view: View
 ) : BoardViewHolder(view) {
 
@@ -147,7 +145,7 @@ class BoardErrorViewHolder(
     }
 }
 
-interface BoardClickListener : Retry, OpenBoard
+interface BoardClickListener : com.github.sandroln.core.Retry, OpenBoard
 
 interface OpenBoard {
 

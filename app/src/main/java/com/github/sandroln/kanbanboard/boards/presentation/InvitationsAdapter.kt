@@ -8,11 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.core.Mapper
 
 class InvitationsAdapter(
     private val actions: InvitationActions
-) : RecyclerView.Adapter<InvitationViewHolder>(), Mapper.Unit<List<BoardInvitation>> {
+) : RecyclerView.Adapter<InvitationViewHolder>(), com.github.sandroln.core.Mapper.Unit<List<BoardInvitation>> {
 
     private val list = mutableListOf<BoardInvitation>()
 

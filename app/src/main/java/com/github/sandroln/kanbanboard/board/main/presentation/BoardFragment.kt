@@ -6,8 +6,8 @@ import android.view.DragEvent
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.github.sandroln.core.BaseFragment
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.core.BaseFragment
 
 class BoardFragment : BaseFragment<BoardViewModel>(R.layout.fragment_board) {
 

@@ -4,17 +4,15 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.github.sandroln.cloudservice.MyUser
-import com.github.sandroln.kanbanboard.core.Communication
-import com.github.sandroln.kanbanboard.core.GoBack
-import com.github.sandroln.kanbanboard.core.Init
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
-import com.github.sandroln.kanbanboard.main.Screen
+import com.github.sandroln.core.NavigationCommunication
+import com.github.sandroln.core.Screen
 
 class ProfileViewModel(
     private val myUser: MyUser,
     private val communication: ProfileCommunication,
     private val navigationCommunication: NavigationCommunication.Update
-) : ViewModel(), Init, Communication.Observe<ProfileUiState>, GoBack {
+) : ViewModel(), com.github.sandroln.core.Init, com.github.sandroln.core.Communication.Observe<ProfileUiState>,
+    com.github.sandroln.core.GoBack {
 
     override fun observe(owner: LifecycleOwner, observer: Observer<ProfileUiState>) =
         communication.observe(owner, observer)

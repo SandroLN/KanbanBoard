@@ -1,11 +1,11 @@
 package com.github.sandroln.kanbanboard.ticket.edit.presentation
 
+import com.github.sandroln.core.Screen
 import com.github.sandroln.kanbanboard.BaseTest
 import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.board.main.presentation.Column
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketUi
-import com.github.sandroln.kanbanboard.main.Screen
 import com.github.sandroln.kanbanboard.ticket.edit.data.EditTicketRepository
 import junit.framework.TestCase.assertEquals
 import org.junit.Before

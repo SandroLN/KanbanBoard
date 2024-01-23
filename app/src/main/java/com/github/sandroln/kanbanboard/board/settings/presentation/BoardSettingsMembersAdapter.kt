@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.github.sandroln.core.Mapper
 import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
-import com.github.sandroln.kanbanboard.core.Mapper
 import com.github.sandroln.kanbanboard.ticket.common.presentation.BoardUserDiff
 import com.github.sandroln.kanbanboard.ticket.common.presentation.MemberViewHolder
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser

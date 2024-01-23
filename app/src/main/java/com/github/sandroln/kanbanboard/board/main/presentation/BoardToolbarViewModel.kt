@@ -5,12 +5,12 @@ import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.github.sandroln.core.Communication
+import com.github.sandroln.core.GoBack
+import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsScreen
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsScreen
-import com.github.sandroln.kanbanboard.core.Communication
-import com.github.sandroln.kanbanboard.core.GoBack
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
 
 class BoardToolbarViewModel(
     private val communication: BoardToolbarCommunication,

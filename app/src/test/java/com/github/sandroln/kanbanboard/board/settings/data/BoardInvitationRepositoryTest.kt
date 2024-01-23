@@ -1,11 +1,11 @@
 package com.github.sandroln.kanbanboard.board.settings.data
 
+import com.github.sandroln.common.UserProfileCloud
 import com.github.sandroln.kanbanboard.BaseTest
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.board.main.data.MemberName
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.boards.presentation.BoardInfo
-import com.github.sandroln.kanbanboard.login.data.UserProfileCloud
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -185,7 +185,10 @@ class BoardInvitationRepositoryTest : BaseTest() {
                 list.add(memberId)
                 functionsCallsStack.put(HANDLE_CALL)
                 callback.provideMember(
-                    UserProfileCloud("$memberId@gmail.com", "person$memberId"),
+                    UserProfileCloud(
+                        "$memberId@gmail.com",
+                        "person$memberId"
+                    ),
                     memberId
                 )
             }

@@ -1,16 +1,17 @@
 package com.github.sandroln.kanbanboard.board.settings
 
+import com.github.sandroln.core.Core
+import com.github.sandroln.core.Module
+import com.github.sandroln.core.ProvideError
 import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
 import com.github.sandroln.kanbanboard.board.main.data.MemberName
 import com.github.sandroln.kanbanboard.board.settings.data.BoardInvitationRepository
 import com.github.sandroln.kanbanboard.board.settings.data.Invitations
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationViewModel
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
-import com.github.sandroln.kanbanboard.core.Core
-import com.github.sandroln.kanbanboard.core.Module
-import com.github.sandroln.kanbanboard.core.ProvideError
 
-class BoardInvitationModule(private val core: Core) : Module<BoardInvitationViewModel> {
+class BoardInvitationModule(private val core: Core) :
+    Module<BoardInvitationViewModel> {
 
     override fun viewModel(): BoardInvitationViewModel {
         val communication = BoardMembersCommunication.Base()

@@ -2,25 +2,20 @@ package com.github.sandroln.kanbanboard.board.create.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.kanbanboard.board.create.data.CreateBoardRepository
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreenNavigation
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsScreen
-import com.github.sandroln.kanbanboard.core.BaseViewModel
-import com.github.sandroln.kanbanboard.core.Communication
-import com.github.sandroln.kanbanboard.core.DispatchersList
-import com.github.sandroln.kanbanboard.core.GoBack
-import com.github.sandroln.kanbanboard.core.ManageResource
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
 
 class CreateBoardViewModel(
     private val boardScreenNavigation: BoardScreenNavigation,
-    private val manageResource: ManageResource,
+    private val manageResource: com.github.sandroln.core.ManageResource,
     private val repository: CreateBoardRepository,
     private val communication: CreateBoardCommunication,
     private val navigation: NavigationCommunication.Update,
-    dispatchersList: DispatchersList
-) : BaseViewModel(dispatchersList), CreateBoardActions {
+    dispatchersList: com.github.sandroln.core.DispatchersList
+) : com.github.sandroln.core.BaseViewModel(dispatchersList), CreateBoardActions {
 
     override fun disableCreate() = communication.map(CreateBoardUiState.CanNotCreateBoard)
 
@@ -42,8 +37,8 @@ class CreateBoardViewModel(
     override fun goBack() = navigation.map(BoardsScreen)
 }
 
-interface CreateBoardActions : CreateBoardUiActions, GoBack,
-    Communication.Observe<CreateBoardUiState> {
+interface CreateBoardActions : CreateBoardUiActions, com.github.sandroln.core.GoBack,
+    com.github.sandroln.core.Communication.Observe<CreateBoardUiState> {
     fun createBoard(name: String)
 }
 

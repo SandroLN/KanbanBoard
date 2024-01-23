@@ -4,12 +4,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.github.sandroln.kanbanboard.boards.data.MyInvitationsRepository
-import com.github.sandroln.kanbanboard.core.Communication
 
 class MyInvitationsViewModel(
     private val repository: MyInvitationsRepository,
     private val communication: MyInvitationsCommunication
-) : ViewModel(), InvitationActions, Communication.Observe<List<BoardInvitation>>,
+) : ViewModel(), InvitationActions, com.github.sandroln.core.Communication.Observe<List<BoardInvitation>>,
     MyInvitationsRepository.Callback {
 
     init {

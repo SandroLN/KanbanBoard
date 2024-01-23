@@ -1,5 +1,6 @@
 package com.github.sandroln.kanbanboard.board.main
 
+import com.github.sandroln.core.Module
 import com.github.sandroln.kanbanboard.board.main.data.BoardCloudDataSource
 import com.github.sandroln.kanbanboard.board.main.data.BoardMembers
 import com.github.sandroln.kanbanboard.board.main.data.BoardRepository
@@ -14,10 +15,9 @@ import com.github.sandroln.kanbanboard.board.main.presentation.BoardViewModel
 import com.github.sandroln.kanbanboard.board.main.presentation.ColumnTicketCommunication
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketsCommunication
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
-import com.github.sandroln.kanbanboard.core.Core
-import com.github.sandroln.kanbanboard.core.Module
+import com.github.sandroln.kanbanboard.core.CoreImpl
 
-class BoardModule(private val core: Core) : Module<BoardViewModel> {
+class BoardModule(private val core: CoreImpl) : Module<BoardViewModel> {
 
     override fun viewModel(): BoardViewModel {
         val ticketsCommunication = TicketsCommunication.Base(

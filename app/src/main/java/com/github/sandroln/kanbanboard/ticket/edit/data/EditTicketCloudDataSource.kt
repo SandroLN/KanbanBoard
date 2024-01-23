@@ -5,7 +5,6 @@ import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.kanbanboard.board.main.data.Assignee
 import com.github.sandroln.kanbanboard.board.main.data.EditTicketIdCache
 import com.github.sandroln.kanbanboard.board.main.data.TicketCloud
-import com.github.sandroln.kanbanboard.core.SimpleInit
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.DeleteTicket
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.EditTicketCallback
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.EditTicketCommunication
@@ -48,4 +47,4 @@ interface EditTicketCloudDataSource : EditTicketCloudActions, ChangeSingleField 
     }
 }
 
-interface EditTicketCloudActions : DeleteTicket, SimpleInit
+interface EditTicketCloudActions : DeleteTicket, com.github.sandroln.core.SimpleInit

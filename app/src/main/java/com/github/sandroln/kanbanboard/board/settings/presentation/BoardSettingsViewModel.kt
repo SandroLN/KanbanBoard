@@ -2,14 +2,14 @@ package com.github.sandroln.kanbanboard.board.settings.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.github.sandroln.core.BaseViewModel
+import com.github.sandroln.core.DispatchersList
+import com.github.sandroln.core.GoBack
+import com.github.sandroln.core.NavigationCommunication
+import com.github.sandroln.core.Screen
 import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.board.settings.data.BoardSettingsRepository
-import com.github.sandroln.kanbanboard.core.BaseViewModel
-import com.github.sandroln.kanbanboard.core.DispatchersList
-import com.github.sandroln.kanbanboard.core.GoBack
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
-import com.github.sandroln.kanbanboard.main.Screen
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
 
 class BoardSettingsViewModel(

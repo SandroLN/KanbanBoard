@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStoreOwner
+import com.github.sandroln.core.ProvideViewModel
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.core.ProvideViewModel
 
 class MainActivity : AppCompatActivity(), ProvideViewModel {
 

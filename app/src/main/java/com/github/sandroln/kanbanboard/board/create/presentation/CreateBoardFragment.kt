@@ -5,12 +5,10 @@ import android.text.Editable
 import android.view.View
 import android.widget.Button
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.core.BaseFragment
-import com.github.sandroln.kanbanboard.core.SimpleTextWatcher
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-class CreateBoardFragment : BaseFragment<CreateBoardViewModel>(R.layout.fragment_create_board) {
+class CreateBoardFragment : com.github.sandroln.core.BaseFragment<CreateBoardViewModel>(R.layout.fragment_create_board) {
 
     override val viewModelClass = CreateBoardViewModel::class.java
 
@@ -38,7 +36,7 @@ class CreateBoardFragment : BaseFragment<CreateBoardViewModel>(R.layout.fragment
 
 private class CreateBoardTextWatcher(
     private val actions: CreateBoardUiActions
-) : SimpleTextWatcher() {
+) : com.github.sandroln.core.SimpleTextWatcher() {
 
     override fun afterTextChanged(s: Editable) = with(actions) {
         val text = s.toString()

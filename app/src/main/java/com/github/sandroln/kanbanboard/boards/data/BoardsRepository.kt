@@ -1,8 +1,8 @@
 package com.github.sandroln.kanbanboard.boards.data
 
+import com.github.sandroln.core.Save
 import com.github.sandroln.kanbanboard.boards.presentation.BoardInfo
 import com.github.sandroln.kanbanboard.boards.presentation.ReloadWithError
-import com.github.sandroln.kanbanboard.core.Save
 
 interface BoardsRepository : InitReloadCallback, Save<BoardInfo> {
 

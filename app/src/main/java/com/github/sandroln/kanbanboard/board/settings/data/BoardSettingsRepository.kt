@@ -2,9 +2,9 @@ package com.github.sandroln.kanbanboard.board.settings.data
 
 import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.cloudservice.Service
+import com.github.sandroln.common.UserProfileCloud
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
-import com.github.sandroln.kanbanboard.login.data.UserProfileCloud
 
 interface BoardSettingsRepository {
 

@@ -7,8 +7,8 @@ import android.widget.FrameLayout
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
+import com.github.sandroln.core.ProvideViewModel
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.core.ProvideViewModel
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
 
 class BoardInvitationsView : FrameLayout {

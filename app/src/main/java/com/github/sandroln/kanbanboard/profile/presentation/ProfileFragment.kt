@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.core.BaseFragment
 
-class ProfileFragment : BaseFragment<ProfileViewModel>(R.layout.fragment_profile) {
+class ProfileFragment : com.github.sandroln.core.BaseFragment<ProfileViewModel>(R.layout.fragment_profile) {
 
     override val viewModelClass = ProfileViewModel::class.java
 

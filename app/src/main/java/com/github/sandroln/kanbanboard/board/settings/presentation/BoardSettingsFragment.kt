@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.github.sandroln.core.BaseFragment
 import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
-import com.github.sandroln.kanbanboard.core.BaseFragment
-import com.github.sandroln.kanbanboard.core.SimpleTextWatcher
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
 import com.google.android.material.textfield.TextInputEditText
 
@@ -50,6 +49,6 @@ class BoardSettingsFragment :
     }
 }
 
-private class FindUsersWatcher(private val findUsers: FindUsers) : SimpleTextWatcher() {
+private class FindUsersWatcher(private val findUsers: FindUsers) : com.github.sandroln.core.SimpleTextWatcher() {
     override fun afterTextChanged(s: Editable) = findUsers.findUsers(s.toString())
 }

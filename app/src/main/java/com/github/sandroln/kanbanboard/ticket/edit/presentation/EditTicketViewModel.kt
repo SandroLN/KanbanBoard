@@ -2,10 +2,9 @@ package com.github.sandroln.kanbanboard.ticket.edit.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketUi
-import com.github.sandroln.kanbanboard.core.Init
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
 import com.github.sandroln.kanbanboard.ticket.common.presentation.TicketViewModel
 import com.github.sandroln.kanbanboard.ticket.edit.data.EditTicketRepository
 
@@ -77,7 +76,7 @@ class EditTicketViewModel(
     }
 }
 
-interface EditTicketUiActions : Init, DeleteTicket, ObserveTicketChanges, UpdateTicketUi,
+interface EditTicketUiActions : com.github.sandroln.core.Init, DeleteTicket, ObserveTicketChanges, UpdateTicketUi,
     ObserveTicketUiState {
 
     fun edit(uiChangeList: UiChangeList)

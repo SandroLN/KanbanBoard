@@ -7,14 +7,12 @@ import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
-import com.github.sandroln.kanbanboard.core.BaseFragment
-import com.github.sandroln.kanbanboard.core.SimpleTextWatcher
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.setTextCorrect
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-abstract class TicketFragment<T : TicketViewModel>(layoutId: Int) : BaseFragment<T>(layoutId) {
+abstract class TicketFragment<T : TicketViewModel>(layoutId: Int) : com.github.sandroln.core.BaseFragment<T>(layoutId) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,7 +59,7 @@ abstract class TicketFragment<T : TicketViewModel>(layoutId: Int) : BaseFragment
 private class SearchBoardMember(
     private val updateQuery: UpdateQuery,
     private val afterTextChanged: () -> Unit
-) : SimpleTextWatcher() {
+) : com.github.sandroln.core.SimpleTextWatcher() {
 
     override fun afterTextChanged(s: Editable) {
         updateQuery.updateQuery(s.toString())
@@ -71,7 +69,7 @@ private class SearchBoardMember(
 
 private class CreateTicketTextWatcher(
     private val enableCreateButton: (Boolean) -> Unit
-) : SimpleTextWatcher() {
+) : com.github.sandroln.core.SimpleTextWatcher() {
 
     override fun afterTextChanged(s: Editable) {
         val text = s.toString()

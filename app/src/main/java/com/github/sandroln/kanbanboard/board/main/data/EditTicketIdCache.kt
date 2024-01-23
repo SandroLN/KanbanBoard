@@ -1,15 +1,13 @@
 package com.github.sandroln.kanbanboard.board.main.data
 
-import com.github.sandroln.kanbanboard.core.StringStorage
-
 interface EditTicketIdCache {
 
-    interface Save : com.github.sandroln.kanbanboard.core.Save<String>
-    interface Read : com.github.sandroln.kanbanboard.core.Read<String>
+    interface Save : com.github.sandroln.core.Save<String>
+    interface Read : com.github.sandroln.core.Read<String>
     interface Mutable : Save, Read
 
     class Base(
-        private val stringStorage: StringStorage.Mutable,
+        private val stringStorage: com.github.sandroln.core.StringStorage.Mutable,
         private val key: String = "EditTicketIdCache"
     ) : Mutable {
 

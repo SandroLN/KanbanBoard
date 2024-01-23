@@ -3,9 +3,8 @@ package com.github.sandroln.kanbanboard.board.main.data
 import com.github.sandroln.kanbanboard.board.main.presentation.Column
 import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.boards.presentation.BoardInfo
-import com.github.sandroln.kanbanboard.core.SimpleInit
 
-interface BoardRepository : MoveTicket, SimpleInit {
+interface BoardRepository : MoveTicket, com.github.sandroln.core.SimpleInit {
 
     fun boardInfo(): BoardInfo
 

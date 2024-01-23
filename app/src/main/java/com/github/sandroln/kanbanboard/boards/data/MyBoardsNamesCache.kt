@@ -1,15 +1,13 @@
 package com.github.sandroln.kanbanboard.boards.data
 
-import com.github.sandroln.kanbanboard.core.ObjectStorage
-
 
 interface MyBoardsNamesCache {
-    interface Save : com.github.sandroln.kanbanboard.core.Save<List<String>>
-    interface Read : com.github.sandroln.kanbanboard.core.Read<List<String>>
+    interface Save : com.github.sandroln.core.Save<List<String>>
+    interface Read : com.github.sandroln.core.Read<List<String>>
     interface Mutable : Save, Read
 
     class Base(
-        private val objectStorage: ObjectStorage.Mutable,
+        private val objectStorage: com.github.sandroln.core.ObjectStorage.Mutable,
         private val key: String = "MyBoardsNamesCache"
     ) : Mutable {
 

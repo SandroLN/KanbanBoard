@@ -1,11 +1,10 @@
 package com.github.sandroln.kanbanboard.ticket.edit.data
 
 import com.github.sandroln.kanbanboard.board.main.data.EditTicketIdCache
-import com.github.sandroln.kanbanboard.core.SimpleInit
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.DeleteTicket
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.TicketChange
 
-interface EditTicketRepository : DeleteTicket, SimpleInit {
+interface EditTicketRepository : DeleteTicket, com.github.sandroln.core.SimpleInit {
 
     fun makeChanges(changes: List<TicketChange>)
 

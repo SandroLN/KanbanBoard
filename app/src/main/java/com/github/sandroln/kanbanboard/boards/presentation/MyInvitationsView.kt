@@ -8,7 +8,6 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.core.ProvideViewModel
 
 class MyInvitationsView : FrameLayout {
 
@@ -30,7 +29,7 @@ class MyInvitationsView : FrameLayout {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        viewModel = (context.applicationContext as ProvideViewModel).viewModel(
+        viewModel = (context.applicationContext as com.github.sandroln.core.ProvideViewModel).viewModel(
             findViewTreeViewModelStoreOwner()!!,
             MyInvitationsViewModel::class.java
         )

@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "KanbanBoard"
 include ':app'
 include ':cloudservice'
+include ':login'
+include ':core'

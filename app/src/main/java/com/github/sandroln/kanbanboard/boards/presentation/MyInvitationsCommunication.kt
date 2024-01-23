@@ -1,8 +1,6 @@
 package com.github.sandroln.kanbanboard.boards.presentation
 
-import com.github.sandroln.kanbanboard.core.Communication
+interface MyInvitationsCommunication : com.github.sandroln.core.Communication.Mutable<List<BoardInvitation>> {
 
-interface MyInvitationsCommunication : Communication.Mutable<List<BoardInvitation>> {
-
-    class Base : Communication.Regular<List<BoardInvitation>>(), MyInvitationsCommunication
+    class Base : com.github.sandroln.core.Communication.Regular<List<BoardInvitation>>(), MyInvitationsCommunication
 }

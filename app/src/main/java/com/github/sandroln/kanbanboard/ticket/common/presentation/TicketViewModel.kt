@@ -3,11 +3,10 @@ package com.github.sandroln.kanbanboard.ticket.common.presentation
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.github.sandroln.core.NavigationCommunication
+import com.github.sandroln.core.Screen
 import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
-import com.github.sandroln.kanbanboard.core.GoBack
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
-import com.github.sandroln.kanbanboard.main.Screen
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
 
 abstract class TicketViewModel(
@@ -27,4 +26,4 @@ abstract class TicketViewModel(
     }
 }
 
-interface CommonActions : AssignUser, GoBack, BoardMembersCommunication.Observe
+interface CommonActions : AssignUser, com.github.sandroln.core.GoBack, BoardMembersCommunication.Observe
