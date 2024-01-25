@@ -18,8 +18,6 @@ import com.github.sandroln.kanbanboard.boards.presentation.BoardsViewModel
 import com.github.sandroln.kanbanboard.boards.presentation.MyInvitationsViewModel
 import com.github.sandroln.kanbanboard.main.MainModule
 import com.github.sandroln.kanbanboard.main.MainViewModel
-import com.github.sandroln.kanbanboard.profile.ProfileModule
-import com.github.sandroln.kanbanboard.profile.presentation.ProfileViewModel
 import com.github.sandroln.kanbanboard.ticket.create.CreateTicketModule
 import com.github.sandroln.kanbanboard.ticket.create.presentation.CreateTicketViewModel
 import com.github.sandroln.kanbanboard.ticket.edit.EditTicketModule
@@ -33,7 +31,6 @@ class BaseDependencyContainer(
 
     override fun module(className: Class<out ViewModel>) = when (className) {
         MainViewModel::class.java -> MainModule(core, featuresNavigation)
-        ProfileViewModel::class.java -> ProfileModule(core)
         BoardsViewModel::class.java -> BoardsModule(core)
         MyInvitationsViewModel::class.java -> MyInvitationModule(core)
         CreateBoardViewModel::class.java -> CreateBoardModule(core)

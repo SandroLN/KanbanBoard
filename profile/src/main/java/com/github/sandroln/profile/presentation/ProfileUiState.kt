@@ -1,7 +1,7 @@
-package com.github.sandroln.kanbanboard.profile.presentation
+package com.github.sandroln.profile.presentation
 
 import android.widget.TextView
-import com.github.sandroln.kanbanboard.R
+import com.github.sandroln.profile.R
 
 interface ProfileUiState {
 

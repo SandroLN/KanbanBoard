@@ -1,11 +1,12 @@
-package com.github.sandroln.kanbanboard.profile.presentation
+package com.github.sandroln.profile.presentation
 
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import com.github.sandroln.kanbanboard.R
+import com.github.sandroln.core.BaseFragment
+import com.github.sandroln.profile.R
 
-class ProfileFragment : com.github.sandroln.core.BaseFragment<ProfileViewModel>(R.layout.fragment_profile) {
+internal class ProfileFragment : BaseFragment<ProfileViewModel>(R.layout.fragment_profile) {
 
     override val viewModelClass = ProfileViewModel::class.java
 
