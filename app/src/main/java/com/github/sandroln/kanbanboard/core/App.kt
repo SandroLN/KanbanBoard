@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelStoreOwner
 import com.github.sandroln.core.DependencyContainer
 import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.core.ProvideViewModel
-import com.github.sandroln.core.ViewModelsFactory
 import com.github.sandroln.login.LoginDependencyContainer
 import com.github.sandroln.profile.ProfileDependencyContainer
 
