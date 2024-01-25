@@ -1,8 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Kanban Boards</string>
-    <string name="sign_out">sign out</string>
-    <string name="profile">Profile</string>
-    <string name="back">back</string>
     <string name="welcome">Welcome to Kanban Boards</string>
     <string name="my_email">My name:\n%s\n\nMy email:\n%s</string>
     <string name="create">create</string>

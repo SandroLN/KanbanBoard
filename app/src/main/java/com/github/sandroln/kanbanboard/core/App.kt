@@ -9,6 +9,7 @@ import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.core.ProvideViewModel
 import com.github.sandroln.core.ViewModelsFactory
 import com.github.sandroln.login.LoginDependencyContainer
+import com.github.sandroln.profile.ProfileDependencyContainer
 
 class App : Application(), ProvideViewModel {
 
@@ -20,8 +21,9 @@ class App : Application(), ProvideViewModel {
         val featuresNavigation = FeaturesNavigation.Base(navigation)
         val core = CoreImpl(featuresNavigation, this, navigation)
         val login = LoginDependencyContainer(core, featuresNavigation, DependencyContainer.Error())
+        val profile = ProfileDependencyContainer(core, login)
         viewModelsFactory =
-            ViewModelsFactory(BaseDependencyContainer(featuresNavigation, core, login))
+            ViewModelsFactory(BaseDependencyContainer(featuresNavigation, core, profile))
     }
 
     override fun <T : ViewModel> viewModel(owner: ViewModelStoreOwner, className: Class<T>): T =
