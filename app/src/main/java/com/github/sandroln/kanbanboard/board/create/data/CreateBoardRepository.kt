@@ -1,6 +1,6 @@
 package com.github.sandroln.kanbanboard.board.create.data
 
-import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
+import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.kanbanboard.boards.data.MyBoardsNamesCache
 
 interface CreateBoardRepository {

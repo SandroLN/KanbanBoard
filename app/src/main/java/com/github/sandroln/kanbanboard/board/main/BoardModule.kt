@@ -1,10 +1,12 @@
 package com.github.sandroln.kanbanboard.board.main
 
+import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.core.Module
 import com.github.sandroln.kanbanboard.board.main.data.BoardCloudDataSource
 import com.github.sandroln.kanbanboard.board.main.data.BoardMembers
 import com.github.sandroln.kanbanboard.board.main.data.BoardRepository
 import com.github.sandroln.kanbanboard.board.main.data.EditTicketIdCache
+import com.github.sandroln.kanbanboard.board.main.data.InitBoardMapper
 import com.github.sandroln.kanbanboard.board.main.data.MemberName
 import com.github.sandroln.kanbanboard.board.main.data.MoveTicketCloudDataSource
 import com.github.sandroln.kanbanboard.board.main.data.ProvideErrorToBoard
@@ -14,7 +16,6 @@ import com.github.sandroln.kanbanboard.board.main.presentation.BoardCommunicatio
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardViewModel
 import com.github.sandroln.kanbanboard.board.main.presentation.ColumnTicketCommunication
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketsCommunication
-import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.core.CoreImpl
 
 class BoardModule(private val core: CoreImpl) : Module<BoardViewModel> {
@@ -29,21 +30,22 @@ class BoardModule(private val core: CoreImpl) : Module<BoardViewModel> {
         val handleError = ProvideErrorToBoard(communication)
         val storage = core.storage()
         val editTicketIdCache = EditTicketIdCache.Base(storage)
+        val boardCloudDataSource = BoardCloudDataSource.Base(
+            core.boardScopeModule().provideContainer(),
+            UpdateBoard.Base(communication, ticketsCommunication),
+            Tickets.CloudDataSource.Base(handleError, core.service()),
+            BoardMembers.CloudDataSource.Base(
+                core.provideMyUser(),
+                handleError,
+                core.service()
+            ),
+            MemberName.CloudDataSource.Base(handleError, core.service())
+        )
         return BoardViewModel(
             core.serialization(),
             BoardRepository.Base(
+                InitBoardMapper(boardCloudDataSource),
                 MoveTicketCloudDataSource.Base(core.service()),
-                BoardCloudDataSource.Base(
-                    core.boardScopeModule().provideContainer(),
-                    UpdateBoard.Base(communication, ticketsCommunication),
-                    Tickets.CloudDataSource.Base(handleError, core.service()),
-                    BoardMembers.CloudDataSource.Base(
-                        core.provideMyUser(),
-                        handleError,
-                        core.service()
-                    ),
-                    MemberName.CloudDataSource.Base(handleError, core.service())
-                ),
                 editTicketIdCache,
                 ChosenBoardCache.Base(storage)
             ),

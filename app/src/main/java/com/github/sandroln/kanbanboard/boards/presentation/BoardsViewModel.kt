@@ -2,6 +2,7 @@ package com.github.sandroln.kanbanboard.boards.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.github.sandroln.chosenboard.BoardCache
 import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.core.BaseViewModel
 import com.github.sandroln.core.Communication
@@ -46,8 +47,8 @@ class BoardsViewModel(
         reload()
     }
 
-    override fun openBoard(boardInfo: BoardInfo) {
-        boardsRepository.save(boardInfo)
+    override fun openBoard(boardCache: BoardCache) {
+        boardsRepository.save(boardCache)
         boardScreenNavigation.navigateToBoard()
     }
 

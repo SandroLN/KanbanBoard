@@ -1,10 +1,10 @@
 package com.github.sandroln.kanbanboard.boards
 
+import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.core.Module
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreenNavigation
 import com.github.sandroln.kanbanboard.boards.data.BoardsCloudDataSource
 import com.github.sandroln.kanbanboard.boards.data.BoardsRepository
-import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.boards.data.MyBoardsNamesCache
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsCommunication
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsViewModel

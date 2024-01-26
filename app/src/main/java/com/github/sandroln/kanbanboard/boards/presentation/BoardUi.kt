@@ -1,14 +1,8 @@
 package com.github.sandroln.kanbanboard.boards.presentation
 
 import android.widget.TextView
+import com.github.sandroln.chosenboard.BoardCache
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.board.main.data.BoardCloudDataSource
-import com.github.sandroln.kanbanboard.board.main.data.BoardUser
-import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarCommunication
-import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarUi
-import com.github.sandroln.kanbanboard.board.settings.data.Invitations
-import com.github.sandroln.kanbanboard.boards.data.OtherBoardCloud
-import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketOnBoard
 
 interface BoardUi {
     fun id(): String
@@ -34,7 +28,7 @@ interface BoardUi {
             textView.text = name
         }
 
-        override fun openBoard(open: OpenBoard) = open.openBoard(BoardInfo(key, name, true))
+        override fun openBoard(open: OpenBoard) = open.openBoard(BoardCache(key, name, true))
         override fun id() = key
     }
 
@@ -61,7 +55,7 @@ interface BoardUi {
             textView.text = name
         }
 
-        override fun openBoard(open: OpenBoard) = open.openBoard(BoardInfo(key, name, false, owner))
+        override fun openBoard(open: OpenBoard) = open.openBoard(BoardCache(key, name, false, owner))
 
         override fun id() = key
     }
@@ -81,23 +75,4 @@ interface BoardUi {
 
         override fun id() = "BoardUiError$message"
     }
-}
-
-data class BoardInfo(
-    private val id: String,
-    private val name: String,
-    private val isMyBoard: Boolean,
-    private val ownerId: String = ""
-) {
-    fun invite(cloudDataSource: Invitations.CloudDataSource.Handle) = cloudDataSource.handle(id)
-
-    fun invite(user: BoardUser) = OtherBoardCloud(user.id(), id)
-
-    fun createTicket(createTicket: CreateTicketOnBoard) = createTicket.createTicket(id)
-
-    fun show(communication: BoardToolbarCommunication) =
-        communication.map(BoardToolbarUi(name, isMyBoard))
-
-    fun init(boardCloudDataSource: BoardCloudDataSource) =
-        boardCloudDataSource.init(id, isMyBoard, ownerId)
 }

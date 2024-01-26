@@ -1,10 +1,12 @@
 package com.github.sandroln.kanbanboard.board.settings.data
 
+import com.github.sandroln.chosenboard.BoardCache
+import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.common.UserProfileCloud
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
-import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
+import com.github.sandroln.kanbanboard.boards.data.OtherBoardCloud
 
 interface BoardSettingsRepository {
 
@@ -33,7 +35,19 @@ interface BoardSettingsRepository {
 
         override fun inviteUserToBoard(user: BoardUser) = service.postFirstLevelAsync(
             "boards-invitations",
-            chosenBoardCache.read().invite(user)
+            chosenBoardCache.read().map(OtherBoardCloudMapper(user))
         )
     }
+}
+
+class OtherBoardCloudMapper(
+    private val user: BoardUser
+) : BoardCache.Mapper<OtherBoardCloud> {
+
+    override fun map(
+        id: String,
+        name: String,
+        isMyBoard: Boolean,
+        ownerId: String
+    ): OtherBoardCloud = OtherBoardCloud(user.id(), id)
 }

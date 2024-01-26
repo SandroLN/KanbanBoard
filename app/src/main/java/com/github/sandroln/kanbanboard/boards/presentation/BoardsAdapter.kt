@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.github.sandroln.chosenboard.BoardCache
 import com.github.sandroln.kanbanboard.R
 
 class BoardsAdapter(
@@ -149,7 +150,7 @@ interface BoardClickListener : com.github.sandroln.core.Retry, OpenBoard
 
 interface OpenBoard {
 
-    fun openBoard(boardInfo: BoardInfo)
+    fun openBoard(boardCache: BoardCache)
 }
 
 private class DiffUtilCallback(

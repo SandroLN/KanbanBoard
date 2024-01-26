@@ -1,10 +1,10 @@
 package com.github.sandroln.kanbanboard.board.settings
 
+import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.core.Module
 import com.github.sandroln.kanbanboard.board.settings.data.BoardSettingsRepository
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsViewModel
 import com.github.sandroln.kanbanboard.board.settings.presentation.FoundUsersCommunication
-import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.core.CoreImpl
 
 class BoardSettingsModule(private val core: CoreImpl) :

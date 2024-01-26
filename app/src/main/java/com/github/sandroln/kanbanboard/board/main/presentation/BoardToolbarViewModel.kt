@@ -5,21 +5,23 @@ import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.github.sandroln.chosenboard.BoardCache
+import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.core.Communication
 import com.github.sandroln.core.GoBack
 import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsScreen
-import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.boards.presentation.BoardsScreen
 
 class BoardToolbarViewModel(
+    mapper: BoardCache.Mapper<BoardToolbarUi>,
     private val communication: BoardToolbarCommunication,
     private val navigation: NavigationCommunication.Update,
     chosenBoardCache: ChosenBoardCache.Read
 ) : ViewModel(), GoBack, Communication.Observe<BoardToolbarUi> {
 
     init {
-        chosenBoardCache.read().show(communication)
+        communication.map(chosenBoardCache.read().map(mapper))
     }
 
     override fun observe(owner: LifecycleOwner, observer: Observer<BoardToolbarUi>) {
@@ -29,6 +31,12 @@ class BoardToolbarViewModel(
     override fun goBack() = navigation.map(BoardsScreen)
 
     fun showSettings() = navigation.map(BoardSettingsScreen)
+}
+
+class BoardToolbarMapper : BoardCache.Mapper<BoardToolbarUi> {
+
+    override fun map(id: String, name: String, isMyBoard: Boolean, ownerId: String) =
+        BoardToolbarUi(name, isMyBoard)
 }
 
 interface BoardToolbarCommunication : Communication.Mutable<BoardToolbarUi> {

@@ -1,7 +1,7 @@
 package com.github.sandroln.kanbanboard.ticket.create
 
+import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.core.Module
-import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 import com.github.sandroln.kanbanboard.core.CoreImpl
 import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketRepository
 import com.github.sandroln.kanbanboard.ticket.create.presentation.CreateTicketViewModel

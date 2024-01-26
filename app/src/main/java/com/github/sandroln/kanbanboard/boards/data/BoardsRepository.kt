@@ -1,10 +1,11 @@
 package com.github.sandroln.kanbanboard.boards.data
 
+import com.github.sandroln.chosenboard.BoardCache
+import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.core.Save
-import com.github.sandroln.kanbanboard.boards.presentation.BoardInfo
 import com.github.sandroln.kanbanboard.boards.presentation.ReloadWithError
 
-interface BoardsRepository : InitReloadCallback, Save<BoardInfo> {
+interface BoardsRepository : InitReloadCallback, Save<BoardCache> {
 
     suspend fun data(): List<Board>
 
@@ -34,7 +35,7 @@ interface BoardsRepository : InitReloadCallback, Save<BoardInfo> {
 
         override fun init(reload: ReloadWithError) = cloudDataSource.init(reload)
 
-        override fun save(data: BoardInfo) = saveBoard.save(data)
+        override fun save(data: BoardCache) = saveBoard.save(data)
     }
 }
 

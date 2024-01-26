@@ -1,9 +1,10 @@
 package com.github.sandroln.kanbanboard.board.settings.data
 
+import com.github.sandroln.chosenboard.BoardCache
+import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.common.UserProfileCloud
 import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.board.main.data.MemberName
-import com.github.sandroln.kanbanboard.boards.data.ChosenBoardCache
 
 interface BoardInvitationRepository {
 
@@ -20,6 +21,7 @@ interface BoardInvitationRepository {
     }
 
     class Base(
+        private val invitationMapper: BoardCache.Mapper<Unit>,
         private val invitationsCloudDataSource: Invitations.CloudDataSource.Mutable,
         private val memberCloudDataSource: MemberName.CloudDataSource,
         private val chosenBoardCache: ChosenBoardCache.Read
@@ -31,7 +33,7 @@ interface BoardInvitationRepository {
             this.callback = callback
             memberCloudDataSource.init(this)
             invitationsCloudDataSource.init(this)
-            chosenBoardCache.read().invite(invitationsCloudDataSource)
+            chosenBoardCache.read().map(invitationMapper)
         }
 
         private val usersCache = mutableMapOf<String, BoardUser>()
@@ -56,4 +58,12 @@ interface BoardInvitationRepository {
             private val lock = Object()
         }
     }
+}
+
+class InvitationMapper(
+    private val handle: Invitations.CloudDataSource.Handle
+) : BoardCache.Mapper<Unit> {
+
+    override fun map(id: String, name: String, isMyBoard: Boolean, ownerId: String) =
+        handle.handle(id)
 }
