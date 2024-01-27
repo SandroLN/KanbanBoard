@@ -18,8 +18,8 @@ class BoardSettingsMembersAdapter(//todo common adapter MembersAdapter
     private val list = mutableListOf<BoardUser>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MemberViewHolder(
-        assignUser,
-        LayoutInflater.from(parent.context).inflate(R.layout.board_name, parent, false)
+        assignUser, //todo duplicated_board_name
+        LayoutInflater.from(parent.context).inflate(R.layout.duplicated_board_name, parent, false)
     )
 
     override fun getItemCount() = list.size

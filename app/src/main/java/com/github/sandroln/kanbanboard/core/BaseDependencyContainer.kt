@@ -12,10 +12,6 @@ import com.github.sandroln.kanbanboard.board.settings.BoardInvitationModule
 import com.github.sandroln.kanbanboard.board.settings.BoardSettingsModule
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationViewModel
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsViewModel
-import com.github.sandroln.kanbanboard.boards.BoardsModule
-import com.github.sandroln.kanbanboard.boards.MyInvitationModule
-import com.github.sandroln.kanbanboard.boards.presentation.BoardsViewModel
-import com.github.sandroln.kanbanboard.boards.presentation.MyInvitationsViewModel
 import com.github.sandroln.kanbanboard.main.MainModule
 import com.github.sandroln.kanbanboard.main.MainViewModel
 import com.github.sandroln.kanbanboard.ticket.create.CreateTicketModule
@@ -31,9 +27,7 @@ class BaseDependencyContainer(
 
     override fun module(className: Class<out ViewModel>) = when (className) {
         MainViewModel::class.java -> MainModule(core, featuresNavigation)
-        BoardsViewModel::class.java -> BoardsModule(core)
-        MyInvitationsViewModel::class.java -> MyInvitationModule(core)
-        CreateBoardViewModel::class.java -> CreateBoardModule(core)
+        CreateBoardViewModel::class.java -> CreateBoardModule(core, featuresNavigation)
         BoardViewModel::class.java -> BoardModule(core)
         BoardToolbarViewModel::class.java -> BoardToolbarModule(core)
         CreateTicketViewModel::class.java -> CreateTicketModule(core)

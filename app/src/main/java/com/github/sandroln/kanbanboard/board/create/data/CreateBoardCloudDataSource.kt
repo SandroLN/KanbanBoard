@@ -1,9 +1,9 @@
 package com.github.sandroln.kanbanboard.board.create.data
 
 import com.github.sandroln.chosenboard.BoardCache
+import com.github.sandroln.chosenboard.BoardCloud
 import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.cloudservice.Service
-import com.github.sandroln.kanbanboard.boards.data.BoardCloud
 
 interface CreateBoardCloudDataSource {
 

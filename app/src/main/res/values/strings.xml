@@ -1,13 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Kanban Boards</string>
-    <string name="welcome">Welcome to Kanban Boards</string>
-    <string name="my_email">My name:\n%s\n\nMy email:\n%s</string>
-    <string name="create">create</string>
-    <string name="my_boards_title">Boards you own</string>
-    <string name="no_boards_of_my_own">You have not created board yet. Go ahead and make one</string>
-    <string name="other_boards_title">Boards you are added to</string>
-    <string name="how_to_be_added_to_board">Other users can add you to their boards. Check your email in profile settings</string>
-    <string name="retry">retry</string>
     <string name="board_name">Board Name</string>
     <string name="at_least_3_symbols">At least 3 symbols</string>
     <string name="create_board">Create Board</string>

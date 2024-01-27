@@ -1,8 +1,8 @@
 package com.github.sandroln.kanbanboard.board.main.data
 
+import com.github.sandroln.chosenboard.OtherBoardCloud
 import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.cloudservice.Service
-import com.github.sandroln.kanbanboard.boards.data.OtherBoardCloud
 
 interface BoardMembers {
 

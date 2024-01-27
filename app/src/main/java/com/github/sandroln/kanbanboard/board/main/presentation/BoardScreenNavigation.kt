@@ -1,7 +1,7 @@
 package com.github.sandroln.kanbanboard.board.main.presentation
 
+import com.github.sandroln.chosenboard.ClearBoardScopeModule
 import com.github.sandroln.core.NavigationCommunication
-import com.github.sandroln.kanbanboard.board.ClearBoardScopeModule
 
 interface BoardScreenNavigation {
 

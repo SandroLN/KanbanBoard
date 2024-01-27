@@ -24,7 +24,3 @@ interface BoardScopeModule {
 interface ProvideBoardScopeModule {
     fun boardScopeModule(): BoardScopeModule
 }
-
-interface ClearBoardScopeModule {
-    fun clearBoardScopeModule()
-}

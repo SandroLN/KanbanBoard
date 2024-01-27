@@ -2,11 +2,13 @@ package com.github.sandroln.kanbanboard.board.create.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.github.sandroln.boards.main.presentation.BoardsScreen
+import com.github.sandroln.chosenboard.BoardScreenNavigation
+import com.github.sandroln.core.BaseViewModel
+import com.github.sandroln.core.DispatchersList
 import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.kanbanboard.board.create.data.CreateBoardRepository
-import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreenNavigation
-import com.github.sandroln.kanbanboard.boards.presentation.BoardsScreen
 
 class CreateBoardViewModel(
     private val boardScreenNavigation: BoardScreenNavigation,
@@ -14,8 +16,8 @@ class CreateBoardViewModel(
     private val repository: CreateBoardRepository,
     private val communication: CreateBoardCommunication,
     private val navigation: NavigationCommunication.Update,
-    dispatchersList: com.github.sandroln.core.DispatchersList
-) : com.github.sandroln.core.BaseViewModel(dispatchersList), CreateBoardActions {
+    dispatchersList: DispatchersList
+) : BaseViewModel(dispatchersList), CreateBoardActions {
 
     override fun disableCreate() = communication.map(CreateBoardUiState.CanNotCreateBoard)
 

@@ -1,8 +1,8 @@
 package com.github.sandroln.kanbanboard.board.create.data
 
+import com.github.sandroln.chosenboard.BoardScreenNavigation
 import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardCommunication
 import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardUiState
-import com.github.sandroln.kanbanboard.board.main.presentation.BoardScreenNavigation
 
 interface CreateBoardResult {
 

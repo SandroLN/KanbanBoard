@@ -5,13 +5,13 @@ import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.github.sandroln.boards.main.presentation.BoardsScreen
 import com.github.sandroln.chosenboard.BoardCache
 import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.core.Communication
 import com.github.sandroln.core.GoBack
 import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsScreen
-import com.github.sandroln.kanbanboard.boards.presentation.BoardsScreen
 
 class BoardToolbarViewModel(
     mapper: BoardCache.Mapper<BoardToolbarUi>,
