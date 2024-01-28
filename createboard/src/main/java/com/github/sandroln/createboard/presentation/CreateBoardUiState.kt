@@ -1,10 +1,10 @@
-package com.github.sandroln.kanbanboard.board.create.presentation
+package com.github.sandroln.createboard.presentation
 
 import android.view.View
 import android.widget.Button
 import com.google.android.material.textfield.TextInputLayout
 
-interface CreateBoardUiState {
+internal interface CreateBoardUiState {
 
     fun show(progressBar: View, createButton: Button, textInputLayout: TextInputLayout)
 

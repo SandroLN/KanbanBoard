@@ -1,8 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="board_name">Board Name</string>
-    <string name="at_least_3_symbols">At least 3 symbols</string>
-    <string name="create_board">Create Board</string>
-    <string name="board_already_exists">Board with this name already exists</string>
     <string name="todo">TODO</string>
     <string name="in_progress">IN PROGRESS</string>
     <string name="done">DONE</string>

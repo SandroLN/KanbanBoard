@@ -1,9 +1,9 @@
-package com.github.sandroln.kanbanboard.board.create.data
+package com.github.sandroln.createboard.data
 
 import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.chosenboard.MyBoardsNamesCache
 
-interface CreateBoardRepository {
+internal interface CreateBoardRepository {
 
     fun contains(name: String): Boolean
 

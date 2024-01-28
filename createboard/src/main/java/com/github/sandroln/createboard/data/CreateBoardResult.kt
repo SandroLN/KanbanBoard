@@ -1,10 +1,10 @@
-package com.github.sandroln.kanbanboard.board.create.data
+package com.github.sandroln.createboard.data
 
 import com.github.sandroln.chosenboard.BoardScreenNavigation
-import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardCommunication
-import com.github.sandroln.kanbanboard.board.create.presentation.CreateBoardUiState
+import com.github.sandroln.createboard.presentation.CreateBoardCommunication
+import com.github.sandroln.createboard.presentation.CreateBoardUiState
 
-interface CreateBoardResult {
+internal interface CreateBoardResult {
 
     fun map(boardScreenNavigation: BoardScreenNavigation, communication: CreateBoardCommunication)
 

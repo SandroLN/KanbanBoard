@@ -1,11 +1,11 @@
-package com.github.sandroln.kanbanboard.board.create.data
+package com.github.sandroln.createboard.data
 
 import com.github.sandroln.chosenboard.BoardCache
 import com.github.sandroln.chosenboard.BoardCloud
 import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.cloudservice.Service
 
-interface CreateBoardCloudDataSource {
+internal interface CreateBoardCloudDataSource {
 
     suspend fun createBoard(name: String): BoardCache
 

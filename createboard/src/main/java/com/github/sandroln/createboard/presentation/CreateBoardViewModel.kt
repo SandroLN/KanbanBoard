@@ -1,23 +1,22 @@
-package com.github.sandroln.kanbanboard.board.create.presentation
+package com.github.sandroln.createboard.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import com.github.sandroln.boards.main.presentation.BoardsScreen
 import com.github.sandroln.chosenboard.BoardScreenNavigation
-import com.github.sandroln.core.BaseViewModel
-import com.github.sandroln.core.DispatchersList
-import com.github.sandroln.core.NavigationCommunication
-import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.board.create.data.CreateBoardRepository
+import com.github.sandroln.common.NavigateToBoards
+import com.github.sandroln.core.Communication
+import com.github.sandroln.core.GoBack
+import com.github.sandroln.createboard.R
+import com.github.sandroln.createboard.data.CreateBoardRepository
 
-class CreateBoardViewModel(
+internal class CreateBoardViewModel(
     private val boardScreenNavigation: BoardScreenNavigation,
     private val manageResource: com.github.sandroln.core.ManageResource,
     private val repository: CreateBoardRepository,
     private val communication: CreateBoardCommunication,
-    private val navigation: NavigationCommunication.Update,
-    dispatchersList: DispatchersList
-) : BaseViewModel(dispatchersList), CreateBoardActions {
+    private val navigation: NavigateToBoards,
+    dispatchersList: com.github.sandroln.core.DispatchersList
+) : com.github.sandroln.core.BaseViewModel(dispatchersList), CreateBoardActions {
 
     override fun disableCreate() = communication.map(CreateBoardUiState.CanNotCreateBoard)
 
@@ -36,15 +35,15 @@ class CreateBoardViewModel(
         handle({ repository.create(name) }) { it.map(boardScreenNavigation, communication) }
     }
 
-    override fun goBack() = navigation.map(BoardsScreen)
+    override fun goBack() = navigation.navigateToBoards()
 }
 
-interface CreateBoardActions : CreateBoardUiActions, com.github.sandroln.core.GoBack,
-    com.github.sandroln.core.Communication.Observe<CreateBoardUiState> {
+internal interface CreateBoardActions : CreateBoardUiActions, GoBack,
+    Communication.Observe<CreateBoardUiState> {
     fun createBoard(name: String)
 }
 
-interface CreateBoardUiActions {
+internal interface CreateBoardUiActions {
     fun checkBoard(name: String)
     fun disableCreate()
 }
