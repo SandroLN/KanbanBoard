@@ -2,6 +2,7 @@ package com.github.sandroln.kanbanboard.board.main.data
 
 import com.github.sandroln.common.UserProfileCloud
 import com.github.sandroln.openedboard.ContainerBoardAllData
+import com.github.sandroln.openedboard.MemberName
 import com.github.sandroln.openedboard.StartListenToTickets
 
 

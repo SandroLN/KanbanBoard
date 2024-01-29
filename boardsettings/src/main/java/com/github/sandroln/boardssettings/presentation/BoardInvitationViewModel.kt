@@ -1,13 +1,13 @@
-package com.github.sandroln.kanbanboard.board.settings.presentation
+package com.github.sandroln.boardssettings.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.github.sandroln.kanbanboard.board.settings.data.BoardInvitationRepository
+import com.github.sandroln.boardssettings.data.BoardInvitationRepository
 import com.github.sandroln.openedboard.BoardMembersCommunication
 import com.github.sandroln.openedboard.BoardUser
 
-class BoardInvitationViewModel(
+internal class BoardInvitationViewModel(
     repository: BoardInvitationRepository,
     private val communication: BoardMembersCommunication.Mutable
 ) : ViewModel(), BoardMembersCommunication.Observe, BoardInvitationRepository.Callback {

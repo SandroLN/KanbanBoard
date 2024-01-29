@@ -1,9 +1,9 @@
-package com.github.sandroln.kanbanboard.board.settings.data
+package com.github.sandroln.boardssettings.data
 
 import com.github.sandroln.chosenboard.OtherBoardCloud
 import com.github.sandroln.cloudservice.Service
 
-interface Invitations {
+internal interface Invitations {
 
     interface Callback {
 

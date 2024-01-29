@@ -7,7 +7,6 @@ import com.github.sandroln.kanbanboard.board.main.data.BoardMembers
 import com.github.sandroln.kanbanboard.board.main.data.BoardRepository
 import com.github.sandroln.kanbanboard.board.main.data.EditTicketIdCache
 import com.github.sandroln.kanbanboard.board.main.data.InitBoardMapper
-import com.github.sandroln.kanbanboard.board.main.data.MemberName
 import com.github.sandroln.kanbanboard.board.main.data.MoveTicketCloudDataSource
 import com.github.sandroln.kanbanboard.board.main.data.ProvideErrorToBoard
 import com.github.sandroln.kanbanboard.board.main.data.Tickets
@@ -17,6 +16,7 @@ import com.github.sandroln.kanbanboard.board.main.presentation.BoardViewModel
 import com.github.sandroln.kanbanboard.board.main.presentation.ColumnTicketCommunication
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketsCommunication
 import com.github.sandroln.kanbanboard.core.CoreImpl
+import com.github.sandroln.openedboard.MemberName
 
 class BoardModule(private val core: CoreImpl) : Module<BoardViewModel> {
 

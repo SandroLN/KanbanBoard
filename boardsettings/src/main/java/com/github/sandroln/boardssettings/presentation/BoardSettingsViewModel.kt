@@ -1,18 +1,18 @@
-package com.github.sandroln.kanbanboard.board.settings.presentation
+package com.github.sandroln.boardssettings.presentation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.github.sandroln.boardssettings.data.BoardSettingsRepository
 import com.github.sandroln.core.BaseViewModel
 import com.github.sandroln.core.DispatchersList
 import com.github.sandroln.core.GoBack
 import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.core.Screen
-import com.github.sandroln.kanbanboard.board.settings.data.BoardSettingsRepository
-import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
+import com.github.sandroln.openedboard.AssignUser
 import com.github.sandroln.openedboard.BoardMembersCommunication
 import com.github.sandroln.openedboard.BoardUser
 
-class BoardSettingsViewModel(
+internal class BoardSettingsViewModel(
     private val navigation: NavigationCommunication.Update,
     private val foundUsersCommunication: FoundUsersCommunication,
     dispatchersList: DispatchersList,
@@ -46,10 +46,10 @@ class BoardSettingsViewModel(
     override fun goBack() = navigation.map(Screen.Pop)
 }
 
-interface ObserveFoundUsers {
+internal interface ObserveFoundUsers {
     fun observeFoundUsers(owner: LifecycleOwner, observer: Observer<List<BoardUser>>)
 }
 
-interface FindUsers {
+internal interface FindUsers {
     fun findUsers(mail: String)
 }

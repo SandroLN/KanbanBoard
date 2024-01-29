@@ -1,17 +1,17 @@
-package com.github.sandroln.kanbanboard.board.settings
+package com.github.sandroln.boardssettings
 
+import com.github.sandroln.boardssettings.data.BoardInvitationRepository
+import com.github.sandroln.boardssettings.data.InvitationMapper
+import com.github.sandroln.boardssettings.data.Invitations
+import com.github.sandroln.boardssettings.presentation.BoardInvitationViewModel
 import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.core.Core
 import com.github.sandroln.core.Module
 import com.github.sandroln.core.ProvideError
-import com.github.sandroln.kanbanboard.board.main.data.MemberName
-import com.github.sandroln.kanbanboard.board.settings.data.BoardInvitationRepository
-import com.github.sandroln.kanbanboard.board.settings.data.InvitationMapper
-import com.github.sandroln.kanbanboard.board.settings.data.Invitations
-import com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationViewModel
 import com.github.sandroln.openedboard.BoardMembersCommunication
+import com.github.sandroln.openedboard.MemberName
 
-class BoardInvitationModule(private val core: Core) : Module<BoardInvitationViewModel> {
+internal class BoardInvitationModule(private val core: Core) : Module<BoardInvitationViewModel> {
 
     override fun viewModel(): BoardInvitationViewModel {
         val communication = BoardMembersCommunication.Base()
@@ -22,6 +22,9 @@ class BoardInvitationModule(private val core: Core) : Module<BoardInvitationView
             MemberName.CloudDataSource.Base(ProvideError.Empty, core.service()),
             ChosenBoardCache.Base(core.storage())
         )
-        return BoardInvitationViewModel(repository, communication)
+        return BoardInvitationViewModel(
+            repository,
+            communication
+        )
     }
 }

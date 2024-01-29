@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.board.settings.presentation
+package com.github.sandroln.boardssettings.presentation
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,11 +7,11 @@ import android.widget.FrameLayout
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
+import com.github.sandroln.boardssettings.R
 import com.github.sandroln.core.ProvideViewModel
-import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
+import com.github.sandroln.openedboard.AssignUser
 
-class BoardInvitationsView : FrameLayout {
+internal class BoardInvitationsView : FrameLayout {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)

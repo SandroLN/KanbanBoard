@@ -5,8 +5,9 @@ import android.widget.EditText
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketUi
 import com.github.sandroln.kanbanboard.ticket.common.presentation.ChooseColumnViewGroup
 import com.github.sandroln.kanbanboard.ticket.common.presentation.ColorsViewGroup
-import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
+import com.github.sandroln.openedboard.AssignUser
 import com.google.android.material.textfield.TextInputEditText
+
 
 interface EditTicketUiState {
 

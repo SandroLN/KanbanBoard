@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.board.settings.presentation
+package com.github.sandroln.boardssettings.presentation
 
 import com.github.sandroln.core.Screen
 

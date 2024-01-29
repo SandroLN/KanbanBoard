@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.ticket.common.presentation
+package com.github.sandroln.openedboard
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
-import com.github.sandroln.openedboard.BoardUser
 
 class MembersAdapter(
     private val assignUser: AssignUser,

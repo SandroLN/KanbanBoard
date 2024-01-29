@@ -1,17 +1,17 @@
-package com.github.sandroln.kanbanboard.board.settings.presentation
+package com.github.sandroln.boardssettings.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.github.sandroln.boardssettings.R
 import com.github.sandroln.core.Mapper
-import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.ticket.common.presentation.BoardUserDiff
-import com.github.sandroln.kanbanboard.ticket.common.presentation.MemberViewHolder
-import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
+import com.github.sandroln.openedboard.AssignUser
 import com.github.sandroln.openedboard.BoardUser
+import com.github.sandroln.openedboard.BoardUserDiff
+import com.github.sandroln.openedboard.MemberViewHolder
 
-class BoardSettingsMembersAdapter(//todo common adapter MembersAdapter
+internal class BoardSettingsMembersAdapter(//todo common adapter MembersAdapter
     private val assignUser: AssignUser
 ) : RecyclerView.Adapter<MemberViewHolder>(), Mapper.Unit<List<BoardUser>> {
 

@@ -50,7 +50,7 @@
         android:layout_marginHorizontal="@dimen/_16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-    <com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationsView
+    <com.github.sandroln.boardssettings.presentation.BoardInvitationsView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

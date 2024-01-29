@@ -1,12 +1,13 @@
-package com.github.sandroln.kanbanboard.board.settings.data
+package com.github.sandroln.boardssettings.data
 
 import com.github.sandroln.chosenboard.BoardCache
 import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.common.UserProfileCloud
-import com.github.sandroln.kanbanboard.board.main.data.MemberName
 import com.github.sandroln.openedboard.BoardUser
+import com.github.sandroln.openedboard.MemberName
 
-interface BoardInvitationRepository {
+
+internal interface BoardInvitationRepository {
 
     fun init(callback: Callback)
 
@@ -60,7 +61,7 @@ interface BoardInvitationRepository {
     }
 }
 
-class InvitationMapper(
+internal class InvitationMapper(
     private val handle: Invitations.CloudDataSource.Handle
 ) : BoardCache.Mapper<Unit> {
 

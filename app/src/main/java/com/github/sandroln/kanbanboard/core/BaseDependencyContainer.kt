@@ -6,10 +6,6 @@ import com.github.sandroln.kanbanboard.board.main.BoardModule
 import com.github.sandroln.kanbanboard.board.main.BoardToolbarModule
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarViewModel
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardViewModel
-import com.github.sandroln.kanbanboard.board.settings.BoardInvitationModule
-import com.github.sandroln.kanbanboard.board.settings.BoardSettingsModule
-import com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationViewModel
-import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsViewModel
 import com.github.sandroln.kanbanboard.main.MainModule
 import com.github.sandroln.kanbanboard.main.MainViewModel
 import com.github.sandroln.kanbanboard.ticket.create.CreateTicketModule
@@ -29,8 +25,6 @@ class BaseDependencyContainer(
         BoardToolbarViewModel::class.java -> BoardToolbarModule(core)
         CreateTicketViewModel::class.java -> CreateTicketModule(core)
         EditTicketViewModel::class.java -> EditTicketModule(core)
-        BoardSettingsViewModel::class.java -> BoardSettingsModule(core)
-        BoardInvitationViewModel::class.java -> BoardInvitationModule(core)
         else -> dependencyContainer.module(className)
     }
 }

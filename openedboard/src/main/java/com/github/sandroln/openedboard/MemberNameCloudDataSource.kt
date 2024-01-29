@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.board.main.data
+package com.github.sandroln.openedboard
 
 import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.common.UserProfileCloud

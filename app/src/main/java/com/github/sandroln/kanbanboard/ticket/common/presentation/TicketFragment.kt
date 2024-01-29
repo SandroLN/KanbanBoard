@@ -5,14 +5,17 @@ import android.text.Editable
 import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
+import com.github.sandroln.core.BaseFragment
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.setTextCorrect
+import com.github.sandroln.openedboard.AssignUser
 import com.github.sandroln.openedboard.BoardUser
+import com.github.sandroln.openedboard.MembersAdapter
+import com.github.sandroln.openedboard.UpdateQuery
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-abstract class TicketFragment<T : TicketViewModel>(layoutId: Int) : com.github.sandroln.core.BaseFragment<T>(layoutId) {
+abstract class TicketFragment<T : TicketViewModel>(layoutId: Int) : BaseFragment<T>(layoutId) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

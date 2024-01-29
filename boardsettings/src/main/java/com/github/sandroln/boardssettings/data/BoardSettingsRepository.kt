@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.board.settings.data
+package com.github.sandroln.boardssettings.data
 
 import com.github.sandroln.chosenboard.BoardCache
 import com.github.sandroln.chosenboard.ChosenBoardCache
@@ -8,7 +8,7 @@ import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.common.UserProfileCloud
 import com.github.sandroln.openedboard.BoardUser
 
-interface BoardSettingsRepository {
+internal interface BoardSettingsRepository {
 
     suspend fun findUsers(userEmail: String): List<Pair<String, UserProfileCloud>>
 
@@ -40,7 +40,7 @@ interface BoardSettingsRepository {
     }
 }
 
-class OtherBoardCloudMapper(
+private class OtherBoardCloudMapper(
     private val user: BoardUser
 ) : BoardCache.Mapper<OtherBoardCloud> {
 

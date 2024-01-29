@@ -11,7 +11,6 @@ import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.core.Communication
 import com.github.sandroln.core.GoBack
 import com.github.sandroln.core.NavigationCommunication
-import com.github.sandroln.kanbanboard.board.settings.presentation.BoardSettingsScreen
 
 class BoardToolbarViewModel(
     mapper: BoardCache.Mapper<BoardToolbarUi>,
@@ -30,7 +29,7 @@ class BoardToolbarViewModel(
 
     override fun goBack() = navigation.map(BoardsScreen)
 
-    fun showSettings() = navigation.map(BoardSettingsScreen)
+    fun showSettings() = navigation.map(com.github.sandroln.boardssettings.presentation.BoardSettingsScreen)
 }
 
 class BoardToolbarMapper : BoardCache.Mapper<BoardToolbarUi> {

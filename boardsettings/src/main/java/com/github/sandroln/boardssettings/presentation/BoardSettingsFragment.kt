@@ -1,16 +1,16 @@
-package com.github.sandroln.kanbanboard.board.settings.presentation
+package com.github.sandroln.boardssettings.presentation
 
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.github.sandroln.boardssettings.R
 import com.github.sandroln.core.BaseFragment
-import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
+import com.github.sandroln.openedboard.AssignUser
 import com.github.sandroln.openedboard.BoardUser
 import com.google.android.material.textfield.TextInputEditText
 
-class BoardSettingsFragment :
+internal class BoardSettingsFragment :
     BaseFragment<BoardSettingsViewModel>(R.layout.fragment_board_settings) {
 
     override val viewModelClass = BoardSettingsViewModel::class.java
