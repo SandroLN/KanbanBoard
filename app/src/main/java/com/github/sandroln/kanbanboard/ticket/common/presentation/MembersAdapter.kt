@@ -7,8 +7,8 @@ import android.widget.Button
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
+import com.github.sandroln.openedboard.BoardUser
 
 class MembersAdapter(
     private val assignUser: AssignUser,

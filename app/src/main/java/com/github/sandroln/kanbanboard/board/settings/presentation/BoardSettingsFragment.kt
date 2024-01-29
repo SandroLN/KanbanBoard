@@ -6,8 +6,8 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.github.sandroln.core.BaseFragment
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
+import com.github.sandroln.openedboard.BoardUser
 import com.google.android.material.textfield.TextInputEditText
 
 class BoardSettingsFragment :

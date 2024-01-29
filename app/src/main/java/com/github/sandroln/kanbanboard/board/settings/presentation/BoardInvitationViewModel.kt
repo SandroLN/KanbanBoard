@@ -3,9 +3,9 @@ package com.github.sandroln.kanbanboard.board.settings.presentation
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
-import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.board.settings.data.BoardInvitationRepository
+import com.github.sandroln.openedboard.BoardMembersCommunication
+import com.github.sandroln.openedboard.BoardUser
 
 class BoardInvitationViewModel(
     repository: BoardInvitationRepository,

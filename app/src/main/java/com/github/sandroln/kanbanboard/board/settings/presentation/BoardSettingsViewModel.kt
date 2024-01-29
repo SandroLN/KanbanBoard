@@ -7,10 +7,10 @@ import com.github.sandroln.core.DispatchersList
 import com.github.sandroln.core.GoBack
 import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.core.Screen
-import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
-import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.board.settings.data.BoardSettingsRepository
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
+import com.github.sandroln.openedboard.BoardMembersCommunication
+import com.github.sandroln.openedboard.BoardUser
 
 class BoardSettingsViewModel(
     private val navigation: NavigationCommunication.Update,

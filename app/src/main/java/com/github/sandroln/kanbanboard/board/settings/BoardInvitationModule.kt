@@ -4,12 +4,12 @@ import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.core.Core
 import com.github.sandroln.core.Module
 import com.github.sandroln.core.ProvideError
-import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
 import com.github.sandroln.kanbanboard.board.main.data.MemberName
 import com.github.sandroln.kanbanboard.board.settings.data.BoardInvitationRepository
 import com.github.sandroln.kanbanboard.board.settings.data.InvitationMapper
 import com.github.sandroln.kanbanboard.board.settings.data.Invitations
 import com.github.sandroln.kanbanboard.board.settings.presentation.BoardInvitationViewModel
+import com.github.sandroln.openedboard.BoardMembersCommunication
 
 class BoardInvitationModule(private val core: Core) : Module<BoardInvitationViewModel> {
 

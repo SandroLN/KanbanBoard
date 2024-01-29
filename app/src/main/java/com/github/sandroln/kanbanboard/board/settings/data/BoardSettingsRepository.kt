@@ -6,7 +6,7 @@ import com.github.sandroln.chosenboard.OtherBoardCloud
 import com.github.sandroln.cloudservice.MyUser
 import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.common.UserProfileCloud
-import com.github.sandroln.kanbanboard.board.main.data.BoardUser
+import com.github.sandroln.openedboard.BoardUser
 
 interface BoardSettingsRepository {
 

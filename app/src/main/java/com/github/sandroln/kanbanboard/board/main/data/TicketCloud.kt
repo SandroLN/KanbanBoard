@@ -2,6 +2,7 @@ package com.github.sandroln.kanbanboard.board.main.data
 
 import com.github.sandroln.kanbanboard.board.main.presentation.Column
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketUi
+import com.github.sandroln.openedboard.Assignee
 
 data class TicketCloud(
     val boardId: String = "",

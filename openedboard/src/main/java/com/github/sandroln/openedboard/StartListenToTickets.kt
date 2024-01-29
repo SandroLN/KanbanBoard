@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.board.main.data
+package com.github.sandroln.openedboard
 
 interface StartListenToTickets {
 

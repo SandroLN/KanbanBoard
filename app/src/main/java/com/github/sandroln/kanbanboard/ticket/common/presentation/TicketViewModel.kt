@@ -5,9 +5,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.core.Screen
-import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
-import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
+import com.github.sandroln.openedboard.BoardMembersCommunication
+import com.github.sandroln.openedboard.BoardUser
 
 abstract class TicketViewModel(
     private val navigation: NavigationCommunication.Update,

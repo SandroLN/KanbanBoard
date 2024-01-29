@@ -1,6 +1,8 @@
 package com.github.sandroln.kanbanboard.board.main.data
 
 import com.github.sandroln.common.UserProfileCloud
+import com.github.sandroln.openedboard.ContainerBoardAllData
+import com.github.sandroln.openedboard.StartListenToTickets
 
 
 interface BoardCloudDataSource : StartListenToTickets, MemberName.Callback, BoardMembers.Callback,

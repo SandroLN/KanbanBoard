@@ -1,7 +1,4 @@
-package com.github.sandroln.kanbanboard.board
-
-import com.github.sandroln.kanbanboard.board.main.data.BoardMembersCommunication
-import com.github.sandroln.kanbanboard.board.main.data.ContainerBoardAllData
+package com.github.sandroln.openedboard
 
 interface BoardScopeModule {
 
@@ -19,8 +16,4 @@ interface BoardScopeModule {
 
         override fun provideMembers() = boardMembersCommunication
     }
-}
-
-interface ProvideBoardScopeModule {
-    fun boardScopeModule(): BoardScopeModule
 }

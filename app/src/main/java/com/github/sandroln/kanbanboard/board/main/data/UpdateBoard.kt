@@ -4,6 +4,7 @@ import com.github.sandroln.kanbanboard.board.main.presentation.BoardCommunicatio
 import com.github.sandroln.kanbanboard.board.main.presentation.BoardUiState
 import com.github.sandroln.kanbanboard.board.main.presentation.Column
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketsCommunication
+import com.github.sandroln.openedboard.Assignee
 
 interface UpdateBoard {
 

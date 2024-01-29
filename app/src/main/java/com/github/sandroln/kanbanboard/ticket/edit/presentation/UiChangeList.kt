@@ -1,9 +1,9 @@
 package com.github.sandroln.kanbanboard.ticket.edit.presentation
 
-import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.board.main.presentation.Column
 import com.github.sandroln.kanbanboard.board.main.presentation.TicketUi
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
+import com.github.sandroln.openedboard.BoardUser
 
 interface UiChangeList : TicketUi.Mapper<List<TicketChange>>, AssignUser {
 

@@ -6,9 +6,9 @@ import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.board.main.data.BoardUser
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.setTextCorrect
+import com.github.sandroln.openedboard.BoardUser
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 

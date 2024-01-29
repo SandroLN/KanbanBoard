@@ -1,6 +1,6 @@
 package com.github.sandroln.kanbanboard.ticket.edit.data
 
-import com.github.sandroln.kanbanboard.board.main.data.Assignee
+import com.github.sandroln.openedboard.Assignee
 
 interface ChangeTicketFields {
 
