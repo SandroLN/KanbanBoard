@@ -2,10 +2,6 @@ package com.github.sandroln.kanbanboard.core
 
 import androidx.lifecycle.ViewModel
 import com.github.sandroln.core.DependencyContainer
-import com.github.sandroln.kanbanboard.board.main.BoardModule
-import com.github.sandroln.kanbanboard.board.main.BoardToolbarModule
-import com.github.sandroln.kanbanboard.board.main.presentation.BoardToolbarViewModel
-import com.github.sandroln.kanbanboard.board.main.presentation.BoardViewModel
 import com.github.sandroln.kanbanboard.main.MainModule
 import com.github.sandroln.kanbanboard.main.MainViewModel
 import com.github.sandroln.kanbanboard.ticket.create.CreateTicketModule
@@ -21,8 +17,6 @@ class BaseDependencyContainer(
 
     override fun module(className: Class<out ViewModel>) = when (className) {
         MainViewModel::class.java -> MainModule(core, featuresNavigation)
-        BoardViewModel::class.java -> BoardModule(core)
-        BoardToolbarViewModel::class.java -> BoardToolbarModule(core)
         CreateTicketViewModel::class.java -> CreateTicketModule(core)
         EditTicketViewModel::class.java -> EditTicketModule(core)
         else -> dependencyContainer.module(className)

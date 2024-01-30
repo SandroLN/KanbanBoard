@@ -1,6 +1,6 @@
 package com.github.sandroln.kanbanboard.ticket.edit.presentation
 
-import com.github.sandroln.kanbanboard.board.main.presentation.TicketUi
+import com.github.sandroln.openedboard.TicketUi
 
 interface UpdateTicketUi {
 

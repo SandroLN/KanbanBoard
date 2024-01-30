@@ -1,6 +1,7 @@
 package com.github.sandroln.kanbanboard.core
 
 import android.content.Context
+import com.github.sandroln.board.BoardDependencyContainer
 import com.github.sandroln.boards.BoardsDependencyContainer
 import com.github.sandroln.boardssettings.BoardSettingsDependencyContainer
 import com.github.sandroln.core.DependencyContainer
@@ -25,7 +26,8 @@ interface MakeDependencies {
             val boards = BoardsDependencyContainer(core, featuresNavigation, profile)
             val createBoard = CreateBoardDependencyContainer(core, featuresNavigation, boards)
             val boardSettings = BoardSettingsDependencyContainer(core, createBoard)
-            return BaseDependencyContainer(featuresNavigation, core, boardSettings)
+            val board = BoardDependencyContainer(core, featuresNavigation, boardSettings)
+            return BaseDependencyContainer(featuresNavigation, core, board)
         }
     }
 }

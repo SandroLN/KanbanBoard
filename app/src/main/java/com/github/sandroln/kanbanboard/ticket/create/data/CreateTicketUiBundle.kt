@@ -1,9 +1,9 @@
 package com.github.sandroln.kanbanboard.ticket.create.data
 
-import com.github.sandroln.kanbanboard.board.main.data.TicketCloud
-import com.github.sandroln.kanbanboard.board.main.presentation.Column
 import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
 import com.github.sandroln.openedboard.BoardUser
+import com.github.sandroln.openedboard.Column
+import com.github.sandroln.openedboard.TicketCloud
 
 interface CreateTicketUiBundle : CreateTicketOnBoard, AssignUser {
 

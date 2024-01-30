@@ -3,7 +3,7 @@ package com.github.sandroln.kanbanboard.ticket.create.data
 import com.github.sandroln.chosenboard.BoardCache
 import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.cloudservice.Service
-import com.github.sandroln.kanbanboard.board.main.data.TicketCloud
+import com.github.sandroln.openedboard.TicketCloud
 
 interface CreateTicketRepository {
 

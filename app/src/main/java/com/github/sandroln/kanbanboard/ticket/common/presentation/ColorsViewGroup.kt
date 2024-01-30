@@ -8,9 +8,10 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.core.view.children
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.board.main.data.TicketColor
+import com.github.sandroln.openedboard.ShowColors
+import com.github.sandroln.openedboard.TicketColor
 
-class ColorsViewGroup : FrameLayout {
+class ColorsViewGroup : FrameLayout, ShowColors {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
@@ -44,7 +45,7 @@ class ColorsViewGroup : FrameLayout {
 
     fun chosenColorHex() = TicketColor.Factory.valueByIndex(chosenIndex)
 
-    fun show(colorHex: String) {
+    override fun show(colorHex: String) {
         colors[chosenIndex].setImageResource(0)
         chosenIndex = TicketColor.Factory.indexByValue(colorHex)
         colors[chosenIndex].setImageResource(R.drawable.ic_checked_48)

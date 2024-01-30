@@ -1,5 +1,6 @@
 package com.github.sandroln.kanbanboard.board.main.presentation
 
+import com.github.sandroln.board.presentation.BoardScreen
 import com.github.sandroln.chosenboard.ClearBoardScopeModule
 import com.github.sandroln.core.NavigationCommunication
 

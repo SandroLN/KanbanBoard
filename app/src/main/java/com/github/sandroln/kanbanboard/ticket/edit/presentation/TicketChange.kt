@@ -1,7 +1,7 @@
 package com.github.sandroln.kanbanboard.ticket.edit.presentation
 
-import com.github.sandroln.kanbanboard.board.main.data.TicketColor
 import com.github.sandroln.kanbanboard.ticket.edit.data.ChangeTicketFields
+import com.github.sandroln.openedboard.TicketColor
 
 interface TicketChange {
 
@@ -13,7 +13,7 @@ interface TicketChange {
     }
 
     data class Column(
-        private val value: com.github.sandroln.kanbanboard.board.main.presentation.Column
+        private val value: com.github.sandroln.openedboard.Column
     ) : TicketChange {
 
         override fun applyChanges(changeTicketFields: ChangeTicketFields) {

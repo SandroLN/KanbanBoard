@@ -7,11 +7,11 @@ import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.github.sandroln.core.BaseFragment
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.ticket.edit.presentation.setTextCorrect
 import com.github.sandroln.openedboard.AssignUser
 import com.github.sandroln.openedboard.BoardUser
 import com.github.sandroln.openedboard.MembersAdapter
 import com.github.sandroln.openedboard.UpdateQuery
+import com.github.sandroln.openedboard.setTextCorrect
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 

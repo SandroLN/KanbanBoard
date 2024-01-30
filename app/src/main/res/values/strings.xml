@@ -1,8 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="todo">TODO</string>
-    <string name="in_progress">IN PROGRESS</string>
-    <string name="done">DONE</string>
-    <string name="try_again">try again</string>
+
     <string name="create_ticket">Create ticket</string>
     <string name="title">Title</string>
     <string name="assignee">Assignee</string>
