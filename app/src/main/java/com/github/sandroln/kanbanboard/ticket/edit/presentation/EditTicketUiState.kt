@@ -1,8 +1,6 @@
 package com.github.sandroln.kanbanboard.ticket.edit.presentation
 
 import android.view.View
-import com.github.sandroln.kanbanboard.ticket.common.presentation.ChooseColumnViewGroup
-import com.github.sandroln.kanbanboard.ticket.common.presentation.ColorsViewGroup
 import com.github.sandroln.openedboard.AssignUser
 import com.github.sandroln.openedboard.TicketUi
 import com.google.android.material.textfield.TextInputEditText
@@ -14,8 +12,8 @@ interface EditTicketUiState {
 
     fun show(
         titleEditText: TextInputEditText,
-        chooseColumnViewGroup: ChooseColumnViewGroup,
-        colorsViewGroup: ColorsViewGroup,
+        chooseColumnViewGroup: com.github.sandroln.ticketcommon.ChooseColumnViewGroup,
+        colorsViewGroup: com.github.sandroln.ticketcommon.ColorsViewGroup,
         assigneeEditText: TextInputEditText,
         descriptionEditText: TextInputEditText,
         membersRecyclerView: View
@@ -35,8 +33,8 @@ interface EditTicketUiState {
 
         override fun show(
             titleEditText: TextInputEditText,
-            chooseColumnViewGroup: ChooseColumnViewGroup,
-            colorsViewGroup: ColorsViewGroup,
+            chooseColumnViewGroup: com.github.sandroln.ticketcommon.ChooseColumnViewGroup,
+            colorsViewGroup: com.github.sandroln.ticketcommon.ColorsViewGroup,
             assigneeEditText: TextInputEditText,
             descriptionEditText: TextInputEditText,
             membersRecyclerView: View

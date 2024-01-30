@@ -1,11 +1,10 @@
 package com.github.sandroln.kanbanboard.ticket.create.presentation
 
 import com.github.sandroln.core.NavigationCommunication
-import com.github.sandroln.kanbanboard.ticket.common.presentation.TicketViewModel
 import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketRepository
 import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketUiBundle
 import com.github.sandroln.openedboard.BoardMembersCommunication
-import com.github.sandroln.openedboard.BoardUser
+import com.github.sandroln.ticketcommon.TicketViewModel
 
 class CreateTicketViewModel(
     private val repository: CreateTicketRepository,
@@ -17,13 +16,5 @@ class CreateTicketViewModel(
         createTicketUiBundle.assign(assignedUser)
         repository.createTicket(createTicketUiBundle)
         goBack()
-    }
-}
-
-interface AssignUser {
-    fun assign(user: BoardUser)
-
-    object Empty : AssignUser {
-        override fun assign(user: BoardUser) = Unit
     }
 }

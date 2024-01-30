@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="todo">TODO</string>
-    <string name="in_progress">IN PROGRESS</string>
-    <string name="done">DONE</string>
     <string name="try_again">try again</string>
 </resources>

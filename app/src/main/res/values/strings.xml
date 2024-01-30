@@ -1,9 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="create_ticket">Create ticket</string>
-    <string name="title">Title</string>
-    <string name="assignee">Assignee</string>
-    <string name="description_title">Description (optional)</string>
     <string name="edit_ticket">Edit Ticket</string>
     <string name="cancel" tools:ignore="ButtonCase">cancel</string>
     <string name="confirm_delete">Confirm delete</string>

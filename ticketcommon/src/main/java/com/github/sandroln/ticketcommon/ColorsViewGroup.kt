@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.ticket.common.presentation
+package com.github.sandroln.ticketcommon
 
 import android.content.Context
 import android.graphics.Color
@@ -7,7 +7,6 @@ import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.core.view.children
-import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.openedboard.ShowColors
 import com.github.sandroln.openedboard.TicketColor
 

@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/openedboard" />
             <option value="$PROJECT_DIR$/profile" />
+            <option value="$PROJECT_DIR$/ticketcommon" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

@@ -1,8 +1,9 @@
-package com.github.sandroln.kanbanboard.ticket.common.presentation
+package com.github.sandroln.ticketcommon
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.github.sandroln.core.GoBack
 import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.core.Screen
 import com.github.sandroln.openedboard.AssignUser
@@ -27,4 +28,4 @@ abstract class TicketViewModel(
     }
 }
 
-interface CommonActions : AssignUser, com.github.sandroln.core.GoBack, BoardMembersCommunication.Observe
+interface CommonActions : AssignUser, GoBack, BoardMembersCommunication.Observe

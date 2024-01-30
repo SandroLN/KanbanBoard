@@ -1,6 +1,6 @@
 package com.github.sandroln.kanbanboard.ticket.create.data
 
-import com.github.sandroln.kanbanboard.ticket.create.presentation.AssignUser
+import com.github.sandroln.openedboard.AssignUser
 import com.github.sandroln.openedboard.BoardUser
 import com.github.sandroln.openedboard.Column
 import com.github.sandroln.openedboard.TicketCloud

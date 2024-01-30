@@ -3,7 +3,6 @@ package com.github.sandroln.kanbanboard.ticket.edit.presentation
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.github.sandroln.core.NavigationCommunication
-import com.github.sandroln.kanbanboard.ticket.common.presentation.TicketViewModel
 import com.github.sandroln.kanbanboard.ticket.edit.data.EditTicketRepository
 import com.github.sandroln.openedboard.BoardMembersCommunication
 import com.github.sandroln.openedboard.TicketUi
@@ -14,7 +13,7 @@ class EditTicketViewModel(
     boardMembersCommunication: BoardMembersCommunication.Observe,
     private val communication: EditTicketCommunication.Observe,
     navigation: NavigationCommunication.Update
-) : TicketViewModel(navigation, boardMembersCommunication), EditTicketUiActions {
+) : com.github.sandroln.ticketcommon.TicketViewModel(navigation, boardMembersCommunication), EditTicketUiActions {
 
     override fun observeTicketUiState(
         owner: LifecycleOwner,

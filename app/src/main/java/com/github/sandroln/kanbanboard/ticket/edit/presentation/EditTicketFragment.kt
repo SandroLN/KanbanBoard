@@ -6,13 +6,14 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.ticket.common.presentation.ChooseColumnViewGroup
-import com.github.sandroln.kanbanboard.ticket.common.presentation.ColorsViewGroup
-import com.github.sandroln.kanbanboard.ticket.common.presentation.TicketFragment
 import com.github.sandroln.openedboard.TicketUi
+import com.github.sandroln.ticketcommon.TicketFragment
 import com.google.android.material.textfield.TextInputEditText
 
 class EditTicketFragment : TicketFragment<EditTicketViewModel>(R.layout.fragment_edit_ticket) {
+
+    override val backButtonId = R.id.backButton
+    override val actionButtonId = R.id.actionButton
 
     override val viewModelClass = EditTicketViewModel::class.java
 
@@ -21,14 +22,9 @@ class EditTicketFragment : TicketFragment<EditTicketViewModel>(R.layout.fragment
         //region init views
         val refreshButton = view.findViewById<View>(R.id.refreshButton)
         val deleteView = view.findViewById<DeleteTicketView>(R.id.deleteTicketView)
-        val colorsViewGroup = view.findViewById<ColorsViewGroup>(R.id.colorsViewGroup)
         val editTicketButton = view.findViewById<Button>(R.id.actionButton)
-        val titleEditText = view.findViewById<TextInputEditText>(R.id.createTicketEditText)
-        val assigneeEditText = view.findViewById<TextInputEditText>(R.id.assigneeEditText)
-        val membersRecyclerView = view.findViewById<RecyclerView>(R.id.boardMembersRecyclerView)
-        val descriptionEditText = view.findViewById<TextInputEditText>(R.id.descriptionEditText)
-        val chooseColumnViewGroup =
-            view.findViewById<ChooseColumnViewGroup>(R.id.chooseColumnViewGroup)
+        val assigneeEditText = view.findViewById<TextInputEditText>(assigneeEditTextId)
+        val membersRecyclerView = view.findViewById<RecyclerView>(boardMembersRecyclerViewId)
         //endregion
 
         refreshButton.setOnClickListener {

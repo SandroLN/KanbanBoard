@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="board_name">Board Name</string>
-    <string name="at_least_3_symbols">At least 3 symbols</string>
     <string name="create_board">Create Board</string>
     <string name="board_already_exists">Board with this name already exists</string>
 </resources>

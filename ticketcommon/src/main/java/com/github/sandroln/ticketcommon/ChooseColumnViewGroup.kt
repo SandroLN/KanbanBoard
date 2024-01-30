@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.ticket.common.presentation
+package com.github.sandroln.ticketcommon
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,7 +7,6 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.core.view.children
 import androidx.core.view.forEachIndexed
-import com.github.sandroln.kanbanboard.R
 import com.github.sandroln.openedboard.ChooseColumnInit
 import com.github.sandroln.openedboard.Column
 
