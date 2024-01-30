@@ -9,5 +9,6 @@ class MainModule(
     private val navigateToLoginScreen: NavigateToLoginScreen
 ) : Module<MainViewModel> {
 
-    override fun viewModel(): MainViewModel = MainViewModel(navigateToLoginScreen, core.navigation())
+    override fun viewModel() =
+        MainViewModel(core.connectedCommunication(), navigateToLoginScreen, core.navigation())
 }

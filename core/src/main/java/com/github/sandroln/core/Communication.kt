@@ -18,17 +18,28 @@ interface Communication {
 
     abstract class Abstract<T : Any>(private val liveData: MutableLiveData<T>) : Mutable<T> {
 
-        override fun map(source: T) {
-            liveData.value = source
-        }
-
         override fun observe(owner: LifecycleOwner, observer: Observer<T>) =
             liveData.observe(owner, observer)
     }
 
-    abstract class Single<T : Any> : Abstract<T>(SingleLiveEvent())
+    abstract class Ui<T : Any>(private val liveData: MutableLiveData<T>) : Abstract<T>(liveData) {
+        override fun map(source: T) {
+            liveData.value = source
+        }
+    }
 
-    abstract class Regular<T : Any> : Abstract<T>(MutableLiveData())
+    abstract class Post<T : Any>(private val liveData: MutableLiveData<T>) : Abstract<T>(liveData) {
+
+        override fun map(source: T) {
+            liveData.postValue(source)
+        }
+    }
+
+    abstract class SinglePost<T : Any> : Post<T>(SingleLiveEvent())
+
+    abstract class Single<T : Any> : Ui<T>(SingleLiveEvent())
+
+    abstract class Regular<T : Any> : Ui<T>(MutableLiveData())
 }
 
 class SingleLiveEvent<T> : MutableLiveData<T>() {
