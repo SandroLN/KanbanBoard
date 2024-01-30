@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="your_web_client_id" tools:ignore="TypographyDashes">1002398847501-bfbona1fr4rq96ku0mnv7vbn5m0374d0.apps.googleusercontent.com</string>
+    <string name="welcome">Welcome to Kanban Boards</string>
+</resources>

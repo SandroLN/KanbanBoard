@@ -1,9 +1,7 @@
 package com.github.sandroln.kanbanboard
 
-import com.github.sandroln.kanbanboard.core.DispatchersList
-import com.github.sandroln.kanbanboard.core.ManageResource
-import com.github.sandroln.kanbanboard.main.NavigationCommunication
-import com.github.sandroln.kanbanboard.main.Screen
+import com.github.sandroln.core.NavigationCommunication
+import com.github.sandroln.core.Screen
 import junit.framework.TestCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -37,13 +35,14 @@ abstract class BaseTest {
 
     protected class TestDispatchersList(
         private val dispatcher: CoroutineDispatcher = TestCoroutineDispatcher()
-    ) : DispatchersList {
+    ) : com.github.sandroln.core.DispatchersList {
 
         override fun io() = dispatcher
         override fun ui() = dispatcher
     }
 
-    protected class TestManageResource(private val string: String) : ManageResource {
+    protected class TestManageResource(private val string: String) :
+        com.github.sandroln.core.ManageResource {
 
         override fun string(id: Int): String {
             return string

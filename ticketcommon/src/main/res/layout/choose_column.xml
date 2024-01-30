@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RadioGroup
+        android:id="@+id/columnsGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/toDoRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8dp"
+            android:text="@string/todo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <RadioButton
+            android:id="@+id/inProgressRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16dp"
+            android:padding="@dimen/_8dp"
+            android:text="@string/in_progress"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <RadioButton
+            android:id="@+id/doneRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8dp"
+            android:text="@string/done"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+    </RadioGroup>
+</HorizontalScrollView>
