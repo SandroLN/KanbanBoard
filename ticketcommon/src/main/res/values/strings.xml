@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title">Title</string>
+    <string name="assignee">Assignee</string>
+    <string name="description_title">Description (optional)</string>
+
+</resources>

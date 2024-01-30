@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import com.github.sandroln.core.ProvideViewModel
 
 class App : Application(), ProvideViewModel {
 
@@ -11,7 +12,8 @@ class App : Application(), ProvideViewModel {
 
     override fun onCreate() {
         super.onCreate()
-        viewModelsFactory = ViewModelsFactory(DependencyContainer.Base(Core(this)))
+        val make = MakeDependencies.Base(this)
+        viewModelsFactory = ViewModelsFactory(make.dependencies())
     }
 
     override fun <T : ViewModel> viewModel(owner: ViewModelStoreOwner, className: Class<T>): T =

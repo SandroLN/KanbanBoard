@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="edit_ticket">Edit Ticket</string>
+    <string name="cancel" tools:ignore="ButtonCase">cancel</string>
+    <string name="confirm_delete">Confirm delete</string>
+    <string name="ticket_deleted">Ticket deleted!</string>
+    <string name="save">Save</string>
+    <string name="refresh">refresh</string>
+</resources>

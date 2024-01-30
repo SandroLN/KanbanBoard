@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="board_invitations">Invitations</string>
+    <string name="create">create</string>
+    <string name="at_least_3_symbols">At least 3 symbols</string>
+</resources>

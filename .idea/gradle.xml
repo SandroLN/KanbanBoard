@@ -4,16 +4,28 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="testRunner" value="GRADLE" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="jbr-17" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/board" />
+            <option value="$PROJECT_DIR$/boards" />
+            <option value="$PROJECT_DIR$/boardsettings" />
+            <option value="$PROJECT_DIR$/chosenboard" />
+            <option value="$PROJECT_DIR$/cloudservice" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/createboard" />
+            <option value="$PROJECT_DIR$/createticket" />
+            <option value="$PROJECT_DIR$/editticket" />
+            <option value="$PROJECT_DIR$/login" />
+            <option value="$PROJECT_DIR$/openedboard" />
+            <option value="$PROJECT_DIR$/profile" />
+            <option value="$PROJECT_DIR$/ticketcommon" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
