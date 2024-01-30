@@ -1,6 +1,8 @@
 package com.github.sandroln.kanbanboard.main
 
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStoreOwner
@@ -16,6 +18,10 @@ class MainActivity : AppCompatActivity(), ProvideViewModel {
         val viewModel = viewModel(this, MainViewModel::class.java)
         viewModel.observe(this) {
             it.show(supportFragmentManager, R.id.container)
+        }
+        val errorTextView = findViewById<TextView>(R.id.errorTextView)
+        viewModel.observeConnection(this) { hasInternet ->
+            errorTextView.visibility = if (hasInternet) View.GONE else View.VISIBLE
         }
         viewModel.init(savedInstanceState == null)
     }

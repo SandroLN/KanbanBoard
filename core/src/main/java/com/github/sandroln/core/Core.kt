@@ -10,6 +10,11 @@ interface ProvideNavigation {
     fun navigation(): NavigationCommunication.Mutable
 }
 
+interface ProvideConnectedCommunication {
+
+    fun connectedCommunication(): ConnectedCommunication.Observe
+}
+
 interface ProvideStorage {
 
     fun storage(): Storage
@@ -37,13 +42,20 @@ interface ProvideService {
 }
 
 interface Core : ProvideNavigation, ProvideStorage, ProvideManageResource,
-    ProvideDispatchersList, ProvideSerialization, ProvideMyUser, ProvideService {
+    ProvideDispatchersList, ProvideSerialization, ProvideMyUser, ProvideService,
+    ProvideConnectedCommunication {
 
     class Base(
         private val myUser: MyUser,
         context: Context,
         private val navigation: NavigationCommunication.Mutable
     ) : Core {
+
+        private val connectedCommunication = ConnectedCommunication.Base()
+
+        init {
+            ConnectionAvailable(connectedCommunication, context)
+        }
 
         private val service: Service = Service.Base(context)
         private val gson = Gson()
@@ -73,5 +85,7 @@ interface Core : ProvideNavigation, ProvideStorage, ProvideManageResource,
         override fun provideMyUser() = myUser
 
         override fun service() = service
+
+        override fun connectedCommunication() = connectedCommunication
     }
 }
