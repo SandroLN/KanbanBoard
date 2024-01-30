@@ -1,6 +1,6 @@
 package com.github.sandroln.kanbanboard.ticket.create.data
 
-import com.github.sandroln.kanbanboard.board.main.data.TicketCloud
+import com.github.sandroln.openedboard.TicketCloud
 
 interface CreateTicketOnBoard {
 

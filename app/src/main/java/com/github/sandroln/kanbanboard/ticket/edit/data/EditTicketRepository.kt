@@ -1,8 +1,8 @@
 package com.github.sandroln.kanbanboard.ticket.edit.data
 
-import com.github.sandroln.kanbanboard.board.main.data.EditTicketIdCache
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.DeleteTicket
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.TicketChange
+import com.github.sandroln.openedboard.EditTicketIdCache
 
 interface EditTicketRepository : DeleteTicket, com.github.sandroln.core.SimpleInit {
 

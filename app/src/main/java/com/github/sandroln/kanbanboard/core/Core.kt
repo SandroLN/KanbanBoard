@@ -11,15 +11,15 @@ import com.github.sandroln.core.ObjectStorage
 import com.github.sandroln.core.Serialization
 import com.github.sandroln.core.SimpleStorage
 import com.github.sandroln.core.Storage
-import com.github.sandroln.kanbanboard.board.BoardScopeModule
-import com.github.sandroln.kanbanboard.board.ProvideBoardScopeModule
+import com.github.sandroln.openedboard.BoardScopeModule
+import com.github.sandroln.openedboard.OpenedBoardCore
 import com.google.gson.Gson
 
 class CoreImpl(
     featuresNavigation: FeaturesNavigation,
     context: Context,
     private val navigation: NavigationCommunication.Mutable
-) : BoardCore, ProvideBoardScopeModule {
+) : BoardCore, OpenedBoardCore {
 
     private val myUser = MyUser.Base(featuresNavigation)
     private val service: Service = Service.Base(context)

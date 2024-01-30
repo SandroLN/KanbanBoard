@@ -8,9 +8,10 @@ import android.widget.RadioGroup
 import androidx.core.view.children
 import androidx.core.view.forEachIndexed
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.board.main.presentation.Column
+import com.github.sandroln.openedboard.ChooseColumnInit
+import com.github.sandroln.openedboard.Column
 
-class ChooseColumnViewGroup : FrameLayout {
+class ChooseColumnViewGroup : FrameLayout, ChooseColumnInit {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
@@ -29,7 +30,7 @@ class ChooseColumnViewGroup : FrameLayout {
         columnsGroup = findViewById(R.id.columnsGroup)
     }
 
-    fun init(chosenColumn: Column) {
+    override fun init(chosenColumn: Column) {
         val chosenIndex = columns.indexOf(chosenColumn)
         columnsGroup.forEachIndexed { index, view ->
             (view as RadioButton).isChecked = index == chosenIndex

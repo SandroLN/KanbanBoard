@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="board_settings">Board Settings</string>
+    <string name="add_user_to_board">Add user to board</string>
+    <string name="user_email">User Email (at least 3 symbols)</string>
+    <string name="board_members">Board members</string>
+</resources>

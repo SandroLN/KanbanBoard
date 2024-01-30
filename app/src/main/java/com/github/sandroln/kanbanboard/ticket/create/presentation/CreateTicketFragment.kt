@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.board.main.presentation.Column
 import com.github.sandroln.kanbanboard.ticket.common.presentation.ChooseColumnViewGroup
 import com.github.sandroln.kanbanboard.ticket.common.presentation.ColorsViewGroup
 import com.github.sandroln.kanbanboard.ticket.common.presentation.TicketFragment
 import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketUiBundle
+import com.github.sandroln.openedboard.Column
 import com.google.android.material.textfield.TextInputEditText
 
 class CreateTicketFragment :
