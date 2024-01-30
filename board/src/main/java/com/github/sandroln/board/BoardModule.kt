@@ -14,13 +14,15 @@ import com.github.sandroln.board.presentation.BoardViewModel
 import com.github.sandroln.board.presentation.ColumnTicketCommunication
 import com.github.sandroln.board.presentation.TicketsCommunication
 import com.github.sandroln.chosenboard.ChosenBoardCache
+import com.github.sandroln.core.Core
 import com.github.sandroln.core.Module
 import com.github.sandroln.openedboard.EditTicketIdCache
 import com.github.sandroln.openedboard.MemberName
-import com.github.sandroln.openedboard.OpenedBoardCore
+import com.github.sandroln.openedboard.ProvideBoardScopeModule
 
 internal class BoardModule(
-    private val core: OpenedBoardCore,
+    private val boardScopeModule: ProvideBoardScopeModule,
+    private val core: Core,
     private val navigation: BoardToTicketNavigation
 ) : Module<BoardViewModel> {
 
@@ -35,7 +37,7 @@ internal class BoardModule(
         val storage = core.storage()
         val editTicketIdCache = EditTicketIdCache.Base(storage)
         val boardCloudDataSource = BoardCloudDataSource.Base(
-            core.boardScopeModule().provideContainer(),
+            boardScopeModule.boardScopeModule().provideContainer(),
             UpdateBoard.Base(communication, ticketsCommunication),
             Tickets.CloudDataSource.Base(handleError, core.service()),
             BoardMembers.CloudDataSource.Base(

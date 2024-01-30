@@ -10,7 +10,7 @@ import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.createboard.CreateBoardNavigationList
 import com.github.sandroln.createboard.presentation.CreateBoardScreen
 import com.github.sandroln.createticket.presentation.CreateTicketScreen
-import com.github.sandroln.kanbanboard.ticket.edit.presentation.EditTicketScreen
+import com.github.sandroln.editticket.presentation.EditTicketScreen
 import com.github.sandroln.login.presentation.LoginScreen
 import com.github.sandroln.profile.presentation.ProfileScreen
 

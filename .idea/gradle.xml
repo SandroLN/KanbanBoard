@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/createboard" />
             <option value="$PROJECT_DIR$/createticket" />
+            <option value="$PROJECT_DIR$/editticket" />
             <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/openedboard" />
             <option value="$PROJECT_DIR$/profile" />
