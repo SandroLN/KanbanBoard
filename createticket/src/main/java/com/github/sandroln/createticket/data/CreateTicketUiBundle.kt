@@ -1,11 +1,11 @@
-package com.github.sandroln.kanbanboard.ticket.create.data
+package com.github.sandroln.createticket.data
 
 import com.github.sandroln.openedboard.AssignUser
 import com.github.sandroln.openedboard.BoardUser
 import com.github.sandroln.openedboard.Column
 import com.github.sandroln.openedboard.TicketCloud
 
-interface CreateTicketUiBundle : CreateTicketOnBoard, AssignUser {
+internal interface CreateTicketUiBundle : CreateTicketOnBoard, AssignUser {
 
     class Base(
         private val column: Column,

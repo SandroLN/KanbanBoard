@@ -1,4 +1,4 @@
-package com.github.sandroln.kanbanboard.ticket.create.presentation
+package com.github.sandroln.createticket.presentation
 
 import com.github.sandroln.core.Screen
 

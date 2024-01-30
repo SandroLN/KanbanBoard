@@ -1,8 +1,8 @@
-package com.github.sandroln.kanbanboard.ticket.create.data
+package com.github.sandroln.createticket.data
 
 import com.github.sandroln.openedboard.TicketCloud
 
-interface CreateTicketOnBoard {
+internal interface CreateTicketOnBoard {
 
     fun createTicket(boardId: String): TicketCloud
 }

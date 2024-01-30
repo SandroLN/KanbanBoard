@@ -42,6 +42,7 @@ dependencies {
     implementation project(path: ':boardsettings')
     implementation project(path: ':board')
     implementation project(path: ':ticketcommon')
+    implementation project(path: ':createticket')
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'com.google.android.material:material:1.9.0'

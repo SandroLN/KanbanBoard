@@ -1,11 +1,11 @@
-package com.github.sandroln.kanbanboard.ticket.create.data
+package com.github.sandroln.createticket.data
 
 import com.github.sandroln.chosenboard.BoardCache
 import com.github.sandroln.chosenboard.ChosenBoardCache
 import com.github.sandroln.cloudservice.Service
 import com.github.sandroln.openedboard.TicketCloud
 
-interface CreateTicketRepository {
+internal interface CreateTicketRepository {
 
     fun createTicket(createTicketOnBoard: CreateTicketOnBoard)
 
@@ -22,7 +22,7 @@ interface CreateTicketRepository {
     }
 }
 
-class CreateTicketMapper(
+private class CreateTicketMapper(
     private val createTicketOnBoard: CreateTicketOnBoard
 ) : BoardCache.Mapper<TicketCloud> {
 

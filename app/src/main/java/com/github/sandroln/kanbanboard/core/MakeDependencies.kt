@@ -7,6 +7,7 @@ import com.github.sandroln.boardssettings.BoardSettingsDependencyContainer
 import com.github.sandroln.core.DependencyContainer
 import com.github.sandroln.core.NavigationCommunication
 import com.github.sandroln.createboard.CreateBoardDependencyContainer
+import com.github.sandroln.createticket.CreateTicketDependencyContainer
 import com.github.sandroln.login.LoginDependencyContainer
 import com.github.sandroln.profile.ProfileDependencyContainer
 
@@ -27,7 +28,8 @@ interface MakeDependencies {
             val createBoard = CreateBoardDependencyContainer(core, featuresNavigation, boards)
             val boardSettings = BoardSettingsDependencyContainer(core, createBoard)
             val board = BoardDependencyContainer(core, featuresNavigation, boardSettings)
-            return BaseDependencyContainer(featuresNavigation, core, board)
+            val createTicket = CreateTicketDependencyContainer(core, board)
+            return BaseDependencyContainer(featuresNavigation, core, createTicket)
         }
     }
 }

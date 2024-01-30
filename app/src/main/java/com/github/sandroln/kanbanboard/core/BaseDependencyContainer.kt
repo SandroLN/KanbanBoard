@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.github.sandroln.core.DependencyContainer
 import com.github.sandroln.kanbanboard.main.MainModule
 import com.github.sandroln.kanbanboard.main.MainViewModel
-import com.github.sandroln.kanbanboard.ticket.create.CreateTicketModule
-import com.github.sandroln.kanbanboard.ticket.create.presentation.CreateTicketViewModel
 import com.github.sandroln.kanbanboard.ticket.edit.EditTicketModule
 import com.github.sandroln.kanbanboard.ticket.edit.presentation.EditTicketViewModel
 
@@ -17,7 +15,6 @@ class BaseDependencyContainer(
 
     override fun module(className: Class<out ViewModel>) = when (className) {
         MainViewModel::class.java -> MainModule(core, featuresNavigation)
-        CreateTicketViewModel::class.java -> CreateTicketModule(core)
         EditTicketViewModel::class.java -> EditTicketModule(core)
         else -> dependencyContainer.module(className)
     }

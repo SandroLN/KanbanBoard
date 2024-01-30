@@ -1,14 +1,14 @@
-package com.github.sandroln.kanbanboard.ticket.create.presentation
+package com.github.sandroln.createticket.presentation
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import com.github.sandroln.kanbanboard.R
-import com.github.sandroln.kanbanboard.ticket.create.data.CreateTicketUiBundle
+import com.github.sandroln.createticket.R
+import com.github.sandroln.createticket.data.CreateTicketUiBundle
 import com.github.sandroln.openedboard.Column
 import com.github.sandroln.ticketcommon.TicketFragment
 
-class CreateTicketFragment :
+internal class CreateTicketFragment :
     TicketFragment<CreateTicketViewModel>(R.layout.fragment_create_ticket) {
 
     override val backButtonId = R.id.backButton
