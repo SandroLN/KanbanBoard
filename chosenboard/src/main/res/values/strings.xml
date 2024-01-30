@@ -2,4 +2,5 @@
 <resources>
     <string name="board_invitations">Invitations</string>
     <string name="create">create</string>
+    <string name="at_least_3_symbols">At least 3 symbols</string>
 </resources>

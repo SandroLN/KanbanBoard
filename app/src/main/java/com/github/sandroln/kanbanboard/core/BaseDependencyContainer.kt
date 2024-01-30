@@ -1,24 +1,20 @@
 package com.github.sandroln.kanbanboard.core
 
 import androidx.lifecycle.ViewModel
+import com.github.sandroln.core.Core
 import com.github.sandroln.core.DependencyContainer
 import com.github.sandroln.kanbanboard.main.MainModule
 import com.github.sandroln.kanbanboard.main.MainViewModel
-import com.github.sandroln.kanbanboard.ticket.create.CreateTicketModule
-import com.github.sandroln.kanbanboard.ticket.create.presentation.CreateTicketViewModel
-import com.github.sandroln.kanbanboard.ticket.edit.EditTicketModule
-import com.github.sandroln.kanbanboard.ticket.edit.presentation.EditTicketViewModel
 
 class BaseDependencyContainer(
     private val featuresNavigation: FeaturesNavigation,
-    private val core: CoreImpl,
+    private val core: Core,
     private val dependencyContainer: DependencyContainer,
 ) : DependencyContainer {
 
-    override fun module(className: Class<out ViewModel>) = when (className) {
-        MainViewModel::class.java -> MainModule(core, featuresNavigation)
-        CreateTicketViewModel::class.java -> CreateTicketModule(core)
-        EditTicketViewModel::class.java -> EditTicketModule(core)
-        else -> dependencyContainer.module(className)
-    }
+    override fun module(className: Class<out ViewModel>) =
+        if (className == MainViewModel::class.java)
+            MainModule(core, featuresNavigation)
+        else
+            dependencyContainer.module(className)
 }
